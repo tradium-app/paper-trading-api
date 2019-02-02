@@ -1,24 +1,21 @@
-var express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000,
-  mongoose = require('mongoose'),
-  Task = require('./api/models/newsModel'), //created model loading here
-  bodyParser = require('body-parser');
-  
-// mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/newsdb'); 
+import express from 'express';
+import { ApolloServer, gql } from 'apollo-server-express';
+import fs from 'fs';
 
+import resolvers from './src/database/resolvers.js';
+import { newsDbService } from 'nepaltoday-db-service';
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+const isDevelopment = process.env.NODE_ENV === 'development';
 
+// Construct a schema, using GraphQL schema language
+const typeDefSchema = fs.readFileSync('./src/database/typeDefs.graphql', 'utf8');
+const typeDefs = gql(typeDefSchema);
 
-var routes = require('./api/routes/newsRoute'); //importing route
-routes(app); //register the route
+const server = new ApolloServer({ typeDefs, resolvers, context: newsDbService });
 
+const app = express();
+server.applyMiddleware({ app });
 
-app.listen(port);
-
-
-console.log('News RESTful API server started on: ' + port);
+app.listen({ port: 4000 }, () =>
+	console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+);
