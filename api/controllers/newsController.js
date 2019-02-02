@@ -2,7 +2,7 @@
 
 
 var mongoose = require('mongoose'),
-news = mongoose.model('news');
+news = mongoose.model('newsdb');
 
 exports.list_all_news = function(req, res) {
   news.find({}, function(err, news) {
