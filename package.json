@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/syuraj/nepaltoday-api/issues"
   },
-  "homepage": "https://github.com/syuraj/nepaltoday-api#readme"
+  "homepage": "https://github.com/syuraj/nepaltoday-api#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
 }
