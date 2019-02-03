@@ -15,8 +15,6 @@ const server = new ApolloServer({ typeDefs, resolvers, context: newsDbService })
 
 const app = express();
 
-var routes = require('./src/routes/newsRoute'); //importing route
-routes(app); //register the route
 
 server.applyMiddleware({ app });
 
