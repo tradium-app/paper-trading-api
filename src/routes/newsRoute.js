@@ -4,7 +4,7 @@ module.exports = function(app) {
 
   // news Routes
   app.route('/news')
-    .get(news.list_all_news)
+    .get(news.getArticles)
     .post(news.create_a_news);
 
 
