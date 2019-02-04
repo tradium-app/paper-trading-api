@@ -4,8 +4,7 @@
 	"description": "Azure function with GraphQL endpoint that serves the NepalToday mobile app",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon --exec babel-node server.js"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
 		"type": "git",
@@ -25,6 +24,7 @@
 	},
 	"homepage": "https://github.com/syuraj/nepaltoday-api#readme",
 	"dependencies": {
+		"apollo-server-azure-functions": "2.3.3",
 		"apollo-server-express": "2.0.4",
 		"core-js": "2.6.3",
 		"express": "^4.16.4",
