@@ -2,9 +2,11 @@
 type Article {
 	_id: String!,
     title: String!,
-    url: String!,
 	shortDescription: String,
-	content: String
+	content: String,
+	link: String,
+	imageLink: String,
+	source: String
 }
 
 type ArticleInput {
