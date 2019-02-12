@@ -1,5 +1,6 @@
 
 type Article {
+	_id: String!,
     title: String!,
     url: String!,
 	shortDescription: String,
