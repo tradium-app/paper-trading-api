@@ -6,7 +6,7 @@ type Article {
 	content: String,
 	link: String,
 	imageLink: String,
-	source: String,
+	source: Source,
 	publishedDate: String,
 	createdDate: String,
 	modifiedDate: String
@@ -20,7 +20,9 @@ input ArticleCriteria {
 type Source {
 	_id: String!,
 	name: String,
-	url: String
+	url: String,
+	link: String,
+	logoLink: String,
 }
 
 type Query {
