@@ -1,4 +1,4 @@
-module.exports = {
+exports.resolver = {
 	Query: {
 		getArticles: async (parent, args, { Article }) => {
 			args.criteria = args.criteria || {}
