@@ -25,6 +25,19 @@ type Source {
 	logoLink: String,
 }
 
+type Tweet{
+	_id:String!,
+	handle:String,
+	name:String,
+	category:String,
+	weight:String,
+}
+
+input TweetCriteria{
+	lastTweetId:String,
+	lastQueryDate:String,
+}
+
 type Query {
     getArticles(criteria: ArticleCriteria): [Article]!
 }
