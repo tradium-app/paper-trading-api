@@ -39,5 +39,6 @@ input TweetCriteria{
 }
 
 type Query {
-    getArticles(criteria: ArticleCriteria): [Article]!
+    getArticles(criteria: ArticleCriteria): [Article]!,
+	getTweets(criteria: TweetCriteria): [Tweet]!,
 }
