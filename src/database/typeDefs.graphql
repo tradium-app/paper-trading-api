@@ -27,10 +27,8 @@ type Source {
 
 type Tweet{
 	_id:String!,
-	handle:String,
-	name:String,
-	category:String,
-	weight:String,
+	text:String,
+	twitterHandle:String
 }
 
 input TweetCriteria{
