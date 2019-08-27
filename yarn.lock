@@ -3366,9 +3366,9 @@ negotiator@0.6.1:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
   integrity sha1-KzJxhOiZIQEXeyhWP7XnECrNDKk=
 
-"nepaltoday-db-service@github:syuraj/nepaltoday-db-service":
+"nepaltoday-db-service@github:siristechnology/nepaltoday-db-service#nep-21/twitter-collection":
   version "1.0.4"
-  resolved "git+ssh://git@github.com/syuraj/nepaltoday-db-service.git#eee1c4bee6ffeb7940c3629c5883c3ad602b171d"
+  resolved "https://codeload.github.com/siristechnology/nepaltoday-db-service/tar.gz/2c28947602ae7b449183061ed9cbd1b91c156c29"
   dependencies:
     dotenv "^6.2.0"
     mongodb "3.1.13"
