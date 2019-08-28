@@ -25,7 +25,10 @@ exports.resolver = {
       args.criteria.lastTweetId =
         args.criteria.lastTweetId || "000000000000000000000000";
 
-      const tweets = await Tweet.find({})
+      const tweets = await Tweet.find({
+        modifiedDate: { $gt: new Date(args.criteria.lastQueryDate) },
+        _id: { $gt: args.criteria.lastTweetId }
+      })
         .populate("twitterHandle")
         .sort({ _id: -1 })
         .limit(100);
