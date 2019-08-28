@@ -3379,7 +3379,11 @@ negotiator@0.6.1:
 
 "nepaltoday-db-service@github:siristechnology/nepaltoday-db-service":
   version "1.1.1"
+<<<<<<< HEAD
   resolved "https://codeload.github.com/siristechnology/nepaltoday-db-service/tar.gz/cdf972922df4b711c788d6ec730aba660ec12197"
+=======
+  resolved "https://codeload.github.com/siristechnology/nepaltoday-db-service/tar.gz/6a1937b68edfb6aabe1680a87f8dd7c906c89cee"
+>>>>>>> nep-21/twitter-collection
   dependencies:
     "@babel/polyfill" "7.4.4"
     dotenv "^8.1.0"
