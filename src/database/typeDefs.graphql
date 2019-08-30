@@ -21,6 +21,12 @@ type Source {
 	_id: String!,
 	name: String,
 	url: String,
+	 category: [
+      {
+        name: String,
+        path: String
+      }
+    ],
 	link: String,
 	logoLink: String,
 }
