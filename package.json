@@ -39,11 +39,7 @@
     "graphql-tools": "4.0.4",
     "morgan": "1.9.1",
     "morgan-body": "2.4.7",
-<<<<<<< HEAD
     "nepaltoday-db-service": "github:siristechnology/nepaltoday-db-service",
-=======
-    "nepaltoday-db-service": "github:siristechnology/nepaltoday-db-service#1.1.4",
->>>>>>> 673c585d3110dcd9094bcc6b2e48e961c2d93728
     "schemaglue": "4.0.2",
     "babel-cli": "6.26.0",
     "babel-preset-latest": "6.24.1",
