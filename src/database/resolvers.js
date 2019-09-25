@@ -1,3 +1,5 @@
+const { getSortedArticle } = require("../helper/articleHelper");
+const { getSortedTweets } = require("../helper/twitterHelper");
 exports.resolver = {
   Query: {
     getArticles: async (parent, args, { Article }) => {
@@ -15,10 +17,10 @@ exports.resolver = {
         .populate("source")
         .sort({ _id: -1 })
         .limit(100);
-      return articles;
+      const sortedArticles = getSortedArticle(articles);
+      return sortedArticles;
     },
     getTweets: async (parent, args, { Tweet }) => {
-      console.log("arguments here========", args, "Tweets=======", Tweet);
       args.criteria = args.criteria || {};
       args.criteria.lastQueryDate =
         args.criteria.lastQueryDate || new Date("2001-01-01");
@@ -29,7 +31,9 @@ exports.resolver = {
         .populate("twitterHandle")
         .sort({ publishedDate: -1 })
         .limit(100);
-      return tweets;
+
+      const sortedTweets = getSortedTweets(tweets);
+      return sortedTweets;
     }
   }
 };
