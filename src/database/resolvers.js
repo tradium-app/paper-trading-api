@@ -32,8 +32,8 @@ exports.resolver = {
         .sort({ publishedDate: -1 })
         .limit(100);
 
-      const sortedTweets = getSortedTweets(tweets);
-      return sortedTweets;
+      //   const sortedTweets = getSortedTweets(tweets);
+      return tweets;
     }
   }
 };
