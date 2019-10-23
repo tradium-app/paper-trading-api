@@ -1,5 +1,6 @@
+const _ = require('lodash')
+const { categories } = require('../config/category')
 const { getSortedArticle } = require('../helper/articleHelper')
-const { getSortedTweets } = require('../helper/twitterHelper')
 
 exports.resolver = {
 	Query: {
@@ -8,20 +9,25 @@ exports.resolver = {
 			args.criteria.lastQueryDate = args.criteria.lastQueryDate || new Date('2001-01-01')
 			args.criteria.lastArticleId = args.criteria.lastArticleId || '000000000000000000000000'
 
-			const articles = await Article.find({
-				link: { $ne: null },
-				modifiedDate: { $gt: new Date(args.criteria.lastQueryDate) },
-				_id: { $gt: args.criteria.lastArticleId },
+			const promises = categories.map(async category => {
+				const _articles = await Article.find({
+					category,
+					link: { $ne: null },
+					modifiedDate: { $gt: new Date(args.criteria.lastQueryDate) },
+					_id: { $gt: args.criteria.lastArticleId },
+				})
+					.lean()
+					.populate('source')
+					.sort({ _id: -1 })
+					.limit(20)
+
+				return [..._articles]
 			})
-				.populate('source')
-				.sort({ _id: -1 })
-				.limit(100)
 
-			console.log('Printing articles before sorting', articles.map(a => a.title))
+			const articles = await Promise.all(promises)
 
-			const sortedArticles = getSortedArticle(articles)
-
-			console.log('Printing articles after sorting', sortedArticles.map(a => a.title))
+			const articleFlatterend = _.flatten(articles)
+			const sortedArticles = await getSortedArticle(articleFlatterend)
 
 			return sortedArticles
 		},
@@ -36,7 +42,6 @@ exports.resolver = {
 				.sort({ publishedDate: -1 })
 				.limit(100)
 
-			//   const sortedTweets = getSortedTweets(tweets);
 			return tweets
 		},
 	},
