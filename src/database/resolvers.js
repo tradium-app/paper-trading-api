@@ -1,4 +1,7 @@
 const _ = require('lodash')
+const { mongooseSchema } = require('nepaltoday-db-service')
+
+const { User } = mongooseSchema
 const { categories } = require('../config/category')
 const { getSortedArticle } = require('../helper/articleHelper')
 
@@ -24,6 +27,8 @@ exports.resolver = {
 				return [..._articles]
 			})
 
+			// console.log('Printing articles before sorting', articles.map(a => a.title))
+
 			const articles = await Promise.all(promises)
 
 			const articleFlatterend = _.flatten(articles)
@@ -43,6 +48,19 @@ exports.resolver = {
 				.limit(100)
 
 			return tweets
+		},
+	},
+	Mutation: {
+		storeFcmToken: async (parent, args) => {
+			const {
+				input: { fcmToken, countryCode, timeZone },
+			} = args
+			const user = await User.create({
+				fcmToken,
+				countryCode,
+				timeZone,
+			})
+			return user
 		},
 	},
 }
