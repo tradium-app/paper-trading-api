@@ -2,6 +2,8 @@
 
 A graphql based api endpoint for NepalToday mobile app
 
+It is set to auto-deploy to https://dashboard.heroku.com/apps/nepaltoday-api-qa
+
 ![alt text](/assets/images/graphql-interface.png)
 
 ## Steps to run
