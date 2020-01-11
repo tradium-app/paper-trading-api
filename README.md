@@ -4,10 +4,6 @@ A graphql based api endpoint for NepalToday mobile app
 
 ![alt text](/assets/images/graphql-interface.png)
 
-
-## Some helpful commands
-1. Run `kill-port 4000` to kill process in port 4000. kill-port is a npm module
-
 ## Steps to run
 1. `yarn` --to install npm modules
 2. Create .env file as per .env.sample file. Get actual values from Heroku env if you need to.
@@ -29,3 +25,5 @@ A graphql based api endpoint for NepalToday mobile app
 - `db.articles.remove({title: 'new title'})` --to remove all articles with title = 'new title'
 - `db.articles.update({_id:{$exists:true}}, { $set: {createdDate: '2019-01-01'}}, {multi: true})` --to update multiple articles with createdDate = '2019-01-01'
 
+## Some helpful commands
+1. Run `kill-port 4000` to kill process in port 4000. kill-port is a npm module
