@@ -1,7 +1,5 @@
 # NepalToday-Api
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/siristechnology/nepaltoday-api.svg)](https://greenkeeper.io/)
-
 A graphql based api endpoint for NepalToday mobile app
 
 ![alt text](/assets/images/graphql-interface.png)
