@@ -1,7 +1,5 @@
 const {
-	resolver: {
-		Query: { getArticles },
-	},
+	Query: { getArticles },
 } = require('../resolvers')
 import mockingoose from 'mockingoose'
 
@@ -9,7 +7,7 @@ import { GetMockArticle } from '../mocks'
 
 describe('Resolvers Query getArticles', () => {
 	it('should call Article.find for each category', async () => {
-		const { mongooseSchema } = require('nepaltoday-db-service')
+		const mongooseSchema = require('../../db-service/database/mongooseSchema')
 		mongooseSchema.Article.schema.path('source', Object)
 		mockingoose(mongooseSchema.Article).toReturn([GetMockArticle(), GetMockArticle()], 'find')
 
