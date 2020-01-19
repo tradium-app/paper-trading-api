@@ -19,50 +19,85 @@ module.exports = async function(context) {
 					currentTime,
 				}
 			})
-			if (userWithCurrentTime) {
-				const latestArticle = await newsDbService.getLatestNewsArticle()
-				const todaysTimeFrame = getStartEndTime()
 
-				const todaysNotifications = await NotificationDbService.getNotifications({
-					createdAt: { $gte: todaysTimeFrame.startTime, $lt: todaysTimeFrame.endTime },
-				})
-				if (latestArticle) {
-					const notifications = []
-					for (const user of userWithCurrentTime) {
-						const isSent = todaysNotifications.find(
-							notification =>
-								String(notification.user) === String(user._id) && String(notification.article) === String(latestArticle[0]._id),
-						)
-						if (isSent) {
-							continue
+			const article = await newsDbService.getLatestNewsArticle()
+
+			if (article) {
+				const notifications = []
+				for (const user of userWithCurrentTime) {
+					const eligibleTime = verifyNoticiableTime(user.currentTime)
+					if (eligibleTime) {
+						const data = {
+							notification: {
+								title: article.title,
+								body: article.shortDescription,
+							},
+							to: user.fcmToken,
 						}
-						const eligibleTime = verifyNoticiableTime(user.currentTime)
-						if (eligibleTime) {
-							const data = {
-								notification: {
-									title: latestArticle[0].title,
-									body: latestArticle[0].shortDescription,
-								},
-								to: user.fcmToken,
+						const response = await post(undefined, data)
+						if (response.status === 200) {
+							const payload = {
+								article: article._id,
+								user: user._id,
 							}
-							const response = await post(undefined, data)
-							if (response.status === 200) {
-								const payload = {
-									article: latestArticle[0]._id,
-									user: user._id,
-								}
-								notifications.push(payload)
-							}
+							notifications.push(payload)
 						}
+					} else {
+						console.log(userWithCurrentTime.currentTime)
 					}
-					if (notifications.length > 0) {
-						const notificationResponse = await NotificationDbService.saveNotifications(notifications)
-						if (notificationResponse) {
-							context.log('_____________notifications are saved successfully__________')
-						}
+				}
+				if (notifications.length > 0) {
+					const notificationResponse = await NotificationDbService.saveNotifications(notifications)
+					if (notificationResponse) {
+						context.log('_____________notifications are saved successfully__________')
 					}
 				}
 			}
+
+			// if (userWithCurrentTime) {
+			// 	const latestArticle = await newsDbService.getLatestNewsArticle()
+			// 	const todaysTimeFrame = getStartEndTime()
+
+			// 	const todaysNotifications = await NotificationDbService.getNotifications({
+			// 		createdAt: { $gte: todaysTimeFrame.startTime, $lt: todaysTimeFrame.endTime },
+			// 	})
+			// 	if (latestArticle) {
+			// 		const notifications = []
+			// 		for (const user of userWithCurrentTime) {
+			// 			const isSent = todaysNotifications.find(
+			// 				notification =>
+			// 					String(notification.user) === String(user._id) && String(notification.article) === String(latestArticle[0]._id),
+			// 			)
+			// 			if (isSent) {
+			// 				continue
+			// 			}
+			// 			const eligibleTime = verifyNoticiableTime(user.currentTime)
+			// 			if (eligibleTime) {
+			// 				const data = {
+			// 					notification: {
+			// 						title: latestArticle[0].title,
+			// 						body: latestArticle[0].shortDescription,
+			// 					},
+			// 					to: user.fcmToken,
+			// 				}
+			// 				const response = await post(undefined, data)
+			// 				if (response.status === 200) {
+			// 					const payload = {
+			// 						article: latestArticle[0]._id,
+			// 						user: user._id,
+			// 					}
+			// 					notifications.push(payload)
+			// 				}
+			// 			}
+			// 		}
+			// 		if (notifications.length > 0) {
+			// 			const notificationResponse = await NotificationDbService.saveNotifications(notifications)
+			// 			if (notificationResponse) {
+			// 				context.log('_____________notifications are saved successfully__________')
+			// 			}
+			// 		}
+			// 	}
+			// }
 		}
 	} catch (error) {
 		context.log('_____________error__________', error)

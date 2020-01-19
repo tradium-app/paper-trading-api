@@ -4,5 +4,11 @@
 	"editor.tabSize": 4,
 	"editor.formatOnSave": true,
 	"javascript.format.enable": false,
-	"deepscan.enable": true
+	"deepscan.enable": true,
+	"workbench.colorCustomizations": {
+		"titleBar.activeBackground": "#fc161c",
+		"titleBar.activeForeground": "#FFFFFF",
+		"titleBar.inactiveBackground": "#fc161c",
+		"titleBar.inactiveForeground": "#FFFFFF"
+	}
 }

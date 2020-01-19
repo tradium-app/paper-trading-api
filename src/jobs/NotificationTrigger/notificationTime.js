@@ -13,11 +13,11 @@ const getStartEndTime = () => {
 	const endTime = moment().endOf('day')
 	return {
 		startTime,
-		endTime
+		endTime,
 	}
 }
 
 module.exports = {
 	getStartEndTime,
-	verifyNoticiableTime
+	verifyNoticiableTime,
 }
