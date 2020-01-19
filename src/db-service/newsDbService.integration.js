@@ -3,6 +3,8 @@ const newsDbService = require('./newsDbService.js')
 const mongoose = require('mongoose')
 mongoose.promise = global.Promise
 
+// jest.setTimeout(200000)
+
 describe('NewsDbService', () => {
 	beforeAll(() => {
 		mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
@@ -12,7 +14,7 @@ describe('NewsDbService', () => {
 			title: 'dummy title ' + Math.random(),
 			link: 'link' + Math.random(),
 			imageLink: 'imageLink',
-			source: mongoose.Types.ObjectId('5d6a823c623ac6d9a39391eb')
+			source: mongoose.Types.ObjectId('5d6a823c623ac6d9a39391eb'),
 		}
 		const articlesSaved = await newsDbService.saveArticle(article)
 
@@ -23,8 +25,9 @@ describe('NewsDbService', () => {
 		await newsDbService.deleteArticles({ _id: articlesSaved._id })
 	})
 
-	it('get single artilce', async () => {
+	it('getLatestNewsArticle should return lastest news', async () => {
 		const singleArticle = await newsDbService.getLatestNewsArticle()
+		console.log(singleArticle)
 		expect(singleArticle).not.toBeUndefined()
 	})
 
@@ -32,7 +35,7 @@ describe('NewsDbService', () => {
 		const article = {
 			title: 'dummy title' + Math.random(),
 			link: 'link' + Math.random(),
-			imageLink: 'imageLink'
+			imageLink: 'imageLink',
 		}
 		const articlesSaved = await newsDbService.saveArticles([article])
 
@@ -57,7 +60,7 @@ describe('NewsDbService', () => {
 			title: 'dummy title two' + Math.random(),
 			link: 'link' + Math.random(),
 			publishedDate: date1,
-			source: sources[0]._id
+			source: sources[0]._id,
 		}
 		const articlesSaved = await newsDbService.saveArticles([article])
 		expect(articlesSaved[0]).not.toBeUndefined()

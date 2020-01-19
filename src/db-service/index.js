@@ -1,9 +1,9 @@
 require('dotenv').config()
-const userDbService = require('./src/UserDbService.js')
-const newsDbService = require('./src/newsDbService.js')
-const TweetDbService = require('./src/TweetDbService.js')
-const mongooseSchema = require('./src/database/mongooseSchema')
-const NotificationDbService = require('./src/NotificationDbService')
+const userDbService = require('./UserDbService.js')
+const newsDbService = require('./newsDbService.js')
+const TweetDbService = require('./TweetDbService.js')
+const mongooseSchema = require('./database/mongooseSchema')
+const NotificationDbService = require('./NotificationDbService')
 
 const mongoose = require('mongoose')
 mongoose.promise = global.Promise
