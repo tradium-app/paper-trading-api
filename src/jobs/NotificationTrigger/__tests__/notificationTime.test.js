@@ -9,13 +9,4 @@ describe('Moment integration', () => {
 
 		expect(now).not.toBe(null)
 	})
-
-	it('verifyNoticiableTime should return true', () => {
-		const currentTime = moment()
-			.tz('Asia/Kathmandu')
-			.format('HH:mm')
-
-		const eligibleTime = verifyNoticiableTime(currentTime)
-		expect(eligibleTime).not.toBe(false)
-	})
 })
