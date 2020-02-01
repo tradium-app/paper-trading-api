@@ -29,15 +29,15 @@ module.exports = async function(context) {
 					if (eligibleTime) {
 						const data = {
 							notification: {
-								title: article.title,
-								body: article.shortDescription,
+								title: article[0].title,
+								body: article[0].shortDescription,
 							},
 							to: user.fcmToken,
 						}
 						const response = await post(undefined, data)
 						if (response.status === 200) {
 							const payload = {
-								article: article._id,
+								article: article[0]._id,
 								user: user._id,
 							}
 							notifications.push(payload)
