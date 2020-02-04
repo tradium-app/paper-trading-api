@@ -3,7 +3,7 @@ module.exports = async function(context) {
 	const timeStamp = new Date().toISOString()
 
 	const { post } = require('./http')
-	const { verifyNoticiableTime } = require('./notificationTime')
+	const { verifyNoticiableTime, getStartEndTime } = require('./notificationTime')
 	const { userDbService, newsDbService, NotificationDbService } = require('../../db-service')
 
 	try {
@@ -19,37 +19,51 @@ module.exports = async function(context) {
 					currentTime,
 				}
 			})
+			if (userWithCurrentTime) {
+				const article = await newsDbService.getLatestNewsArticle()
+				const todaysTimeFrame = getStartEndTime()
 
-			const article = await newsDbService.getLatestNewsArticle()
+				const todaysNotifications = await NotificationDbService.getNotifications({
+					createdAt: { $gte: todaysTimeFrame.startTime, $lt: todaysTimeFrame.endTime },
+				})
 
-			if (article) {
-				const notifications = []
-				for (const user of userWithCurrentTime) {
-					const eligibleTime = verifyNoticiableTime(user.currentTime)
-					if (eligibleTime) {
-						const data = {
-							notification: {
-								title: article[0].title,
-								body: article[0].shortDescription,
-							},
-							to: user.fcmToken,
+				if (article) {
+					const notifications = []
+					for (const user of userWithCurrentTime) {
+						const isSent = todaysNotifications.find(
+							notification => String(notification.user) === String(user._id) && String(notification.article) === String(article[0]._id),
+						)
+						if (isSent) {
+							continue
 						}
-						const response = await post(undefined, data)
-						if (response.status === 200) {
-							const payload = {
-								article: article[0]._id,
-								user: user._id,
+						const eligibleTime = verifyNoticiableTime(user.currentTime)
+						if (eligibleTime) {
+							const data = {
+								notification: {
+									title: article[0].title,
+									body: article[0].shortDescription,
+								},
+								to: user.fcmToken,
 							}
-							notifications.push(payload)
+							try {
+								const response = await post(undefined, data)
+								if (response.status === 200) {
+									const payload = {
+										article: article[0]._id,
+										user: user._id,
+									}
+									notifications.push(payload)
+								}
+							} catch (err) {
+								console.log(err)
+							}
 						}
-					} else {
-						console.log(userWithCurrentTime.currentTime)
 					}
-				}
-				if (notifications.length > 0) {
-					const notificationResponse = await NotificationDbService.saveNotifications(notifications)
-					if (notificationResponse) {
-						context.log('_____________notifications are saved successfully__________')
+					if (notifications.length > 0) {
+						const notificationResponse = await NotificationDbService.saveNotifications(notifications)
+						if (notificationResponse) {
+							context.log('_____________notifications are saved successfully__________')
+						}
 					}
 				}
 			}

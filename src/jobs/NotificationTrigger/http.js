@@ -8,5 +8,5 @@ const post = async (url = FIREBASE_NOTIFICATION_URL, data = {}) => {
 }
 
 module.exports = {
-	post
+	post,
 }
