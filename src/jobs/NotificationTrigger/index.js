@@ -21,6 +21,7 @@ module.exports = async function(context) {
 			})
 			if (userWithCurrentTime) {
 				const article = await newsDbService.getLatestNewsArticle()
+				console.log('latest__article', article)
 				const todaysTimeFrame = getStartEndTime()
 
 				const todaysNotifications = await NotificationDbService.getNotifications({
@@ -38,6 +39,7 @@ module.exports = async function(context) {
 						}
 						const eligibleTime = verifyNoticiableTime(user.currentTime)
 						if (eligibleTime) {
+							console.log('eligible_to_send_notification', eligibleTime)
 							const data = {
 								notification: {
 									title: article[0].title,
@@ -52,6 +54,7 @@ module.exports = async function(context) {
 										article: article[0]._id,
 										user: user._id,
 									}
+									console.log('notification_payload', payload)
 									notifications.push(payload)
 								}
 							} catch (err) {
