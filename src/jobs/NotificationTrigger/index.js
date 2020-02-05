@@ -34,6 +34,7 @@ module.exports = async function(context) {
 						const isSent = todaysNotifications.find(
 							notification => String(notification.user) === String(user._id) && String(notification.article) === String(article[0]._id),
 						)
+						console.log('is__sent', isSent)
 						if (isSent) {
 							continue
 						}
