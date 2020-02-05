@@ -36,6 +36,7 @@ module.exports = async function(context) {
 						)
 						console.log('is__sent', isSent)
 						if (isSent) {
+							console.log('continue__if_notification_has_already_been_sent')
 							continue
 						}
 						const eligibleTime = verifyNoticiableTime(user.currentTime)
