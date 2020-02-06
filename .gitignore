@@ -24,3 +24,6 @@ appsettings.json
 local.settings.json
 yarn-error.log
 .env
+
+# IDE
+.vscode/
