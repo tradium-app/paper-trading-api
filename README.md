@@ -1,8 +1,10 @@
 # NepalToday-Api
 
 A graphql based api endpoint for NepalToday mobile app
-
 It is set to auto-deploy to https://dashboard.heroku.com/apps/nepaltoday-api-qa
+
+[![DeepScan grade](https://deepscan.io/api/teams/5348/projects/7147/branches/66890/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5348&pid=7147&bid=66890)
+[![codecov](https://codecov.io/gh/siristechnology/nepaltoday-api/branch/master/graph/badge.svg)](https://codecov.io/gh/siristechnology/nepaltoday-api)
 
 ![alt text](/assets/images/graphql-interface.png)
 
@@ -10,7 +12,7 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/nepaltoday-api-qa
 1. `yarn` --to install npm modules
 2. Create .env file as per .env.sample file. Get actual values from Heroku env if you need to.
 3. jest --runInBand -t 'some test description' -- it will run tests with `some test description` in `it` description
-4. don't checkin .env file
+4. Don't checkin .env file
 
 ## Key points
 1. Uses mongoose as ORM for mongodb
