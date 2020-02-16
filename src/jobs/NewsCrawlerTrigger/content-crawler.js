@@ -34,6 +34,12 @@ const getNewsContent = async (link, logoLink, baseUrl, context) => {
 				return data
 			}
 		}
+		if (baseUrl === url.BBC_NEPALI) {
+			const { error, data } = await manualScrapper(link, logoLink, selector.bbcnepali, context)
+			if (!error) {
+				return data
+			}
+		}
 		return null
 	} catch (error) {
 		return null

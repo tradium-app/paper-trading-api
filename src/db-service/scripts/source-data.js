@@ -133,3 +133,15 @@ db.sources.insert({
 		},
 	],
 })
+
+db.sources.insert({
+	name: 'BBC नेपाली',
+	link: 'https://bbc.com/nepali',
+	logoLink: 'https://news.files.bbci.co.uk/ws/img/logos/og/nepali.png',
+	category: [
+		{
+			name: 'news',
+			path: '/news',
+		},
+	],
+})

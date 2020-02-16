@@ -4,7 +4,7 @@ const request = require('request')
 process.setMaxListeners(Infinity)
 
 const { newsPortalLink } = require('../../../src/constants/portal')
-const { KANTIPUR, SETOPATI, RATOPATI, DAINIK_KHABAR, ONLINE_KHABAR } = newsPortalLink
+const { KANTIPUR, SETOPATI, RATOPATI, DAINIK_KHABAR, ONLINE_KHABAR, BBC_NEPALI } = newsPortalLink
 
 const scrapeNewsLink = async (baseUrl, url) => {
 	switch (baseUrl) {
@@ -18,6 +18,8 @@ const scrapeNewsLink = async (baseUrl, url) => {
 			return scrapeDainikNepalLinks(url)
 		case ONLINE_KHABAR:
 			return scrapeOnlineKhabarLinks(url)
+		case BBC_NEPALI:
+			return scrapeBBCNepaliLinks(url)
 		default:
 			return {
 				error: {
@@ -163,6 +165,36 @@ const scrapeOnlineKhabarLinks = url => {
 						.find('a')
 						.attr('href')
 					links.push(link)
+				})
+
+				resolve({
+					error: false,
+					links: links.slice(0, 2),
+				})
+			}
+		})
+	})
+}
+
+const scrapeBBCNepaliLinks = url => {
+	return new Promise((resolve, reject) => {
+		request(url, function(err, res, body) {
+			if (err) {
+				reject({
+					error: {
+						status: true,
+						stack: err,
+					},
+					links: null,
+				})
+			} else {
+				let $ = cheerio.load(body)
+				const links = []
+				$('div.eagle-item.faux-block-link').each(function(index) {
+					const link = $(this)
+						.find('a')
+						.attr('href')
+					links.push(`https://www.bbc.com/${link}`)
 				})
 
 				resolve({
