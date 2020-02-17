@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+db.sources.remove({})
 
 db.sources.insert({
 	name: 'सेतोपाटी',
