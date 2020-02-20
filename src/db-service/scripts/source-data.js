@@ -146,18 +146,7 @@ const sourceList = [
 ]
 
 sourceList.forEach(function(source) {
-	let sourceDoc = db.sources.findOne({ link: source.link })
-	if (sourceDoc) {
-		if (sourceDoc.link == source.link) {
-			//update
-			print('____________Updating existing source_________')
-			print(sourceDoc.link)
-			db.sources.update({ _id: sourceDoc._id }, source)
-		}
-	} else {
-		//insert
-		print('___________Inserting new source____________')
-		print(source.link)
-		db.sources.insert(source)
-	}
+	print('____________Updating existing source and inserting new source if not exist_________')
+	printjson(source)
+	db.sources.update({ link: source.link }, source, { upsert: true })
 })
