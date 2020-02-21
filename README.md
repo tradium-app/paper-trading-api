@@ -28,6 +28,7 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/nepaltoday-api-qa
 - `db.articles.remove({})` --to remove all articles documents
 - `db.articles.remove({title: 'new title'})` --to remove all articles with title = 'new title'
 - `db.articles.update({_id:{$exists:true}}, { $set: {createdDate: '2019-01-01'}}, {multi: true})` --to update multiple articles with createdDate = '2019-01-01'
+- `db.articles.find().sort({_id: -1}).limit(10)` -- to display latest articles (i.e order by descending and take 10 records)
 
 ## Some helpful commands
 1. Run `kill-port 4000` to kill process in port 4000. kill-port is a npm module

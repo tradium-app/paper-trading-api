@@ -194,7 +194,7 @@ const scrapeBBCNepaliLinks = url => {
 					const link = $(this)
 						.find('a')
 						.attr('href')
-					links.push(`https://www.bbc.com/${link}`)
+					links.push(`https://www.bbc.com${link}`)
 				})
 
 				resolve({
