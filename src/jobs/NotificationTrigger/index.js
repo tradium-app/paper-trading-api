@@ -1,74 +1,43 @@
 module.exports = async function(context) {
-	const moment = require('moment-timezone')
 	const timeStamp = new Date().toISOString()
 
-	const { post } = require('./http')
-	const { verifyNoticiableTime, getStartEndTime } = require('./notificationTime')
-	const { userDbService, newsDbService, NotificationDbService } = require('../../db-service')
+	const { verifyNoticiableTime } = require('./notificationTime')
+	const { newsDbService, NotificationDbService } = require('../../db-service')
+	const { getUsersWithCurrentTime } = require('./usersWithCurrentTime')
+	const { sendPushNotification } = require('./pushNotificationSender')
+	const { notificationExists, createUserWithNotification } = require('./notificationHelper')
 
 	try {
-		const users = await userDbService.getUsers()
-		if (users) {
-			const userWithCurrentTime = users.map(user => {
-				const currentTime = moment()
-					.tz(user.timeZone)
-					.format('HH:mm')
+		let userWithCurrentTime = await getUsersWithCurrentTime()
+		if (userWithCurrentTime) {
+			const latestArticle = await newsDbService.getLatestNewsArticle()
+			if (latestArticle) {
+				const notifications = []
+				let continueToSend = true
+				for (const user of userWithCurrentTime) {
+					if (await notificationExists(user, latestArticle[0])) continueToSend = false
 
-				return {
-					...user,
-					currentTime,
-				}
-			})
-			if (userWithCurrentTime) {
-				const article = await newsDbService.getLatestNewsArticle()
-				console.log('latest__article', article)
-				const todaysTimeFrame = getStartEndTime()
-
-				const todaysNotifications = await NotificationDbService.getNotifications({
-					createdAt: { $gte: todaysTimeFrame.startTime, $lt: todaysTimeFrame.endTime },
-				})
-
-				if (article) {
-					const notifications = []
-					for (const user of userWithCurrentTime) {
-						const isSent = todaysNotifications.find(
-							notification => String(notification.user) === String(user._id) && String(notification.article) === String(article[0]._id),
-						)
-						console.log('is__sent', isSent)
-						if (isSent) {
-							console.log('continue__if_notification_has_already_been_sent')
-							continue
-						}
+					if (continueToSend) {
 						const eligibleTime = verifyNoticiableTime(user.currentTime)
 						if (eligibleTime) {
-							console.log('eligible_to_send_notification', eligibleTime)
-							const data = {
-								notification: {
-									title: article[0].title,
-									body: article[0].shortDescription,
-								},
-								to: user.fcmToken,
-							}
-							try {
-								const response = await post(undefined, data)
-								if (response.status === 200) {
-									const payload = {
-										article: article[0]._id,
-										user: user._id,
-									}
-									console.log('notification_payload', payload)
-									notifications.push(payload)
+							const userWithNotification = createUserWithNotification(latestArticle[0], user)
+							let notificationSentStatus = sendPushNotification(userWithNotification)
+							if (notificationSentStatus) {
+								const payload = {
+									article: latestArticle[0]._id,
+									user: user._id,
 								}
-							} catch (err) {
-								console.log(err)
+								notifications.push(payload)
 							}
 						}
+					} else {
+						console.log('user has already got the notification')
 					}
-					if (notifications.length > 0) {
-						const notificationResponse = await NotificationDbService.saveNotifications(notifications)
-						if (notificationResponse) {
-							context.log('_____________notifications are saved successfully__________')
-						}
+				}
+				if (notifications.length > 0) {
+					const notificationResponse = await NotificationDbService.saveNotifications(notifications)
+					if (notificationResponse) {
+						context.log('_____________notifications are saved successfully__________')
 					}
 				}
 			}
