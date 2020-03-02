@@ -21,7 +21,7 @@ module.exports = async function(context) {
 						const eligibleTime = verifyNoticiableTime(user.currentTime)
 						if (eligibleTime) {
 							const userWithNotification = createUserWithNotification(latestArticle[0], user)
-							let notificationSentStatus = sendPushNotification(userWithNotification)
+							let notificationSentStatus = await sendPushNotification(userWithNotification)
 							if (notificationSentStatus) {
 								const payload = {
 									article: latestArticle[0]._id,
