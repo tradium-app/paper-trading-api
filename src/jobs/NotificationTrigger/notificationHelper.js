@@ -3,7 +3,7 @@ const { getStartEndTime } = require('./notificationTime')
 
 const notificationExists = async (user, article) => {
 	try {
-    const todaysTimeFrame = getStartEndTime()
+    const todaysTimeFrame = getStartEndTime(user.timeZone)
 		const todaysNotifications = await NotificationDbService.getNotifications({
 			createdAt: { $gte: todaysTimeFrame.startTime, $lt: todaysTimeFrame.endTime },
 		})

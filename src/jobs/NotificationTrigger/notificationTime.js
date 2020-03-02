@@ -1,4 +1,5 @@
 const moment = require('moment')
+const momentTz = require('moment-timezone')
 const { NOTIFICATION_END_TIME, NOTIFICATION_START_TIME } = require('./config')
 const verifyNoticiableTime = (currentTime, startTime = NOTIFICATION_START_TIME, endTime = NOTIFICATION_END_TIME) => {
 	const currentNumericTime = Number(currentTime.replace(':', ''))
@@ -17,7 +18,22 @@ const getStartEndTime = () => {
 	}
 }
 
+const getStartEndTimeForUser = tz => {
+	const startTime = momentTz()
+		.tz(tz)
+		.startOf('day')
+	const endTime = momentTz()
+		.tz(tz)
+		.endOf('day')
+
+	return {
+		startTime,
+		endTime,
+	}
+}
+
 module.exports = {
 	getStartEndTime,
 	verifyNoticiableTime,
+	getStartEndTimeForUser
 }
