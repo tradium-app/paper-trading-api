@@ -19,7 +19,7 @@ const selector = {
 	},
 	setopati: {
 		TITLE: 'section.news-detail-section div.title-names span.news-big-title',
-		EXCERPT: 'aside.left-side div.detail-box div.editor-box p:first-child',
+		EXCERPT: '#content > div.container > div > aside.left-side > div.row > div > div.editor-box > p:nth-child(2)',
 		LEAD_IMAGE: {
 			PATH: 'section.news-detail-section div.featured-images figure img',
 			SELECTOR: 'src',
