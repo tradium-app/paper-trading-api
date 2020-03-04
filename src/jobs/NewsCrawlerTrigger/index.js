@@ -41,7 +41,7 @@ module.exports = async function(context) {
 							for (const link of links) {
 								const content = await getNewsContent(`${link}`, logoLink, baseUrl, context)
 
-								if (content && content.title && sourceId) {
+								if (content && content.title && content.shortDescription && sourceId) {
 									content.source = sourceId
 									content.createdDate = crawlTime
 									content.modifiedDate = crawlTime
