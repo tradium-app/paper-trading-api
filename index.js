@@ -3,7 +3,6 @@ const morgan = require('morgan')
 const express = require('express')
 const requireGraphQLFile = require('require-graphql-file')
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
 const errorhandler = require('errorhandler')
 const { ApolloServer, gql } = require('apollo-server-express')
 const mongooseSchema = require('./src/db-service/database/mongooseSchema')
@@ -20,8 +19,8 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 mongoose.set('debug', true)
 
 const app = express()
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.use(morgan('combined'))
 
 if (isDevelopment) {

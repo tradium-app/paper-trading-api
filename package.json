@@ -45,7 +45,7 @@
 		"dotenv": "8.2.0",
 		"errorhandler": "1.5.1",
 		"esm": "^3.2.25",
-		"express": "^4.16.4",
+		"express": "^4.17.1",
 		"foreman": "3.0.1",
 		"graphql": "14.5.8",
 		"graphql-tools": "4.0.6",
