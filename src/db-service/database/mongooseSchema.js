@@ -87,6 +87,15 @@ const Notification = mongoose.model(
 	}).index({ article: 1, user: 1 }, { unique: true }),
 )
 
+const Topic = mongoose.model(
+	'Topic',
+	new Schema({
+		id: String,
+		topicText: String,
+		topicPath: String
+	})
+)
+
 module.exports = {
 	User,
 	Tweet,
@@ -94,4 +103,5 @@ module.exports = {
 	Source,
 	Notification,
 	TwitterHandle,
+	Topic
 }
