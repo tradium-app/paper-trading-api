@@ -8,19 +8,16 @@ module.exports = async function(context) {
 		const sources = await newsDbService.getAllSources()
 		if (sources && sources.length > 0) {
 			for (const source of sources) {
-                const baseUrl = source.link
-
-				if (baseUrl == 'https://onlinekhabar.com') {
-                    const { error, topics } = await scrapeTopic(baseUrl)
-					if (error) {
-						context.log('Error occured while getting topics', error)
-						continue
-					}
-					if (Array.isArray(topics) && topics.length > 0) {
-                        const savedTopics = await topicDbService.saveTopics(topics)
-						if (savedTopics != null) {
-							context.log('topics saved successfully!!!')
-						}
+				const baseUrl = source.link
+				const { error, topics } = await scrapeTopic(baseUrl)
+				if (error) {
+					context.log('Error occured while getting topics', error)
+					continue
+				}
+				if (Array.isArray(topics) && topics.length > 0) {
+					const savedTopics = await topicDbService.saveTopics(topics)
+					if (savedTopics != null) {
+						context.log('topics saved successfully!!!')
 					}
 				}
 			}
