@@ -53,6 +53,7 @@
 		"mongodb": "3.4.1",
 		"mongoose": "5.8.7",
 		"morgan": "1.9.1",
+		"newrelic": "6.4.2",
 		"nodemon": "^2.0.2",
 		"require-graphql-file": "1.0.1",
 		"twitter": "1.7.1"
