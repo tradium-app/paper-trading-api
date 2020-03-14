@@ -85,7 +85,7 @@ const sourceList = [
 	{
 		name: 'रातोपाटी',
 		link: 'https://ratopati.com',
-		logoLink: 'https://ratopati.prixa.net/static/normal/img/ratopati_default.jpg',
+		logoLink: 'https://i.imgur.com/h4EKX8S.png',
 		category: [
 			{
 				name: 'news',
