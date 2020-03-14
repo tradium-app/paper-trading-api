@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nf start",
+		"start:prod": "pm2-runtime start ecosystem.config.js",
 		"format": "prettier --write \"src/**/*.js\"",
 		"test": "jest --testMatch '**/?(*.)+(spec|test).[tj]s?(x)' ",
 		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)' ",
@@ -49,7 +50,7 @@
 		"mongoose": "5.9.4",
 		"morgan": "1.9.1",
 		"newrelic": "6.4.2",
-		"nodemon": "^2.0.2",
+		"pm2": "4.2.3",
 		"require-graphql-file": "1.0.1",
 		"twitter": "1.7.1",
 		"winston": "3.2.1"
