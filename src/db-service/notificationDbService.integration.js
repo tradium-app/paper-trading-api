@@ -3,7 +3,7 @@ const NotificationDbService = require('./NotificationDbService')
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
-// jest.setTimeout(20000)
+jest.setTimeout(20000)
 
 describe('NotificationDbService', () => {
 	beforeAll(() => {
@@ -47,5 +47,12 @@ describe('NotificationDbService', () => {
 		expect(notificationsLength).toBeGreaterThan(1)
 
 		await NotificationDbService.deleteNotification({})
+	})
+	it('getNotifications should get more than one notifications successfully', async () => {
+		const notifications = await NotificationDbService.getNotifications()
+		
+		expect(notifications).not.toBeUndefined()
+		expect(notifications).not.toBeNull()
+		expect(notifications.length).toBeGreaterThan(1)
 	})
 })
