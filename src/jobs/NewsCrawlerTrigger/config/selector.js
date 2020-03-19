@@ -7,6 +7,7 @@ const selector = {
 			SELECTOR: 'data-src',
 		},
 		CONTENT: 'article.normal div.description',
+		TOPIC: 'article.normal .article-header > div.cat_name > a'
 	},
 	ratopati: {
 		TITLE: '.article-head > h1',
@@ -16,6 +17,7 @@ const selector = {
 			SELECTOR: 'src',
 		},
 		CONTENT: '.ratopati-table-border-layout',
+		TOPIC: '#content > div > div.ot-content-with-sidebar-right > div.col-md-9 > nav > ol > li.breadcrumb-item.active > a'
 	},
 	setopati: {
 		TITLE: 'section.news-detail-section div.title-names span.news-big-title',
@@ -25,6 +27,7 @@ const selector = {
 			SELECTOR: 'src',
 		},
 		CONTENT: 'aside.left-side div.detail-box div.editor-box',
+		TOPIC: '#header > div.container.main-menu > div > div > div > ul > li > a.selected'
 	},
 	dainik: {
 		TITLE: 'div#sing_left div#sing_cont h1.inside_head',
@@ -34,6 +37,7 @@ const selector = {
 			SELECTOR: 'src',
 		},
 		CONTENT: 'div#sing_left div#sing_cont div.content p',
+		TOPIC: 'div#the_body #menu_div > ul > a > li.mactive'
 	},
 	onlinekhabar: {
 		TITLE: 'h2.mb-0',
@@ -43,6 +47,7 @@ const selector = {
 			SELECTOR: 'src',
 		},
 		CONTENT: 'div.main__read--content p',
+		TOPIC: '#main > section > div > div.nws__title--card > div.custom_breadcrumb > a:nth-child(2)'
 	},
 	bbcnepali: {
 		TITLE: 'div.story-body h1.story-body__h1',

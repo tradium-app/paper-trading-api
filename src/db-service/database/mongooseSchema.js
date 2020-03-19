@@ -17,6 +17,7 @@ const Article = mongoose.model(
 		publishedDate: { type: Date },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
+		topic: { type: String },
 	}),
 )
 
@@ -92,8 +93,8 @@ const Topic = mongoose.model(
 	new Schema({
 		id: String,
 		topicText: String,
-		topicPath: String
-	})
+		topicPath: String,
+	}),
 )
 
 module.exports = {
@@ -103,5 +104,5 @@ module.exports = {
 	Source,
 	Notification,
 	TwitterHandle,
-	Topic
+	Topic,
 }

@@ -24,6 +24,9 @@ module.exports = function manualScrapper(link, logoLink, selector, context) {
 					.trim()
 					.slice(0, 2000)
 				const publishedDate = new Date()
+				const topic = $(selector.TOPIC)
+					.text()
+					.trim()
 				resolve({
 					error: false,
 					data: {
@@ -33,6 +36,7 @@ module.exports = function manualScrapper(link, logoLink, selector, context) {
 						content,
 						link,
 						publishedDate,
+						topic,
 					},
 				})
 			}

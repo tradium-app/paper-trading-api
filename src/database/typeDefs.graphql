@@ -9,7 +9,8 @@ type Article {
 	category: String
 	publishedDate: String
 	createdDate: String
-	modifiedDate: String
+	modifiedDate: String,
+	topic: String
 }
 
 input ArticleCriteria {
