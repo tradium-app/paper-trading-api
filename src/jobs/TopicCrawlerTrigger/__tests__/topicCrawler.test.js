@@ -43,7 +43,7 @@ describe('topic-crawler integration test', () => {
 		expect(topics).not.toBe(null)
 		expect(error).toBeFalsy()
 	})
-	t('topic-crawler should crawl ekantipur topic', async () => {
+	it('topic-crawler should crawl ekantipur topic', async () => {
 		const baseUrl = 'https://ekantipur.com'
 		const { error, topics } = await scrapeTopic(baseUrl)
 		console.log('topics______', topics)
