@@ -12,7 +12,7 @@ describe('manual-scrapper', () => {
 		expect(error).toBeFalsy()
 	})
 	it('manualScrapper should scrape setopati', async () => {
-		const link = 'https://www.setopati.com/social/189567'
+		const link = 'https://setopati.com/social/189567'
 		const logoLink = 'test logoLink'
 
 		const { error, data } = await manualScrapper(link, logoLink, selector.setopati)
@@ -21,7 +21,7 @@ describe('manual-scrapper', () => {
 		expect(error).toBeFalsy()
 	})
 	it('content should not start with whitespace', async () => {
-		const link = 'https://www.setopati.com/social/189567'
+		const link = 'https://setopati.com/social/189567'
 		const logoLink = 'test logoLink'
 
 		const { error, data } = await manualScrapper(link, logoLink, selector.setopati)
@@ -39,7 +39,7 @@ describe('manual-scrapper', () => {
 		expect(error).toBeFalsy()
 	})
 	it('manualScrapper should scrape dainik khavar', async () => {
-		const link = 'https://www.dainiknepal.com/2019/09/411725.html'
+		const link = 'https://dainiknepal.com/2019/09/411725.html'
 		const logoLink = 'test logoLink'
 
 		const { error, data } = await manualScrapper(link, logoLink, selector.ratopati)
@@ -64,7 +64,7 @@ describe('manual-scrapper', () => {
 		expect(error).toBeFalsy()
 	})
 	it('manualScrapper should scrape bbc nepali', async () => {
-		const link = 'https://www.bbc.com/nepali/news-51520297'
+		const link = 'https://bbc.com/nepali/news-51520297'
 		const logoLink = 'test logoLink'
 
 		const { error, data } = await manualScrapper(link, logoLink, selector.bbcnepali)
