@@ -4,6 +4,7 @@ module.exports = async function(context) {
 
 	const { scrapeNewsLink } = require('./linkCrawler')
 	const { getNewsContent } = require('./content-crawler')
+	const { removeForwardSlashAndWhiteSpaces } = require('../../utils/arrayUtil')
 
 	const ipAddress = require('ip').address()
 
@@ -49,6 +50,7 @@ module.exports = async function(context) {
 									content.isHeadline = true // TODO: check if h1 or h2
 									content.hostIp = ipAddress
 									content.category = getCategoryName(categoryName)
+									content.topic = removeForwardSlashAndWhiteSpaces(content.topic)
 									const savedArticle = await newsDbService.saveArticle(content)
 									if (savedArticle) {
 										context.log('article saved successfully!!!!')
