@@ -6,11 +6,6 @@ const { KANTIPUR, SETOPATI, RATOPATI, DAINIK_KHABAR, ONLINE_KHABAR, BBC_NEPALI }
 
 process.setMaxListeners(Infinity)
 
-const Bearer = require('@bearer/node-agent')
-Bearer.init({
-	secretKey: process.env.BEARER_SH_API_KEY,
-})
-
 const scrapeNewsLink = async (baseUrl, url) => {
 	switch (baseUrl) {
 		case KANTIPUR:
