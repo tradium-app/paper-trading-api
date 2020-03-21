@@ -51,7 +51,7 @@ const sourceList = [
 
 			{
 				name: 'business',
-				path: '/kinmel',
+				path: '/section/market',
 			},
 		],
 	},
