@@ -7,8 +7,8 @@
 		"start": "nf start",
 		"start:prod": "pm2-runtime start ecosystem.config.js",
 		"format": "prettier --write \"src/**/*.js\"",
-		"test": "jest --testMatch '**/?(*.)+(spec|test).[tj]s?(x)' ",
-		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)' ",
+		"test": "jest --testMatch '**/?(*.)+(spec|test).[tj]s?(x)' --detectOpenHandles --forceExit",
+		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit",
 		"source:insert": "node ./src/db-service/scripts/source-data-caller.js"
 	},
 	"engines": {
