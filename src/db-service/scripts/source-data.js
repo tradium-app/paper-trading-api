@@ -119,16 +119,12 @@ const sourceList = [
 				path: '/business',
 			},
 			{
-				name: 'opinion',
-				path: '/category/opinion',
-			},
-			{
 				name: 'sports',
 				path: '/sports',
 			},
 			{
 				name: 'entertainment',
-				path: '/entertainment',
+				path: '/entertainment/',
 			},
 		],
 	},
@@ -139,7 +135,7 @@ const sourceList = [
 		category: [
 			{
 				name: 'news',
-				path: '/news',
+				path: '',
 			},
 		],
 	},
