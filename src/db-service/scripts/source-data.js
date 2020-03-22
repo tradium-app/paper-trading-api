@@ -124,7 +124,7 @@ const sourceList = [
 			},
 			{
 				name: 'entertainment',
-				path: '/entertainment/',
+				path: '/entertainment',
 			},
 		],
 	},
