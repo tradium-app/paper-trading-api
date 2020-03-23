@@ -169,7 +169,7 @@ const scrapeOnlineKhabarLinks = url => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2),
+					links: links.slice(0, 10),
 				})
 			}
 		})

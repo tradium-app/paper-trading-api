@@ -9,17 +9,17 @@ const Agenda = require('agenda')
 module.exports = async function() {
 	const agenda = new Agenda({ db: { address: process.env.DATABASE_URL } })
 
-	agenda.define('crawl articles', async job => {
+	agenda.define('crawl articles', async (job) => {
 		logger.info('crawl articles job started')
 		crawler(console)
 	})
 
-	agenda.define('notify users', async job => {
+	agenda.define('notify users', async (job) => {
 		logger.info('notify users job started')
 		notifier(console)
 	})
 
-	agenda.define('pull tweets', async job => {
+	agenda.define('pull tweets', async (job) => {
 		logger.info('pull tweets job started')
 		twitterJob(console)
 	})
