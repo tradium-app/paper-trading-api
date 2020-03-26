@@ -10,13 +10,18 @@ const mongooseSchema = require('./src/db-service/database/mongooseSchema')
 const startJobs = require('./src/jobs/job-runner/start-jobs')
 const resolvers = require('./src/database/resolvers')
 const colors = require('colors/safe')
+const Bearer = require('@bearer/node-agent')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
+
+Bearer.init({
+	secretKey: process.env.BEARER_SH_API_KEY,
+})
 
 startJobs()
 
 mongoose.promise = global.Promise
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const app = express()
 app.use(express.json())

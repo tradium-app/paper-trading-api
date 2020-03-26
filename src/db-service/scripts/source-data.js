@@ -51,7 +51,7 @@ const sourceList = [
 
 			{
 				name: 'business',
-				path: '/kinmel',
+				path: '/section/market',
 			},
 		],
 	},
@@ -119,10 +119,6 @@ const sourceList = [
 				path: '/business',
 			},
 			{
-				name: 'opinion',
-				path: '/category/opinion',
-			},
-			{
 				name: 'sports',
 				path: '/sports',
 			},
@@ -139,7 +135,7 @@ const sourceList = [
 		category: [
 			{
 				name: 'news',
-				path: '/news',
+				path: '',
 			},
 		],
 	},

@@ -1,10 +1,10 @@
+require('dotenv').config()
 const cheerio = require('cheerio')
 const request = require('request')
-
-process.setMaxListeners(Infinity)
-
 const { newsPortalLink } = require('../../../src/constants/portal')
 const { KANTIPUR, SETOPATI, RATOPATI, DAINIK_KHABAR, ONLINE_KHABAR, BBC_NEPALI } = newsPortalLink
+
+process.setMaxListeners(Infinity)
 
 const scrapeNewsLink = async (baseUrl, url) => {
 	switch (baseUrl) {
@@ -169,7 +169,7 @@ const scrapeOnlineKhabarLinks = url => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2),
+					links: links.slice(0, 10),
 				})
 			}
 		})
