@@ -41,6 +41,7 @@ module.exports = {
 
 	getLatestNewsArticle: async () => {
 		const latestNewsArticle = await Article.find({ category: 'news' })
+			.populate({path: 'source', select: 'logoLink'})
 			.sort({ _id: -1 })
 			.limit(1)
 			.lean()
