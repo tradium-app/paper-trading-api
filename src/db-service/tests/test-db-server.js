@@ -25,5 +25,5 @@ module.exports = {
 			const collection = collections[key]
 			await collection.deleteMany()
 		}
-	},
+	}
 }

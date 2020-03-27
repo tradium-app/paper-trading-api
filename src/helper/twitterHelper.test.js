@@ -10,8 +10,8 @@ const data = [
 			name: 'Dr. Baburam Bhattarai',
 			userWeight: 15,
 			categoryWeight: 50,
-			category: 'POLITICS',
-		},
+			category: 'POLITICS'
+		}
 	},
 
 	{
@@ -24,9 +24,9 @@ const data = [
 			name: 'Dr. Damuram Bhattarai',
 			userWeight: 16,
 			categoryWeight: 50,
-			category: 'POLITICS',
-		},
-	},
+			category: 'POLITICS'
+		}
+	}
 ]
 
 const expected = [
@@ -40,8 +40,8 @@ const expected = [
 			name: 'Dr. Damuram Bhattarai',
 			userWeight: 16,
 			categoryWeight: 50,
-			category: 'POLITICS',
-		},
+			category: 'POLITICS'
+		}
 	},
 	{
 		_id: 101,
@@ -53,9 +53,9 @@ const expected = [
 			name: 'Dr. Baburam Bhattarai',
 			userWeight: 15,
 			categoryWeight: 50,
-			category: 'POLITICS',
-		},
-	},
+			category: 'POLITICS'
+		}
+	}
 ]
 
 describe('Sort Tweets by weight', () => {

@@ -3,7 +3,7 @@ const { weights } = require('../config/weight')
 const { en } = require('../lang/en')
 const { sortArrayByWeight } = require('../utils/arrayUtil')
 
-const getSourceWeight = source => {
+const getSourceWeight = (source) => {
 	switch (source) {
 		case sources.EKANTIPUR:
 			return weights.source.EKANTIPUR
@@ -18,7 +18,7 @@ const getSourceWeight = source => {
 	}
 }
 
-const getCategoryWeight = category => {
+const getCategoryWeight = (category) => {
 	switch (category) {
 		case en.category.NEWS:
 			return weights.category.NEWS
@@ -40,8 +40,8 @@ const getCategoryWeight = category => {
 }
 const getSortedArticle = (articles = []) => {
 	const mappedArticle = articles
-		.filter(article => article.source !== null)
-		.map(article => {
+		.filter((article) => article.source !== null)
+		.map((article) => {
 			const sourceWeight = getSourceWeight(article.source.link)
 			const categoryWeight = getCategoryWeight(article.category)
 			const weight = sourceWeight + categoryWeight + Number(article.publishedDate)
@@ -57,5 +57,5 @@ const getSortedArticle = (articles = []) => {
 module.exports = {
 	getSortedArticle,
 	getSourceWeight,
-	getCategoryWeight,
+	getCategoryWeight
 }

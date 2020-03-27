@@ -1,5 +1,5 @@
 const {
-	Mutation: { storeFcmToken },
+	Mutation: { storeFcmToken }
 } = require('../resolvers')
 import mockingoose from 'mockingoose'
 
@@ -9,9 +9,9 @@ describe('Resolvers Mutation storeFcmToken', () => {
 		mockingoose(mongooseSchema.User).toReturn(
 			{
 				fcmToken: 'token123',
-				countryCode: 'NEP',
+				countryCode: 'NEP'
 			},
-			'create',
+			'create'
 		)
 
 		const response = await storeFcmToken(
@@ -19,10 +19,10 @@ describe('Resolvers Mutation storeFcmToken', () => {
 			{
 				input: {
 					fcmToken: 'token123',
-					countryCode: 'NEP',
-				},
+					countryCode: 'NEP'
+				}
 			},
-			mongooseSchema,
+			mongooseSchema
 		)
 		console.log('_______________response here_______________', response)
 

@@ -14,11 +14,11 @@ const getStartEndTime = () => {
 	const endTime = moment().endOf('day')
 	return {
 		startTime,
-		endTime,
+		endTime
 	}
 }
 
-const getStartEndTimeForUser = tz => {
+const getStartEndTimeForUser = (tz) => {
 	const startTime = momentTz()
 		.tz(tz)
 		.startOf('day')
@@ -28,7 +28,7 @@ const getStartEndTimeForUser = tz => {
 
 	return {
 		startTime,
-		endTime,
+		endTime
 	}
 }
 

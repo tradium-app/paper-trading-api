@@ -68,47 +68,47 @@ describe('manual-scrapper', () => {
 		const logoLink = 'test logoLink'
 
 		const { error, data } = await manualScrapper(link, logoLink, selector.bbcnepali)
-		
+
 		expect(data.content).not.toBe(null)
 		expect(error).toBeFalsy()
 	})
-	it('manualScrapper should scrape ekantipur topic', async() => {
+	it('manualScrapper should scrape ekantipur topic', async () => {
 		const link = 'https://ekantipur.com/news/2020/03/19/15846324235738018.html'
 		const logoLink = 'test logoLink'
 		const { error, data } = await manualScrapper(link, logoLink, selector.kantipur)
-		
+
 		expect(data.topic.length).toBeGreaterThan(0)
 		expect(error).toBeFalsy()
 	})
-	it('manualScrapper should scrape onlinekhabar topic', async() => {
+	it('manualScrapper should scrape onlinekhabar topic', async () => {
 		const link = 'https://onlinekhabar.com/2020/03/845491'
 		const logoLink = 'test logoLink'
 		const { error, data } = await manualScrapper(link, logoLink, selector.onlinekhabar)
-		
+
 		expect(data.topic.length).toBeGreaterThan(0)
 		expect(error).toBeFalsy()
 	})
-	it('manualScrapper should scrape setopati topic', async() => {
+	it('manualScrapper should scrape setopati topic', async () => {
 		const link = 'https://setopati.com/social/201898'
 		const logoLink = 'test logoLink'
 		const { error, data } = await manualScrapper(link, logoLink, selector.setopati)
-		
+
 		expect(data.topic.length).toBeGreaterThan(0)
 		expect(error).toBeFalsy()
 	})
-	it('manualScrapper should scrape ratopati topic', async() => {
+	it('manualScrapper should scrape ratopati topic', async () => {
 		const link = 'https://ratopati.com/story/122520/2020/3/19/arrest'
 		const logoLink = 'test logoLink'
 		const { error, data } = await manualScrapper(link, logoLink, selector.ratopati)
-		
+
 		expect(data.topic.length).toBeGreaterThan(0)
 		expect(error).toBeFalsy()
 	})
-	it('manualScrapper should dainiknepal topic', async() => {
+	it('manualScrapper should dainiknepal topic', async () => {
 		const link = 'https://dainiknepal.com/2020/03/441648.html'
 		const logoLink = 'test logoLink'
 		const { error, data } = await manualScrapper(link, logoLink, selector.dainik)
-		
+
 		console.log(data.topic)
 		expect(data.topic.length).toBeGreaterThan(0)
 		expect(error).toBeFalsy()

@@ -3,13 +3,13 @@ const { getStartEndTimeForUser } = require('./notificationTime')
 
 const notificationExists = async (user, article) => {
 	try {
-    const todaysTimeFrame = getStartEndTimeForUser(user.timeZone)
+		const todaysTimeFrame = getStartEndTimeForUser(user.timeZone)
 		const todaysNotifications = await NotificationDbService.getNotifications({
-			createdAt: { $gte: todaysTimeFrame.startTime, $lt: todaysTimeFrame.endTime },
+			createdAt: { $gte: todaysTimeFrame.startTime, $lt: todaysTimeFrame.endTime }
 		})
 		const hasSent = todaysNotifications.find(
-      notification => String(notification.user) === String(user._id) 
-      && String(notification.article) === String(article._id))
+			(notification) => String(notification.user) === String(user._id) && String(notification.article) === String(article._id)
+		)
 
 		if (hasSent) {
 			return true
@@ -25,7 +25,7 @@ const createUserWithNotification = (article, user) => {
 	return {
 		notification: {
 			title: article.title,
-			body: article.shortDescription,
+			body: article.shortDescription
 		},
 		to: user.fcmToken,
 		data: article
@@ -34,5 +34,5 @@ const createUserWithNotification = (article, user) => {
 
 module.exports = {
 	notificationExists,
-	createUserWithNotification,
+	createUserWithNotification
 }

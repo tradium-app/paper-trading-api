@@ -2,7 +2,7 @@ const { Article, Source } = require('./database/mongooseSchema')
 const logger = require('../config/logger')
 
 module.exports = {
-	saveArticles: async articles => {
+	saveArticles: async (articles) => {
 		try {
 			const savedArticles = await Article.insertMany(articles, { ordered: false })
 			return savedArticles
@@ -16,7 +16,7 @@ module.exports = {
 		}
 	},
 
-	saveArticle: async article => {
+	saveArticle: async (article) => {
 		try {
 			return await Article.create(article)
 		} catch (error) {
@@ -29,7 +29,7 @@ module.exports = {
 		return null
 	},
 
-	deleteArticles: async conditions => {
+	deleteArticles: async (conditions) => {
 		const deletedArticles = await Article.deleteMany(conditions)
 		return deletedArticles
 	},
@@ -52,8 +52,8 @@ module.exports = {
 		return sources
 	},
 
-	isExist: async newslink => {
+	isExist: async (newslink) => {
 		const count = await Article.count({ link: newslink })
 		return count > 0
-	},
+	}
 }

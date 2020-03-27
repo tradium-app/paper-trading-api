@@ -4,9 +4,9 @@ const newsPortalLink = {
 	SETOPATI: 'https://setopati.com',
 	DAINIK_KHABAR: 'https://dainiknepal.com',
 	ONLINE_KHABAR: 'https://onlinekhabar.com',
-	BBC_NEPALI: 'https://bbc.com/nepali',
+	BBC_NEPALI: 'https://bbc.com/nepali'
 }
 
 module.exports = {
-	newsPortalLink,
+	newsPortalLink
 }

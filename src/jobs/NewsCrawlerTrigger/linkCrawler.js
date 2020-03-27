@@ -23,23 +23,23 @@ const scrapeNewsLink = async (baseUrl, url) => {
 		default:
 			return {
 				error: {
-					status: true,
+					status: true
 				},
-				links: null,
+				links: null
 			}
 	}
 }
 
-const scrapeKantipurNewsLink = url => {
+const scrapeKantipurNewsLink = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					links: null,
+					links: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -53,22 +53,22 @@ const scrapeKantipurNewsLink = url => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2),
+					links: links.slice(0, 2)
 				})
 			}
 		})
 	})
 }
-const scrapeSetoPatiLink = url => {
+const scrapeSetoPatiLink = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					links: null,
+					links: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -82,22 +82,22 @@ const scrapeSetoPatiLink = url => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2),
+					links: links.slice(0, 2)
 				})
 			}
 		})
 	})
 }
-const scrapeDainikNepalLinks = url => {
+const scrapeDainikNepalLinks = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					links: null,
+					links: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -111,22 +111,22 @@ const scrapeDainikNepalLinks = url => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2),
+					links: links.slice(0, 2)
 				})
 			}
 		})
 	})
 }
-const scrapeRatoPatiLink = url => {
+const scrapeRatoPatiLink = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					links: null,
+					links: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -140,22 +140,22 @@ const scrapeRatoPatiLink = url => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2),
+					links: links.slice(0, 2)
 				})
 			}
 		})
 	})
 }
-const scrapeOnlineKhabarLinks = url => {
+const scrapeOnlineKhabarLinks = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					links: null,
+					links: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -169,23 +169,23 @@ const scrapeOnlineKhabarLinks = url => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 10),
+					links: links.slice(0, 10)
 				})
 			}
 		})
 	})
 }
 
-const scrapeBBCNepaliLinks = url => {
+const scrapeBBCNepaliLinks = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					links: null,
+					links: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -199,7 +199,7 @@ const scrapeBBCNepaliLinks = url => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2),
+					links: links.slice(0, 2)
 				})
 			}
 		})
@@ -207,5 +207,5 @@ const scrapeBBCNepaliLinks = url => {
 }
 
 module.exports = {
-	scrapeNewsLink,
+	scrapeNewsLink
 }

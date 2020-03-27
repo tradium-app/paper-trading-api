@@ -8,7 +8,7 @@ module.exports = async function(context) {
 
 	const ipAddress = require('ip').address()
 
-	const getCategoryName = category => {
+	const getCategoryName = (category) => {
 		if (category === 'news' || category === 'politics') {
 			return 'news'
 		} else {

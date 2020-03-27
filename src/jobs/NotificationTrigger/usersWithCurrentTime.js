@@ -6,14 +6,14 @@ const getUsersWithCurrentTime = async () => {
 		let usersWithCurrentTime = null
 		const users = await userDbService.getUsers()
 		if (users) {
-			usersWithCurrentTime = users.map(user => {
+			usersWithCurrentTime = users.map((user) => {
 				const currentTime = moment()
 					.tz(user.timeZone)
 					.format('HH:m')
 
 				return {
 					...user,
-					currentTime,
+					currentTime
 				}
 			})
 		}
@@ -24,5 +24,5 @@ const getUsersWithCurrentTime = async () => {
 }
 
 module.exports = {
-	getUsersWithCurrentTime,
+	getUsersWithCurrentTime
 }

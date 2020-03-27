@@ -14,5 +14,5 @@ module.exports = {
 	TweetDbService,
 	mongooseSchema,
 	userDbService,
-	NotificationDbService,
+	NotificationDbService
 }

@@ -6,10 +6,10 @@ module.exports = {
 		return TwitterHandle.find()
 	},
 
-	saveTwitterHandles: async handles => {
+	saveTwitterHandles: async (handles) => {
 		try {
 			return await TwitterHandle.insertMany(handles, {
-				ordered: false,
+				ordered: false
 			})
 		} catch (error) {
 			if (error.code === 11000 || error.code === 11001) {
@@ -20,14 +20,14 @@ module.exports = {
 		}
 	},
 
-	deleteTwitterHandles: async conditions => {
+	deleteTwitterHandles: async (conditions) => {
 		return TwitterHandle.deleteMany(conditions)
 	},
 
-	saveTweets: async tweets => {
+	saveTweets: async (tweets) => {
 		try {
 			const tweetSaved = await Tweet.insertMany(tweets, {
-				ordered: false,
+				ordered: false
 			})
 			return tweetSaved
 		} catch (error) {
@@ -39,11 +39,11 @@ module.exports = {
 		}
 	},
 
-	deleteTweets: async conditions => {
+	deleteTweets: async (conditions) => {
 		return Tweet.deleteMany(conditions)
 	},
 
 	getTweets: async () => {
 		return Tweet.find()
-	},
+	}
 }

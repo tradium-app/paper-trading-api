@@ -10,8 +10,8 @@ describe('Sort News with weight', () => {
 				publishedDate: 100,
 				source: {
 					_id: 11,
-					link: 'https://ekantipur.com',
-				},
+					link: 'https://ekantipur.com'
+				}
 			},
 			{
 				_id: 2,
@@ -22,8 +22,8 @@ describe('Sort News with weight', () => {
 
 				source: {
 					_id: 12,
-					link: 'https://ekantipur.com',
-				},
+					link: 'https://ekantipur.com'
+				}
 			},
 			{
 				_id: 3,
@@ -34,9 +34,9 @@ describe('Sort News with weight', () => {
 
 				source: {
 					_id: 13,
-					link: 'https://setopati.com',
-				},
-			},
+					link: 'https://setopati.com'
+				}
+			}
 		]
 
 		const expected = [
@@ -49,9 +49,9 @@ describe('Sort News with weight', () => {
 
 				source: {
 					_id: 12,
-					link: 'https://ekantipur.com',
+					link: 'https://ekantipur.com'
 				},
-				weight: 0, // for checking purposes only
+				weight: 0 // for checking purposes only
 			},
 			{
 				_id: 1,
@@ -61,9 +61,9 @@ describe('Sort News with weight', () => {
 				publishedDate: 100, //2
 				source: {
 					_id: 11,
-					link: 'https://ekantipur.com',
+					link: 'https://ekantipur.com'
 				},
-				weight: 0,
+				weight: 0
 			},
 
 			{
@@ -74,13 +74,13 @@ describe('Sort News with weight', () => {
 				publishedDate: 50, //3
 				source: {
 					_id: 13,
-					link: 'https://setopati.com',
+					link: 'https://setopati.com'
 				},
-				weight: 0,
-			},
+				weight: 0
+			}
 		]
 
-		const sortedArticles = getSortedArticle(initial).map(a => {
+		const sortedArticles = getSortedArticle(initial).map((a) => {
 			a.weight = 0
 			return a
 		})

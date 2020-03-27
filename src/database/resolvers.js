@@ -12,12 +12,12 @@ module.exports = {
 			args.criteria.lastQueryDate = args.criteria.lastQueryDate || new Date('2001-01-01')
 			args.criteria.lastArticleId = args.criteria.lastArticleId || '000000000000000000000000'
 
-			const promises = categories.map(async category => {
+			const promises = categories.map(async (category) => {
 				const _articles = await Article.find({
 					category,
 					link: { $ne: null },
 					modifiedDate: { $gt: new Date(args.criteria.lastQueryDate) },
-					_id: { $gt: args.criteria.lastArticleId },
+					_id: { $gt: args.criteria.lastArticleId }
 				})
 					.lean()
 					.populate('source')
@@ -46,19 +46,19 @@ module.exports = {
 				.limit(100)
 
 			return tweets
-		},
+		}
 	},
 	Mutation: {
 		storeFcmToken: async (parent, args) => {
 			const {
-				input: { fcmToken, countryCode, timeZone },
+				input: { fcmToken, countryCode, timeZone }
 			} = args
 			const user = await User.create({
 				fcmToken,
 				countryCode,
-				timeZone,
+				timeZone
 			})
 			return user
-		},
-	},
+		}
+	}
 }

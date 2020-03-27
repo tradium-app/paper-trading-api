@@ -15,5 +15,5 @@ const graphqlTestCall = async (query, variables) => {
 }
 
 module.exports = {
-	graphqlTestCall,
+	graphqlTestCall
 }

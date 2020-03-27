@@ -2,7 +2,6 @@ import { scrapeTopic } from '../topicCrawler'
 
 jest.setTimeout(20000)
 
-
 describe('topic-crawler integration test', () => {
 	it('topic-crawler should crawl setopati topic', async () => {
 		const baseUrl = 'https://setopati.com'

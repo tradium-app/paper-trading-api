@@ -1,18 +1,18 @@
 const { post } = require('./http')
 
-const sendPushNotification = async notification => {
+const sendPushNotification = async (notification) => {
 	try {
 		const response = await post(undefined, notification)
 		if (response.status === 200) {
-			return true
+			return { status: true }
 		} else {
-			return false
+			return { status: false }
 		}
 	} catch (error) {
-		console.log('_____could not send notification_______', error)
+		return { status: false, message: `Notification send failed: ${error.stack}` }
 	}
 }
 
 module.exports = {
-	sendPushNotification,
+	sendPushNotification
 }

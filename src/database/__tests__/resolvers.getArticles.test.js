@@ -1,5 +1,5 @@
 const {
-	Query: { getArticles },
+	Query: { getArticles }
 } = require('../resolvers')
 import mockingoose from 'mockingoose'
 

@@ -2,12 +2,12 @@ const { Notification } = require('./database/mongooseSchema')
 const logger = require('../config/logger')
 
 module.exports = {
-	saveNotification: async notification => {
+	saveNotification: async (notification) => {
 		const res = await Notification.create(notification)
 		return res
 	},
 
-	saveNotifications: async notifications => {
+	saveNotifications: async (notifications) => {
 		try {
 			const res = await Notification.insertMany(notifications)
 			return res
@@ -25,8 +25,8 @@ module.exports = {
 		const notificationHistory = await Notification.find(conditions)
 		return notificationHistory
 	},
-	deleteNotification: async conditions => {
+	deleteNotification: async (conditions) => {
 		const deletedNotifications = await Notification.deleteMany(conditions)
 		return deletedNotifications
-	},
+	}
 }

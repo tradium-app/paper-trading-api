@@ -8,14 +8,14 @@ module.exports = async function(context) {
 		consumer_key: TWITTER_CONSUMER_KEY,
 		consumer_secret: TWITTER_CONSUMER_SECRET,
 		access_token_key: TWITTER_ACCESS_TOKEN,
-		access_token_secret: TWITTER_ACCESS_TOKEN_SECRET,
+		access_token_secret: TWITTER_ACCESS_TOKEN_SECRET
 	})
 
 	async function sortAndSaveTweets(tweets, user) {
-		const filterdTweets = Array.from(tweets).map(tweet => {
+		const filterdTweets = Array.from(tweets).map((tweet) => {
 			return {
 				...tweet,
-				twitterHandle: user._id,
+				twitterHandle: user._id
 			}
 		})
 		const savedTweets = await TweetDbService.saveTweets(filterdTweets)
@@ -29,19 +29,19 @@ module.exports = async function(context) {
 			screen_name: `${handle}`,
 			count: 10,
 			exclude_replies: true,
-			include_rts: false,
+			include_rts: false
 		}
 		const rawTweets = await client.get('statuses/user_timeline', params)
 		const tweets =
 			rawTweets &&
-			rawTweets.map(tweet => ({
+			rawTweets.map((tweet) => ({
 				publishedDate: tweet.created_at,
 				tweetId: tweet.id_str || tweet.id,
 				text: tweet.text,
 				name: tweet.user.name,
 				handle: tweet.user.screen_name,
 				description: tweet.user.description,
-				profileImage: tweet.user.profile_image_url_https,
+				profileImage: tweet.user.profile_image_url_https
 			}))
 
 		return tweets

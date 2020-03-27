@@ -4,7 +4,7 @@ const request = require('request')
 const { newsPortalLink } = require('../../../src/constants/portal')
 const { KANTIPUR, SETOPATI, RATOPATI, DAINIK_KHABAR, ONLINE_KHABAR, BBC_NEPALI } = newsPortalLink
 
-const scrapeTopic = async baseUrl => {
+const scrapeTopic = async (baseUrl) => {
 	switch (baseUrl) {
 		case SETOPATI:
 			return scrapeSetoPatiTopic(baseUrl)
@@ -21,16 +21,16 @@ const scrapeTopic = async baseUrl => {
 	}
 }
 
-const scrapeSetoPatiTopic = url => {
+const scrapeSetoPatiTopic = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					topics: null,
+					topics: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -48,35 +48,35 @@ const scrapeSetoPatiTopic = url => {
 
 					topics.push({
 						topicText,
-						topicPath,
+						topicPath
 					})
 				})
 
 				resolve({
 					error: false,
-					topics,
+					topics
 				})
 			}
 		})
 	})
 }
 
-const scrapeOnlineKhabarTopic = url => {
+const scrapeOnlineKhabarTopic = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					topics: null,
+					topics: null
 				})
 			} else {
 				let $ = cheerio.load(body)
 				const topics = []
 				$('#page nav > div.ok__container > div.twelve__cols--grid > div > nav > div.menu-primary-menu-container > ul > li').each(function(
-					index,
+					index
 				) {
 					let topicPath = $(this)
 						.find('a')
@@ -90,21 +90,21 @@ const scrapeOnlineKhabarTopic = url => {
 
 						topics.push({
 							topicText,
-							topicPath,
+							topicPath
 						})
 					}
 				})
 
 				resolve({
 					error: false,
-					topics,
+					topics
 				})
 			}
 		})
 	})
 }
 
-const scrapeRatoPatiTopic = url => {
+const scrapeRatoPatiTopic = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
@@ -112,9 +112,9 @@ const scrapeRatoPatiTopic = url => {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					topics: null,
+					topics: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -128,29 +128,29 @@ const scrapeRatoPatiTopic = url => {
 
 					topics.push({
 						topicPath,
-						topicText,
+						topicText
 					})
 				})
 
 				resolve({
 					error: false,
-					topics,
+					topics
 				})
 			}
 		})
 	})
 }
 
-const scrapeKantipurTopic = url => {
+const scrapeKantipurTopic = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					topics: null,
+					topics: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -167,29 +167,29 @@ const scrapeKantipurTopic = url => {
 
 					topics.push({
 						topicPath,
-						topicText,
+						topicText
 					})
 				})
 
 				resolve({
 					error: false,
-					topics,
+					topics
 				})
 			}
 		})
 	})
 }
 
-const scrapeDainikbarTopic = url => {
+const scrapeDainikbarTopic = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					topics: null,
+					topics: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -203,29 +203,29 @@ const scrapeDainikbarTopic = url => {
 
 					topics.push({
 						topicPath,
-						topicText,
+						topicText
 					})
 				})
 
 				resolve({
 					error: false,
-					topics,
+					topics
 				})
 			}
 		})
 	})
 }
 
-const scrapeBBCNepaliTopic = url => {
+const scrapeBBCNepaliTopic = (url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function(err, res, body) {
 			if (err) {
 				reject({
 					error: {
 						status: true,
-						stack: err,
+						stack: err
 					},
-					topics: null,
+					topics: null
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -242,13 +242,13 @@ const scrapeBBCNepaliTopic = url => {
 
 					topics.push({
 						topicPath,
-						topicText,
+						topicText
 					})
 				})
 
 				resolve({
 					error: false,
-					topics,
+					topics
 				})
 			}
 		})
@@ -256,5 +256,5 @@ const scrapeBBCNepaliTopic = url => {
 }
 
 module.exports = {
-	scrapeTopic,
+	scrapeTopic
 }

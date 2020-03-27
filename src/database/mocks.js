@@ -6,7 +6,7 @@ const GetMockSource = () => ({
 	url: 'news_url',
 	category: 'news_category',
 	link: 'news_link',
-	logoLink: 'logo_link',
+	logoLink: 'logo_link'
 })
 
 const GetMockArticle = () => ({
@@ -20,10 +20,10 @@ const GetMockArticle = () => ({
 	publishedDate: casual.date,
 	createdDate: casual.date,
 	modifiedDate: casual.date,
-	source: GetMockSource(),
+	source: GetMockSource()
 })
 
 module.exports = {
 	GetMockSource,
-	GetMockArticle,
+	GetMockArticle
 }

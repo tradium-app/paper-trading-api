@@ -14,8 +14,5 @@
 	"quoteProps": "as-needed",
 	"requirePragma": false,
 	"trailingComma": "none",
-	"vueIndentScriptAndStyle": false,
-	"ast": false,
-	"doc": false,
-	"output2": false
+	"vueIndentScriptAndStyle": false
 }

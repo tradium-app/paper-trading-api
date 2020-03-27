@@ -23,10 +23,10 @@ module.exports = async function(context) {
 						if (eligibleTime) {
 							const userWithNotification = createUserWithNotification(latestArticle[0], user)
 							let notificationSentStatus = await sendPushNotification(userWithNotification)
-							if (notificationSentStatus) {
+							if (notificationSentStatus.status) {
 								const payload = {
 									article: latestArticle[0]._id,
-									user: user._id,
+									user: user._id
 								}
 								notifications.push(payload)
 							}

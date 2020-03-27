@@ -7,25 +7,25 @@ const sourceList = [
 		category: [
 			{
 				name: 'politics',
-				path: '/politics',
+				path: '/politics'
 			},
 			{
 				name: 'social',
-				path: '/social',
+				path: '/social'
 			},
 			{
 				name: 'opinion',
-				path: '/opinion',
+				path: '/opinion'
 			},
 			{
 				name: 'sports',
-				path: '/sports',
+				path: '/sports'
 			},
 			{
 				name: 'entertainment',
-				path: '/art',
-			},
-		],
+				path: '/art'
+			}
+		]
 	},
 	{
 		name: 'दैनिक नेपाल',
@@ -34,26 +34,26 @@ const sourceList = [
 		category: [
 			{
 				name: 'news',
-				path: '/section/latest-news',
+				path: '/section/latest-news'
 			},
 			{
 				name: 'opinion',
-				path: '/section/views',
+				path: '/section/views'
 			},
 			{
 				name: 'sports',
-				path: '/section/sports',
+				path: '/section/sports'
 			},
 			{
 				name: 'entertainment',
-				path: '/section/kala',
+				path: '/section/kala'
 			},
 
 			{
 				name: 'business',
-				path: '/section/market',
-			},
-		],
+				path: '/section/market'
+			}
+		]
 	},
 	{
 		name: 'कान्तिपुर',
@@ -62,25 +62,25 @@ const sourceList = [
 		category: [
 			{
 				name: 'news',
-				path: '/news',
+				path: '/news'
 			},
 			{
 				name: 'business',
-				path: '/business',
+				path: '/business'
 			},
 			{
 				name: 'opinion',
-				path: '/opinion',
+				path: '/opinion'
 			},
 			{
 				name: 'sports',
-				path: '/sports',
+				path: '/sports'
 			},
 			{
 				name: 'entertainment',
-				path: '/entertainment',
-			},
-		],
+				path: '/entertainment'
+			}
+		]
 	},
 	{
 		name: 'रातोपाटी',
@@ -89,25 +89,25 @@ const sourceList = [
 		category: [
 			{
 				name: 'news',
-				path: '/category/news',
+				path: '/category/news'
 			},
 			{
 				name: 'business',
-				path: '/economy',
+				path: '/economy'
 			},
 			{
 				name: 'opinion',
-				path: '/category/opinion',
+				path: '/category/opinion'
 			},
 			{
 				name: 'sports',
-				path: '/category/sports',
+				path: '/category/sports'
 			},
 			{
 				name: 'entertainment',
-				path: '/entertainment',
-			},
-		],
+				path: '/entertainment'
+			}
+		]
 	},
 	{
 		name: 'अनलाईन खबर',
@@ -116,17 +116,17 @@ const sourceList = [
 		category: [
 			{
 				name: 'business',
-				path: '/business',
+				path: '/business'
 			},
 			{
 				name: 'sports',
-				path: '/sports',
+				path: '/sports'
 			},
 			{
 				name: 'entertainment',
-				path: '/entertainment',
-			},
-		],
+				path: '/entertainment'
+			}
+		]
 	},
 	{
 		name: 'BBC नेपाली',
@@ -135,10 +135,10 @@ const sourceList = [
 		category: [
 			{
 				name: 'news',
-				path: '',
-			},
-		],
-	},
+				path: ''
+			}
+		]
+	}
 ]
 
 sourceList.forEach(function(source) {
