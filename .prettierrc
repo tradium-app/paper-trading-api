@@ -13,6 +13,6 @@
 	"proseWrap": "preserve",
 	"quoteProps": "as-needed",
 	"requirePragma": false,
-	"trailingComma": "none",
+	"trailingComma": "all",
 	"vueIndentScriptAndStyle": false
 }
