@@ -27,8 +27,7 @@ const createUserWithNotification = (article, user) => {
 			title: article.title,
 			body: article.shortDescription
 		},
-		to: user.fcmToken,
-		data: article
+		to: user.fcmToken
 	}
 }
 

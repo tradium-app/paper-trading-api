@@ -11,8 +11,7 @@ describe('PushNotificationSender integration', () => {
 				title: latestArticle[0].title,
 				body: latestArticle[0].shortDescription
 			},
-			to: process.env.TEST_USER_FCM_TOKEN,
-			data: latestArticle[0]
+			to: process.env.TEST_USER_FCM_TOKEN
 		}
 		let notificationSentStatus = await sendPushNotification(oneNotification)
 
