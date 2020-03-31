@@ -17,5 +17,7 @@ describe('PushNotificationSender integration', () => {
 		let notificationSentStatus = await sendPushNotification(oneNotification)
 
 		expect(notificationSentStatus.status).toBeTruthy()
+		expect(notificationSentStatus.success).toBe(1)
+        expect(notificationSentStatus.failure).toBe(0)
 	})
 })
