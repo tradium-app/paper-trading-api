@@ -12,10 +12,13 @@ describe('PushNotificationSender integration', () => {
 				body: latestArticle[0].shortDescription
 			},
 			to: process.env.TEST_USER_FCM_TOKEN,
-			data: latestArticle[0]._id
+			data: {
+				_id: latestArticle[0]._id
+			}
 		}
 		let notificationSentStatus = await sendPushNotification(oneNotification)
 
+		console.log(notificationSentStatus)
 		expect(notificationSentStatus.status).toBeTruthy()
 		expect(notificationSentStatus.success).toBe(1)
         expect(notificationSentStatus.failure).toBe(0)
