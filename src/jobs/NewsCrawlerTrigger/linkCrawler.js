@@ -23,9 +23,9 @@ const scrapeNewsLink = async (baseUrl, url) => {
 		default:
 			return {
 				error: {
-					status: true
+					status: true,
 				},
-				links: null
+				links: null,
 			}
 	}
 }
@@ -37,9 +37,9 @@ const scrapeKantipurNewsLink = (url) => {
 				reject({
 					error: {
 						status: true,
-						stack: err
+						stack: err,
 					},
-					links: null
+					links: null,
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -53,7 +53,7 @@ const scrapeKantipurNewsLink = (url) => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2)
+					links: links.slice(0, 2),
 				})
 			}
 		})
@@ -66,9 +66,9 @@ const scrapeSetoPatiLink = (url) => {
 				reject({
 					error: {
 						status: true,
-						stack: err
+						stack: err,
 					},
-					links: null
+					links: null,
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -82,7 +82,7 @@ const scrapeSetoPatiLink = (url) => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2)
+					links: links.slice(0, 2),
 				})
 			}
 		})
@@ -95,9 +95,9 @@ const scrapeDainikNepalLinks = (url) => {
 				reject({
 					error: {
 						status: true,
-						stack: err
+						stack: err,
 					},
-					links: null
+					links: null,
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -111,7 +111,7 @@ const scrapeDainikNepalLinks = (url) => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2)
+					links: links.slice(0, 2),
 				})
 			}
 		})
@@ -124,9 +124,9 @@ const scrapeRatoPatiLink = (url) => {
 				reject({
 					error: {
 						status: true,
-						stack: err
+						stack: err,
 					},
-					links: null
+					links: null,
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -140,7 +140,7 @@ const scrapeRatoPatiLink = (url) => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2)
+					links: links.slice(0, 2),
 				})
 			}
 		})
@@ -153,9 +153,9 @@ const scrapeOnlineKhabarLinks = (url) => {
 				reject({
 					error: {
 						status: true,
-						stack: err
+						stack: err,
 					},
-					links: null
+					links: null,
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -169,7 +169,7 @@ const scrapeOnlineKhabarLinks = (url) => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 10)
+					links: links.slice(0, 10),
 				})
 			}
 		})
@@ -183,14 +183,14 @@ const scrapeBBCNepaliLinks = (url) => {
 				reject({
 					error: {
 						status: true,
-						stack: err
+						stack: err,
 					},
-					links: null
+					links: null,
 				})
 			} else {
 				let $ = cheerio.load(body)
 				const links = []
-				$('div.eagle-item.faux-block-link').each(function(index) {
+				$('ul[class^="StoryPromoUl"] > li div h3').each(function() {
 					const link = $(this)
 						.find('a')
 						.attr('href')
@@ -199,7 +199,7 @@ const scrapeBBCNepaliLinks = (url) => {
 
 				resolve({
 					error: false,
-					links: links.slice(0, 2)
+					links: links.slice(0, 5),
 				})
 			}
 		})
@@ -207,5 +207,5 @@ const scrapeBBCNepaliLinks = (url) => {
 }
 
 module.exports = {
-	scrapeNewsLink
+	scrapeNewsLink,
 }

@@ -50,4 +50,14 @@ describe('link-crawler integration test', () => {
 		expect(links.length).toBeGreaterThan(0)
 		expect(error).toBeFalsy()
 	})
+
+	it('link-crawler should crawl bbc link', async () => {
+		const baseUrl = 'https://bbc.com/nepali'
+		const url = 'https://bbc.com/nepali'
+
+		const { error, links } = await scrapeNewsLink(baseUrl, url)
+
+		expect(links.length).toBeGreaterThan(0)
+		expect(error).toBeFalsy()
+	})
 })
