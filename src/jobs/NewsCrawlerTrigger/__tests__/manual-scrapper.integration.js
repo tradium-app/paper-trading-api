@@ -8,9 +8,10 @@ describe('manual-scrapper integration test', () => {
 
 		const { error, data } = await manualScrapper(link, logoLink, selector.kantipur)
 
-		expect(data.content).not.toBe(null)
+		expect(data.content.length).toBeGreaterThan(0)
 		expect(error).toBeFalsy()
 	})
+
 	it('manualScrapper should scrape setopati', async () => {
 		const link = 'https://setopati.com/social/189567'
 		const logoLink = 'test logoLink'

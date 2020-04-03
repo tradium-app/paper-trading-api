@@ -1,5 +1,6 @@
 const cheerio = require('cheerio')
 const request = require('request')
+const htmlToText = require('html-to-text')
 
 module.exports = function manualScrapper(link, logoLink, selector, context) {
 	return new Promise((resolve, reject) => {
@@ -8,9 +9,9 @@ module.exports = function manualScrapper(link, logoLink, selector, context) {
 				reject({
 					error: {
 						status: true,
-						stack: err
+						stack: err,
 					},
-					data: null
+					data: null,
 				})
 			} else {
 				let $ = cheerio.load(body)
@@ -19,10 +20,18 @@ module.exports = function manualScrapper(link, logoLink, selector, context) {
 					.text()
 					.slice(0, 300)
 				const imageLink = $(selector.LEAD_IMAGE.PATH).attr(selector.LEAD_IMAGE.SELECTOR) || logoLink
-				const content = $(selector.CONTENT)
-					.text()
+
+				const content = htmlToText
+					.fromString($(selector.CONTENT).html(), {
+						wordwrap: false,
+						ignoreImage: true,
+						ignoreHref: true,
+						ignoreImage: true,
+						preserveNewlines: true,
+					})
 					.trim()
 					.slice(0, 2000)
+
 				const publishedDate = new Date()
 				const topic = $(selector.TOPIC)
 					.text()
@@ -36,8 +45,8 @@ module.exports = function manualScrapper(link, logoLink, selector, context) {
 						content,
 						link,
 						publishedDate,
-						topic
-					}
+						topic,
+					},
 				})
 			}
 		})
