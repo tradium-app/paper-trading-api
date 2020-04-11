@@ -27,7 +27,7 @@ module.exports = function manualScrapper(link, logoLink, selector, context) {
 						ignoreImage: true,
 						ignoreHref: true,
 						ignoreImage: true,
-						preserveNewlines: true,
+						preserveNewlines: false,
 					})
 					.trim()
 					.slice(0, 2000)

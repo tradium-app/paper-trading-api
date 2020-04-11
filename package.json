@@ -10,27 +10,6 @@
 		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit",
 		"source:insert": "node ./src/db-service/scripts/source-data-caller.js"
 	},
-	"engines": {
-		"node": ">=v10.9.0",
-		"npm": ">=6.2.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/siristechnology/nepaltoday-api.git"
-	},
-	"keywords": [
-		"API",
-		"Nepal",
-		"Today",
-		"News",
-		"Article"
-	],
-	"author": "nepaltoday",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/syuraj/nepaltoday-api/issues"
-	},
-	"homepage": "https://github.com/syuraj/nepaltoday-api#readme",
 	"dependencies": {
 		"@bearer/node-agent": "2.0.7",
 		"agenda": "3.0.0",
@@ -39,11 +18,10 @@
 		"cheerio": "1.0.0-rc.3",
 		"colors": "^1.4.0",
 		"dotenv": "8.2.0",
-		"errorhandler": "1.5.1",
-		"esm": "^3.2.25",
 		"express": "^4.17.1",
 		"graphql": "14.6.0",
 		"graphql-tools": "4.0.7",
+		"helmet": "^3.22.0",
 		"html-to-text": "^5.1.1",
 		"ip": "1.1.5",
 		"moment": "2.24.0",
@@ -77,7 +55,21 @@
 		"mockingoose": "^2.13.2",
 		"mongodb-memory-server": "6.4.1",
 		"nock": "^12.0.3",
-		"prettier": "1.19.1",
-		"regenerator-runtime": "^0.13.5"
+		"prettier": "1.19.1"
+	},
+	"engines": {
+		"node": ">=v10.9.0",
+		"npm": ">=6.2.0"
+	},
+	"keywords": [
+		"NepalToday",
+		"Nepal News",
+		"Nepal Politician",
+		"Nepal Celebrities"
+	],
+	"author": "Siris Technology",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/syuraj/nepaltoday-api/issues"
 	}
 }

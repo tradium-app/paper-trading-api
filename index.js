@@ -2,9 +2,9 @@ require('newrelic')
 require('./src/config/env')
 const morgan = require('morgan')
 const express = require('express')
+const helmet = require('helmet')
 const requireGraphQLFile = require('require-graphql-file')
 const mongoose = require('mongoose')
-const errorhandler = require('errorhandler')
 const { ApolloServer, gql } = require('apollo-server-express')
 const mongooseSchema = require('./src/db-service/database/mongooseSchema')
 const startJobs = require('./src/jobs/job-runner/start-jobs')
@@ -31,38 +31,10 @@ mongoose
 	.catch((reason) => logger.error('mongo error: ', reason))
 
 const app = express()
+app.use(helmet())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(morgan('combined'))
-
-if (isDevelopment) {
-	app.use(errorhandler())
-}
-
-// Error handlers & middlewares
-if (isDevelopment) {
-	app.use((err, req, res, next) => {
-		res.status(err.status || 500)
-
-		res.send({
-			errors: {
-				message: err.message,
-				error: err,
-			},
-		})
-	})
-}
-
-app.use((err, req, res, next) => {
-	res.status(err.status || 500)
-
-	res.send({
-		errors: {
-			message: err.message,
-			error: {},
-		},
-	})
-})
 
 const typeDefSchema = requireGraphQLFile('./src/database/typeDefs.graphql')
 const typeDefs = gql(typeDefSchema)
@@ -74,6 +46,17 @@ const server = new ApolloServer({
 		...{ userContext: req.payload },
 		...mongooseSchema,
 	}),
+})
+
+app.use((err, req, res, next) => {
+	res.status(err.status || 500)
+
+	res.send({
+		error: {
+			message: err.message,
+			stacktrace: isDevelopment ? err.stack : {},
+		},
+	})
 })
 
 server.applyMiddleware({ app })
