@@ -15,6 +15,11 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 
 const app = express()
 app.use(timeout('30s'))
+app.use((req, res, next) => {
+	if (!req.timedout) {
+		next()
+	}
+})
 app.use(helmet())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -31,6 +36,7 @@ const apolloServer = new ApolloServer({
 		...mongooseSchema,
 	}),
 })
+apolloServer.applyMiddleware({ app })
 
 app.use((err, req, res, next) => {
 	res.status(err.status || 500)
@@ -42,7 +48,5 @@ app.use((err, req, res, next) => {
 		},
 	})
 })
-
-apolloServer.applyMiddleware({ app })
 
 app.listen(process.env.PORT, () => console.log(colors.rainbow(`Server running on http://localhost:${process.env.PORT}`)))
