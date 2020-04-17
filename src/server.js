@@ -32,11 +32,22 @@ const apolloServer = new ApolloServer({
 	typeDefs: typeDefs,
 	resolvers: resolvers,
 	context: ({ req, res }) => ({
-		...{ userContext: req.payload, ipAddress: req.headers['x-forwarded-for'] || req.ip },
+		...{ userContext: req.payload, ipAddress: getIpAdressFromRequest(req) },
 		...mongooseSchema,
 	}),
 })
 apolloServer.applyMiddleware({ app })
+
+const getIpAdressFromRequest = (req) => {
+	let ipAddr = req.headers['x-forwarded-for']
+	if (ipAddr) {
+		ipAddr = ipAddr.split(',')[0]
+	} else {
+		ipAddr = req.connection.remoteAddress || req.ip
+	}
+
+	return ipAddr
+}
 
 app.use((err, req, res, next) => {
 	res.status(err.status || 500)
