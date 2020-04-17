@@ -59,23 +59,23 @@ module.exports = {
 			return await CoronaDbService.getLatestStats()
 		},
 
-		getWeatherInfo: async (parent, args, { ip, ipRemote, ipForwardedFor }) => {
+		getWeatherInfo: async (parent, args, { ipAddress }) => {
 			try {
-				if (ip === '::1') ip = '27.111.16.0'
-				logger.debug(`Printing ip: ${ip}, ${ipRemote}, ${ipForwardedFor}`)
+				if (ipAddress === '::1') ipAddress = '27.111.16.0'
+				logger.debug(`Printing ip: ${ipAddress}`)
 
-				const weatherInfo = await getWeather(ip)
-				weatherInfo.ipAddress = ip
+				const weatherInfo = await getWeather(ipAddress)
+				weatherInfo.ipAddress = ipAddress
 
 				return {
-					ipAddress: ip,
+					ipAddress: ipAddress,
 					temperature: weatherInfo.main.temp,
 					condition: weatherInfo.weather[0].main,
 					description: weatherInfo.weather[0].description,
 					place: weatherInfo.name,
 				}
 			} catch (error) {
-				logger.error(`Printing ip: ${ip}, ${ipRemote}, ${ipForwardedFor}`)
+				logger.error(`Printing ip: ${ipAddress}`)
 				throw error
 			}
 		},
