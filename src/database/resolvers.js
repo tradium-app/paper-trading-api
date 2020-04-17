@@ -5,6 +5,7 @@ const { User, Article } = mongooseSchema
 const { categories } = require('../config/category')
 const { getSortedArticle } = require('../helper/articleHelper')
 const getWeather = require('../weather')
+const logger = require('../config/logger')
 
 module.exports = {
 	Query: {
@@ -58,9 +59,10 @@ module.exports = {
 			return await CoronaDbService.getLatestStats()
 		},
 
-		getWeatherInfo: async (parent, args, { ip, ipRemote }) => {
+		getWeatherInfo: async (parent, args, { ip, ipRemote, ipForwardedFor }) => {
 			try {
 				if (ip === '::1') ip = '27.111.16.0'
+				logger.debug(`Printing ip: ${ip}, ${ipRemote}, ${ipForwardedFor}`)
 
 				const weatherInfo = await getWeather(ip)
 				weatherInfo.ipAddress = ip
@@ -73,7 +75,7 @@ module.exports = {
 					place: weatherInfo.name,
 				}
 			} catch (error) {
-				console.log('Printing ip: ', ip, ipRemote)
+				logger.error(`Printing ip: ${ip}, ${ipRemote}, ${ipForwardedFor}`)
 				throw error
 			}
 		},
