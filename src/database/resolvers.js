@@ -58,16 +58,23 @@ module.exports = {
 			return await CoronaDbService.getLatestStats()
 		},
 
-		getWeatherInfo: async (parent, args, { ip }) => {
-			if (ip === '::1') ip = '27.111.16.0'
-			const weatherInfo = await getWeather(ip)
-			weatherInfo.ipAddress = ip
+		getWeatherInfo: async (parent, args, { ip, ipRemote }) => {
+			try {
+				if (ip === '::1') ip = '27.111.16.0'
 
-			return {
-				ipAddress: ip,
-				temperature: weatherInfo.main.temp,
-				condition: weatherInfo.weather[0].main,
-				description: weatherInfo.weather[0].description,
+				const weatherInfo = await getWeather(ip)
+				weatherInfo.ipAddress = ip
+
+				return {
+					ipAddress: ip,
+					temperature: weatherInfo.main.temp,
+					condition: weatherInfo.weather[0].main,
+					description: weatherInfo.weather[0].description,
+					place: weatherInfo.name,
+				}
+			} catch (error) {
+				console.log('Printing ip: ', ip, ipRemote)
+				throw error
 			}
 		},
 	},

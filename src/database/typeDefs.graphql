@@ -72,6 +72,7 @@ type WeatherInfo {
 	temperature: Float!
 	condition: String
 	description: String
+	place: String
 }
 
 type Query {

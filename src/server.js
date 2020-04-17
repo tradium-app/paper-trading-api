@@ -32,7 +32,7 @@ const apolloServer = new ApolloServer({
 	typeDefs: typeDefs,
 	resolvers: resolvers,
 	context: ({ req, res }) => ({
-		...{ userContext: req.payload, ip: req.ip },
+		...{ userContext: req.payload, ip: req.ip, ipRemote: req.connection.remoteAddress },
 		...mongooseSchema,
 	}),
 })
