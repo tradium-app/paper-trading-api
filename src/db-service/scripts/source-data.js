@@ -3,7 +3,7 @@ const sourceList = [
 	{
 		name: 'सेतोपाटी',
 		link: 'https://setopati.com',
-		logoLink: 'https://setopati.com/images/og-image.jpg',
+		logoLink: "/assets/logos/setopati.jpg",
 		category: [
 			{
 				name: 'politics',
@@ -30,7 +30,7 @@ const sourceList = [
 	{
 		name: 'दैनिक नेपाल',
 		link: 'https://dainiknepal.com',
-		logoLink: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzh7lprLde3-7eyyxDMPVhfSJkKEHn6N7qDMz6_KwUpd6pC8U8',
+		logoLink: "/assets/logos/dainik.jpg",
 		category: [
 			{
 				name: 'news',
@@ -58,7 +58,7 @@ const sourceList = [
 	{
 		name: 'कान्तिपुर',
 		link: 'https://ekantipur.com',
-		logoLink: 'https://pbs.twimg.com/profile_images/943652378875535360/K81bnaWT_400x400.jpg',
+		logoLink: "/assets/logos/kantipur.jpg",
 		category: [
 			{
 				name: 'news',
@@ -85,7 +85,7 @@ const sourceList = [
 	{
 		name: 'रातोपाटी',
 		link: 'https://ratopati.com',
-		logoLink: 'https://i.imgur.com/h4EKX8S.png',
+		logoLink: "/assets/logos/ratopati.jpg",
 		category: [
 			{
 				name: 'news',
@@ -112,7 +112,7 @@ const sourceList = [
 	{
 		name: 'अनलाईन खबर',
 		link: 'https://onlinekhabar.com',
-		logoLink: 'https://www.onlinekhabar.com/wp-content/themes/onlinekhabar-2018/img/logoMainWht.png',
+		logoLink: "/assets/logos/online-khabar.png",
 		category: [
 			{
 				name: 'business',
@@ -131,7 +131,7 @@ const sourceList = [
 	{
 		name: 'BBC नेपाली',
 		link: 'https://bbc.com/nepali',
-		logoLink: 'https://news.files.bbci.co.uk/ws/img/logos/og/nepali.png',
+		logoLink: "/assets/logos/bbc.png",
 		category: [
 			{
 				name: 'news',
