@@ -5,7 +5,7 @@ module.exports = {
 		{
 			name: 'nepaltoday.api',
 			script: 'src/server.js',
-			instances: process.env.INSTANCES_API || 'max',
+			instances: process.env.INSTANCES_API || 1,
 			autorestart: true,
 			watch: process.env.NODE_ENV == 'development' ? ['src', '*.js', '*.ts', '.env'] : false,
 			watch_delay: 5000,
@@ -15,7 +15,7 @@ module.exports = {
 		{
 			name: 'nepaltoday.worker',
 			script: 'src/worker.js',
-			instances: process.env.INSTANCES_WORKER || 'max',
+			instances: process.env.INSTANCES_WORKER || 1,
 			autorestart: true,
 			watch: process.env.NODE_ENV == 'development' ? ['src', '*.js', '*.ts', '.env'] : false,
 			watch_delay: 5000,
