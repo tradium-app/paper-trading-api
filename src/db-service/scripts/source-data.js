@@ -30,7 +30,7 @@ const sourceList = [
 	{
 		name: 'दैनिक नेपाल',
 		link: 'https://dainiknepal.com',
-		logoLink: "/assets/logos/dainik.jpg",
+		logoLink: "/assets/logos/dainik.png",
 		category: [
 			{
 				name: 'news',
@@ -85,7 +85,7 @@ const sourceList = [
 	{
 		name: 'रातोपाटी',
 		link: 'https://ratopati.com',
-		logoLink: "/assets/logos/ratopati.jpg",
+		logoLink: "/assets/logos/ratopati.png",
 		category: [
 			{
 				name: 'news',
