@@ -30,9 +30,12 @@ module.exports = {
 			})
 
 			const articles = await Promise.all(promises)
+			const articleFlattened = _.flatten(articles)
 
-			const articleFlatterend = _.flatten(articles)
-			const sortedArticles = getSortedArticle(articleFlatterend)
+			const articleList = articleFlattened.map((a) => {
+				return {...a, source: {...a.source, logoLink: process.env.SERVER_BASE_URL + a.source.logoLink}}
+			})
+			const sortedArticles = getSortedArticle(articleList)
 
 			return sortedArticles
 		},
