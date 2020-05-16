@@ -33,7 +33,7 @@ module.exports = {
 			const articleFlattened = _.flatten(articles)
 
 			const articleList = articleFlattened.map((a) => {
-				return {...a, source: {...a.source, logoLink: process.env.SERVER_BASE_URL + a.source.logoLink}}
+				return { ...a, source: { ...a.source, logoLink: process.env.SERVER_BASE_URL + a.source.logoLink } }
 			})
 			const sortedArticles = getSortedArticle(articleList)
 
@@ -41,7 +41,8 @@ module.exports = {
 		},
 
 		getArticle: async (parent, { _id }) => {
-			return await Article.findById(_id).populate('source')
+			const article = await Article.findById(_id).populate('source').lean()
+			return { ...article, source: { ...article.source, logoLink: process.env.SERVER_BASE_URL + article.source.logoLink } }
 		},
 
 		getTweets: async (parent, args, { Tweet }) => {
@@ -49,10 +50,7 @@ module.exports = {
 			args.criteria.lastQueryDate = args.criteria.lastQueryDate || new Date('2001-01-01')
 			args.criteria.lastTweetId = args.criteria.lastTweetId || '000000000000000000000000'
 
-			const tweets = await Tweet.find()
-				.populate('twitterHandle')
-				.sort({ publishedDate: -1 })
-				.limit(100)
+			const tweets = await Tweet.find().populate('twitterHandle').sort({ publishedDate: -1 }).limit(100)
 
 			return tweets
 		},
