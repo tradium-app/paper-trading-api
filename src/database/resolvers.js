@@ -62,7 +62,7 @@ module.exports = {
 
 		getWeatherInfo: async (parent, args, { ipAddress }) => {
 			try {
-				if (ipAddress === '::1') ipAddress = '27.111.16.0'
+				if (ipAddress === '::1' || ipAddress === '::ffff:127.0.0.1') ipAddress = '27.111.16.0'
 				logger.debug(`Printing ip: ${ipAddress}`)
 
 				const weatherInfo = await getWeather(ipAddress)
