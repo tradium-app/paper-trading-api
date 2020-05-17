@@ -83,11 +83,8 @@ type Query {
 	getWeatherInfo: WeatherInfo
 }
 
-type Gcm {
-	_id: String
-	fcmToken: String
-	countryCode: String
-	timeZone: String
+type Response {
+	success: Boolean
 }
 
 input StoreFcmInput {
@@ -96,5 +93,5 @@ input StoreFcmInput {
 	timeZone: String
 }
 type Mutation {
-	storeFcmToken(input: StoreFcmInput): Gcm
+	storeFcmToken(input: StoreFcmInput): Response
 }

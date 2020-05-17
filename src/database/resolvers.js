@@ -87,12 +87,19 @@ module.exports = {
 			const {
 				input: { fcmToken, countryCode, timeZone },
 			} = args
-			const user = await User.create({
-				fcmToken,
-				countryCode,
-				timeZone,
-			})
-			return user
+
+			const response = await User.update(
+				{ fcmToken },
+				{
+					$set: {
+						countryCode,
+						timeZone,
+					},
+				},
+				{ upsert: true },
+			)
+
+			return { success: !!response.ok }
 		},
 	},
 }
