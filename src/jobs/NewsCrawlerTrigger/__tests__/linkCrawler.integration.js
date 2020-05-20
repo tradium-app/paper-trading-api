@@ -33,7 +33,7 @@ describe('link-crawler integration test', () => {
 
 	it('link-crawler should crawl ratopati link', async () => {
 		const baseUrl = 'https://ratopati.com'
-		const url = 'https://ratopati.com'
+		const url = 'https://ratopati.com/lifestyle/'
 
 		const { error, links } = await scrapeNewsLink(baseUrl, url)
 

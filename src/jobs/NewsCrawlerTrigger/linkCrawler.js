@@ -9,17 +9,17 @@ process.setMaxListeners(Infinity)
 const scrapeNewsLink = async (baseUrl, url) => {
 	switch (baseUrl) {
 		case KANTIPUR:
-			return scrapeKantipurNewsLink(url)
+			return scrapeKantipurNewsLink(baseUrl, url)
 		case SETOPATI:
-			return scrapeSetoPatiLink(url)
+			return scrapeSetoPatiLink(baseUrl, url)
 		case RATOPATI:
-			return scrapeRatoPatiLink(url)
+			return scrapeRatoPatiLink(baseUrl, url)
 		case DAINIK_KHABAR:
-			return scrapeDainikNepalLinks(url)
+			return scrapeDainikNepalLinks(baseUrl, url)
 		case ONLINE_KHABAR:
-			return scrapeOnlineKhabarLinks(url)
+			return scrapeOnlineKhabarLinks(baseUrl, url)
 		case BBC_NEPALI:
-			return scrapeBBCNepaliLinks(url)
+			return scrapeBBCNepaliLinks(baseUrl, url)
 		default:
 			return {
 				error: {
@@ -30,7 +30,7 @@ const scrapeNewsLink = async (baseUrl, url) => {
 	}
 }
 
-const scrapeKantipurNewsLink = (url) => {
+const scrapeKantipurNewsLink = (baseUrl, url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function (err, res, body) {
 			if (err) {
@@ -46,7 +46,7 @@ const scrapeKantipurNewsLink = (url) => {
 				const links = []
 				$('article').each(function (index) {
 					const link = $(this).find('h2>a').attr('href')
-					links.push(link.startsWith('http') ? link : `${url}${link}`)
+					links.push(link.startsWith('http') ? link : `${baseUrl}${link}`)
 				})
 
 				resolve({
@@ -57,7 +57,7 @@ const scrapeKantipurNewsLink = (url) => {
 		})
 	})
 }
-const scrapeSetoPatiLink = (url) => {
+const scrapeSetoPatiLink = (baseUrl, url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function (err, res, body) {
 			if (err) {
@@ -73,7 +73,7 @@ const scrapeSetoPatiLink = (url) => {
 				const links = []
 				$('.items').each(function (index) {
 					const link = $(this).find('a').attr('href')
-					links.push(link.startsWith('http') ? link : `${url}${link}`)
+					links.push(link.startsWith('http') ? link : `${baseUrl}${link}`)
 				})
 
 				resolve({
@@ -84,7 +84,7 @@ const scrapeSetoPatiLink = (url) => {
 		})
 	})
 }
-const scrapeDainikNepalLinks = (url) => {
+const scrapeDainikNepalLinks = (baseUrl, url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function (err, res, body) {
 			if (err) {
@@ -100,7 +100,7 @@ const scrapeDainikNepalLinks = (url) => {
 				const links = []
 				$('.news_loop').each(function (index) {
 					const link = $(this).find('a').attr('href')
-					links.push(link.startsWith('http') ? link : `${url}${link}`)
+					links.push(link.startsWith('http') ? link : `${baseUrl}${link}`)
 				})
 
 				resolve({
@@ -111,7 +111,7 @@ const scrapeDainikNepalLinks = (url) => {
 		})
 	})
 }
-const scrapeRatoPatiLink = (url) => {
+const scrapeRatoPatiLink = (baseUrl, url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function (err, res, body) {
 			if (err) {
@@ -127,7 +127,7 @@ const scrapeRatoPatiLink = (url) => {
 				const links = []
 				$('.item-content').each(function (index) {
 					const link = $(this).find('a').attr('href')
-					links.push(link.startsWith('http') ? link : `${url}${link}`)
+					links.push(link.startsWith('http') ? link : `${baseUrl}${link}`)
 				})
 
 				resolve({
@@ -138,7 +138,7 @@ const scrapeRatoPatiLink = (url) => {
 		})
 	})
 }
-const scrapeOnlineKhabarLinks = (url) => {
+const scrapeOnlineKhabarLinks = (baseUrl, url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function (err, res, body) {
 			if (err) {
@@ -154,7 +154,7 @@ const scrapeOnlineKhabarLinks = (url) => {
 				const links = []
 				$('div.soft__wrap div.post__heading h2.title__small.post__title').each(function (index) {
 					const link = $(this).find('a').attr('href')
-					links.push(link.startsWith('http') ? link : `${url}${link}`)
+					links.push(link.startsWith('http') ? link : `${baseUrl}${link}`)
 				})
 
 				resolve({
@@ -166,7 +166,7 @@ const scrapeOnlineKhabarLinks = (url) => {
 	})
 }
 
-const scrapeBBCNepaliLinks = (url) => {
+const scrapeBBCNepaliLinks = (baseUrl, url) => {
 	return new Promise((resolve, reject) => {
 		request(url, function (err, res, body) {
 			if (err) {
@@ -182,7 +182,7 @@ const scrapeBBCNepaliLinks = (url) => {
 				const links = []
 				$('ul[class^="StoryPromoUl"] > li div h3').each(function () {
 					const link = $(this).find('a').attr('href')
-					links.push(link.startsWith('http') ? link : `${url}${link}`)
+					links.push(link.startsWith('http') ? link : `${baseUrl}${link}`)
 				})
 
 				resolve({
