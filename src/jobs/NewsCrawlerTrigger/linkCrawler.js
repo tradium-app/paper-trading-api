@@ -32,7 +32,7 @@ const scrapeNewsLink = async (baseUrl, url) => {
 
 const scrapeKantipurNewsLink = (url) => {
 	return new Promise((resolve, reject) => {
-		request(url, function(err, res, body) {
+		request(url, function (err, res, body) {
 			if (err) {
 				reject({
 					error: {
@@ -44,10 +44,8 @@ const scrapeKantipurNewsLink = (url) => {
 			} else {
 				let $ = cheerio.load(body)
 				const links = []
-				$('article').each(function(index) {
-					const link = $(this)
-						.find('h2>a')
-						.attr('href')
+				$('article').each(function (index) {
+					const link = $(this).find('h2>a').attr('href')
 					links.push(`https://ekantipur.com${link}`)
 				})
 
@@ -61,7 +59,7 @@ const scrapeKantipurNewsLink = (url) => {
 }
 const scrapeSetoPatiLink = (url) => {
 	return new Promise((resolve, reject) => {
-		request(url, function(err, res, body) {
+		request(url, function (err, res, body) {
 			if (err) {
 				reject({
 					error: {
@@ -73,10 +71,8 @@ const scrapeSetoPatiLink = (url) => {
 			} else {
 				let $ = cheerio.load(body)
 				const links = []
-				$('.items').each(function(index) {
-					const link = $(this)
-						.find('a')
-						.attr('href')
+				$('.items').each(function (index) {
+					const link = $(this).find('a').attr('href')
 					links.push(link)
 				})
 
@@ -90,7 +86,7 @@ const scrapeSetoPatiLink = (url) => {
 }
 const scrapeDainikNepalLinks = (url) => {
 	return new Promise((resolve, reject) => {
-		request(url, function(err, res, body) {
+		request(url, function (err, res, body) {
 			if (err) {
 				reject({
 					error: {
@@ -102,10 +98,8 @@ const scrapeDainikNepalLinks = (url) => {
 			} else {
 				let $ = cheerio.load(body)
 				const links = []
-				$('.news_loop').each(function(index) {
-					const link = $(this)
-						.find('a')
-						.attr('href')
+				$('.news_loop').each(function (index) {
+					const link = $(this).find('a').attr('href')
 					links.push(link)
 				})
 
@@ -119,7 +113,7 @@ const scrapeDainikNepalLinks = (url) => {
 }
 const scrapeRatoPatiLink = (url) => {
 	return new Promise((resolve, reject) => {
-		request(url, function(err, res, body) {
+		request(url, function (err, res, body) {
 			if (err) {
 				reject({
 					error: {
@@ -131,10 +125,8 @@ const scrapeRatoPatiLink = (url) => {
 			} else {
 				let $ = cheerio.load(body)
 				const links = []
-				$('.item-content').each(function(index) {
-					const link = $(this)
-						.find('a')
-						.attr('href')
+				$('.item-content').each(function (index) {
+					const link = $(this).find('a').attr('href')
 					links.push(`https://ratopati.com${link}`)
 				})
 
@@ -148,7 +140,7 @@ const scrapeRatoPatiLink = (url) => {
 }
 const scrapeOnlineKhabarLinks = (url) => {
 	return new Promise((resolve, reject) => {
-		request(url, function(err, res, body) {
+		request(url, function (err, res, body) {
 			if (err) {
 				reject({
 					error: {
@@ -160,10 +152,8 @@ const scrapeOnlineKhabarLinks = (url) => {
 			} else {
 				let $ = cheerio.load(body)
 				const links = []
-				$('div.soft__wrap div.post__heading h2.title__small.post__title').each(function(index) {
-					const link = $(this)
-						.find('a')
-						.attr('href')
+				$('div.soft__wrap div.post__heading h2.title__small.post__title').each(function (index) {
+					const link = $(this).find('a').attr('href')
 					links.push(link)
 				})
 
@@ -178,7 +168,7 @@ const scrapeOnlineKhabarLinks = (url) => {
 
 const scrapeBBCNepaliLinks = (url) => {
 	return new Promise((resolve, reject) => {
-		request(url, function(err, res, body) {
+		request(url, function (err, res, body) {
 			if (err) {
 				reject({
 					error: {
@@ -190,11 +180,9 @@ const scrapeBBCNepaliLinks = (url) => {
 			} else {
 				let $ = cheerio.load(body)
 				const links = []
-				$('ul[class^="StoryPromoUl"] > li div h3').each(function() {
-					const link = $(this)
-						.find('a')
-						.attr('href')
-					links.push(`https://www.bbc.com${link}`)
+				$('ul[class^="StoryPromoUl"] > li div h3').each(function () {
+					const link = $(this).find('a').attr('href')
+					links.push(link.startsWith('http') ? link : `https://www.bbc.com${link}`)
 				})
 
 				resolve({
