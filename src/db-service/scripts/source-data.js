@@ -2,7 +2,7 @@
 const sourceList = [
 	{
 		name: 'सेतोपाटी',
-		link: 'https://setopati.com',
+		link: 'https://www.setopati.com',
 		logoLink: '/assets/logos/setopati.jpg',
 		category: [
 			{
@@ -111,7 +111,7 @@ const sourceList = [
 	},
 	{
 		name: 'अनलाईन खबर',
-		link: 'https://onlinekhabar.com',
+		link: 'https://www.onlinekhabar.com',
 		logoLink: '/assets/logos/online-khabar.png',
 		category: [
 			{
@@ -130,7 +130,7 @@ const sourceList = [
 	},
 	{
 		name: 'BBC नेपाली',
-		link: 'https://bbc.com/nepali',
+		link: 'https://www.bbc.com/nepali',
 		logoLink: '/assets/logos/bbc.png',
 		category: [
 			{

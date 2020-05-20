@@ -46,7 +46,7 @@ const scrapeKantipurNewsLink = (url) => {
 				const links = []
 				$('article').each(function (index) {
 					const link = $(this).find('h2>a').attr('href')
-					links.push(`https://ekantipur.com${link}`)
+					links.push(link.startsWith('http') ? link : `${url}${link}`)
 				})
 
 				resolve({
@@ -73,7 +73,7 @@ const scrapeSetoPatiLink = (url) => {
 				const links = []
 				$('.items').each(function (index) {
 					const link = $(this).find('a').attr('href')
-					links.push(link)
+					links.push(link.startsWith('http') ? link : `${url}${link}`)
 				})
 
 				resolve({
@@ -100,7 +100,7 @@ const scrapeDainikNepalLinks = (url) => {
 				const links = []
 				$('.news_loop').each(function (index) {
 					const link = $(this).find('a').attr('href')
-					links.push(link)
+					links.push(link.startsWith('http') ? link : `${url}${link}`)
 				})
 
 				resolve({
@@ -127,7 +127,7 @@ const scrapeRatoPatiLink = (url) => {
 				const links = []
 				$('.item-content').each(function (index) {
 					const link = $(this).find('a').attr('href')
-					links.push(`https://ratopati.com${link}`)
+					links.push(link.startsWith('http') ? link : `${url}${link}`)
 				})
 
 				resolve({
@@ -154,7 +154,7 @@ const scrapeOnlineKhabarLinks = (url) => {
 				const links = []
 				$('div.soft__wrap div.post__heading h2.title__small.post__title').each(function (index) {
 					const link = $(this).find('a').attr('href')
-					links.push(link)
+					links.push(link.startsWith('http') ? link : `${url}${link}`)
 				})
 
 				resolve({
@@ -182,7 +182,7 @@ const scrapeBBCNepaliLinks = (url) => {
 				const links = []
 				$('ul[class^="StoryPromoUl"] > li div h3').each(function () {
 					const link = $(this).find('a').attr('href')
-					links.push(link.startsWith('http') ? link : `https://www.bbc.com${link}`)
+					links.push(link.startsWith('http') ? link : `${url}${link}`)
 				})
 
 				resolve({

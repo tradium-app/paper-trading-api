@@ -2,8 +2,8 @@ import { scrapeNewsLink } from '../linkCrawler'
 
 describe('link-crawler integration test', () => {
 	it('link-crawler should crawl setopati link', async () => {
-		const baseUrl = 'https://setopati.com'
-		const url = 'https://setopati.com/sports'
+		const baseUrl = 'https://www.setopati.com'
+		const url = 'https://www.setopati.com/sports'
 
 		const { error, links } = await scrapeNewsLink(baseUrl, url)
 
@@ -22,8 +22,8 @@ describe('link-crawler integration test', () => {
 	})
 
 	it('link-crawler should crawl dainikhabar link', async () => {
-		const baseUrl = 'https://dainiknepal.com'
-		const url = 'https://dainiknepal.com/section/latest-news'
+		const baseUrl = 'https://www.dainiknepal.com'
+		const url = 'https://www.dainiknepal.com/section/latest-news'
 
 		const { error, links } = await scrapeNewsLink(baseUrl, url)
 
@@ -42,8 +42,8 @@ describe('link-crawler integration test', () => {
 	})
 
 	it('link-crawler should crawl onlinekhabar link', async () => {
-		const baseUrl = 'https://onlinekhabar.com'
-		const url = 'https://onlinekhabar.com/business'
+		const baseUrl = 'https://www.onlinekhabar.com'
+		const url = 'https://www.onlinekhabar.com/business'
 
 		const { error, links } = await scrapeNewsLink(baseUrl, url)
 
@@ -52,8 +52,8 @@ describe('link-crawler integration test', () => {
 	})
 
 	it('link-crawler should crawl bbc link', async () => {
-		const baseUrl = 'https://bbc.com/nepali'
-		const url = 'https://bbc.com/nepali'
+		const baseUrl = 'https://www.bbc.com/nepali'
+		const url = 'https://www.bbc.com/nepali'
 
 		const { error, links } = await scrapeNewsLink(baseUrl, url)
 
