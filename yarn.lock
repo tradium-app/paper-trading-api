@@ -878,10 +878,10 @@
   resolved "https://devtools.devergage.com:4873/@bcoe%2fv8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bearer/node-agent@3.1.0":
-  version "3.1.0"
-  resolved "https://devtools.devergage.com:4873/@bearer%2fnode-agent/-/node-agent-3.1.0.tgz#8f91dd8b7b486cf238386fcee4502f8cc01f0e49"
-  integrity sha512-5fryj98XSd5tsQepFGRUxYfoPRAtcQEQyipOe0EOZC/eLX9iFUgZXGlbsUhNkhgsEb1QZWuKAm6tvLyZhh7yJQ==
+"@bearer/node-agent@3.1.1":
+  version "3.1.1"
+  resolved "https://devtools.devergage.com:4873/@bearer%2fnode-agent/-/node-agent-3.1.1.tgz#0834be2519bb2a2b583e2271345112728827f43f"
+  integrity sha512-+hY3anRFsMwMweSQyIwwjhaaAdUQavqcyospDJDMmgdm7EpAkvMDmZNiv4OW+hwWuLltvKyJAq4/vQBFfqndPQ==
   dependencies:
     debug "^4.1.1"
     lodash.throttle "^4.1.1"
@@ -1468,9 +1468,9 @@
     "@types/express" "*"
 
 "@types/cross-spawn@^6.0.1":
-  version "6.0.1"
-  resolved "https://devtools.devergage.com:4873/@types%2fcross-spawn/-/cross-spawn-6.0.1.tgz#60fa0c87046347c17d9735e5289e72b804ca9b63"
-  integrity sha512-MtN1pDYdI6D6QFDzy39Q+6c9rl2o/xN7aWGe6oZuzqq5N6+YuwFsWiEAv3dNzvzN9YzU+itpN8lBzFpphQKLAw==
+  version "6.0.2"
+  resolved "https://devtools.devergage.com:4873/@types%2fcross-spawn/-/cross-spawn-6.0.2.tgz#168309de311cd30a2b8ae720de6475c2fbf33ac7"
+  integrity sha512-KuwNhp3eza+Rhu8IFI5HUXRP0LIhqH5cAjubUvGXXthh4YYBuP2ntwEX+Cz8GJoZUHlKo247wPWOfA9LYEq4cw==
   dependencies:
     "@types/node" "*"
 
@@ -1562,9 +1562,9 @@
   integrity sha512-PGAK759pxyfXE78NbKxyfRcWYA/KwW17X290cNev/qAsn9eQIxkH4shoNBafH37wewhDG/0p1cHPbK6+SzZjWQ==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
-  version "2.0.1"
-  resolved "https://devtools.devergage.com:4873/@types%2fistanbul-lib-coverage/-/istanbul-lib-coverage-2.0.1.tgz#42995b446db9a48a11a07ec083499a860e9138ff"
-  integrity sha512-hRJD2ahnnpLgsj6KWMYSrmXkM3rm2Dl1qkx6IOFD5FnuNPXJIG5L0dhgKXCYTRMGzU4n0wImQ/xfmRc4POUFlg==
+  version "2.0.2"
+  resolved "https://devtools.devergage.com:4873/@types%2fistanbul-lib-coverage/-/istanbul-lib-coverage-2.0.2.tgz#79d7a78bad4219f4c03d6557a1c72d9ca6ba62d5"
+  integrity sha512-rsZg7eL+Xcxsxk2XlBt9KcG8nOp9iYdKCOikY9x2RFJCyOdNj4MKPQty0e8oZr29vVAzKXr1BmR+kZauti3o1w==
 
 "@types/istanbul-lib-report@*":
   version "3.0.0"
@@ -1574,9 +1574,9 @@
     "@types/istanbul-lib-coverage" "*"
 
 "@types/istanbul-reports@^1.1.1":
-  version "1.1.1"
-  resolved "https://devtools.devergage.com:4873/@types%2fistanbul-reports/-/istanbul-reports-1.1.1.tgz#7a8cbf6a406f36c8add871625b278eaf0b0d255a"
-  integrity sha512-UpYjBi8xefVChsCoBpKShdxTllC9pwISirfoZsUa2AAdQg/Jd2KQGtSbw+ya7GPo7x/wAPlH6JBhKhAsXUEZNA==
+  version "1.1.2"
+  resolved "https://devtools.devergage.com:4873/@types%2fistanbul-reports/-/istanbul-reports-1.1.2.tgz#e875cc689e47bce549ec81f3df5e6f6f11cfaeb2"
+  integrity sha512-P/W9yOX/3oPZSpaYOCQzGqgCQRXn0FFO/V8bWrCQs+wLmvVVxk6CRBXALEvNs9OHIatlnlFokfhuDo2ug01ciw==
   dependencies:
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
@@ -1617,14 +1617,14 @@
   integrity sha512-5tXH6Bx/kNGd3MgffdmP4dy2Z+G4eaXw0SE81Tq3BNadtnMR5/ySMzX4SLEzHJzSmPNn4HIdpQsBvXMUykr58w==
 
 "@types/md5-file@^4.0.1":
-  version "4.0.1"
-  resolved "https://devtools.devergage.com:4873/@types%2fmd5-file/-/md5-file-4.0.1.tgz#5e6cfb7949dc375049b8f6fd8f91adacfc176c63"
-  integrity sha512-uK6vlo/LJp6iNWinpSzZwMe8Auzs0UYxesm7OGfQS3oz6PJciHtrKcqVOGk4wjYKawrl234vwNWvHyXH1ZzRyQ==
+  version "4.0.2"
+  resolved "https://devtools.devergage.com:4873/@types%2fmd5-file/-/md5-file-4.0.2.tgz#c7241e88f4aa17218c774befb0fc34f33f21fe36"
+  integrity sha512-8gacRfEqLrmZ6KofpFfxyjsm/LYepeWUWUJGaf5A9W9J5B2/dRZMdkDqFDL6YDa9IweH12IO76jO7mpsK2B3wg==
 
 "@types/mime@*":
-  version "2.0.1"
-  resolved "https://devtools.devergage.com:4873/@types%2fmime/-/mime-2.0.1.tgz#dc488842312a7f075149312905b5e3c0b054c79d"
-  integrity sha512-FwI9gX75FgVBJ7ywgnq/P7tw+/o1GUbtP0KzbtusLigAOgIgNISRK0ZPl4qertvXSIE8YbsVJueQ90cDt9YYyw==
+  version "2.0.2"
+  resolved "https://devtools.devergage.com:4873/@types%2fmime/-/mime-2.0.2.tgz#857a118d8634c84bba7ae14088e4508490cd5da5"
+  integrity sha512-4kPlzbljFcsttWEq6aBW0OZe6BDajAmyvr2xknBG92tejQnvdGtT9+kXSZ580DqpxY9qG2xeQVF9Dq0ymUTo5Q==
 
 "@types/mkdirp@^1.0.0":
   version "1.0.0"
@@ -1641,15 +1641,20 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@^13.7.0":
-  version "13.13.5"
-  resolved "https://devtools.devergage.com:4873/@types%2fnode/-/node-13.13.5.tgz#96ec3b0afafd64a4ccea9107b75bf8489f0e5765"
-  integrity sha512-3ySmiBYJPqgjiHA7oEaIo2Rzz0HrOZ7yrNO5HWyaE5q0lQ3BppDZ3N53Miz8bw2I7gh1/zir2MGVZBvpb1zq9g==
+"@types/node@*":
+  version "14.0.4"
+  resolved "https://devtools.devergage.com:4873/@types%2fnode/-/node-14.0.4.tgz#43a63fc5edce226bed106b31b875165256271107"
+  integrity sha512-k3NqigXWRzQZVBDS5D1U70A5E8Qk4Kh+Ha/x4M8Bt9pF0X05eggfnC9+63Usc9Q928hRUIpIhTQaXsZwZBl4Ew==
 
 "@types/node@^10.1.0":
-  version "10.17.21"
-  resolved "https://devtools.devergage.com:4873/@types%2fnode/-/node-10.17.21.tgz#c00e9603399126925806bed2d9a1e37da506965e"
-  integrity sha512-PQKsydPxYxF1DsAFWmunaxd3sOi3iMt6Zmx/tgaagHYmwJ/9cRH91hQkeJZaUGWbvn0K5HlSVEXkn5U/llWPpQ==
+  version "10.17.24"
+  resolved "https://devtools.devergage.com:4873/@types%2fnode/-/node-10.17.24.tgz#c57511e3a19c4b5e9692bb2995c40a3a52167944"
+  integrity sha512-5SCfvCxV74kzR3uWgTYiGxrd69TbT1I6+cMx1A5kEly/IVveJBimtAMlXiEyVFn5DvUFewQWxOOiJhlxeQwxgA==
+
+"@types/node@^13.7.0":
+  version "13.13.8"
+  resolved "https://devtools.devergage.com:4873/@types%2fnode/-/node-13.13.8.tgz#39fa1c8563bce1077507fea05699437f112ecbcc"
+  integrity sha512-WJoiKALUF5exZo0G3T5coauJR2Tmc6rdE9/kgppZVnV6rlUB2dl3gTu2GTNBKhKF6SZ/WFfpEUIGNC/0qvdMWA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1662,9 +1667,9 @@
   integrity sha512-/rM+sWiuOZ5dvuVzV37sUuklsbg+JPOP8d+nNFlo2ZtfpzPiPvh1/gc8liWOLBqe+sR+ZM7guPaIcTt6UZTo7Q==
 
 "@types/qs@*":
-  version "6.9.2"
-  resolved "https://devtools.devergage.com:4873/@types%2fqs/-/qs-6.9.2.tgz#faab98ec4f96ee72c829b7ec0983af4f4d343113"
-  integrity sha512-a9bDi4Z3zCZf4Lv1X/vwnvbbDYSNz59h3i3KdyuYYN+YrLjSeJD0dnphdULDfySvUv6Exy/O0K6wX/kQpnPQ+A==
+  version "6.9.3"
+  resolved "https://devtools.devergage.com:4873/@types%2fqs/-/qs-6.9.3.tgz#b755a0934564a200d3efdf88546ec93c369abd03"
+  integrity sha512-7s9EQWupR1fTc2pSMtXRQ9w9gLOcrJn+h7HOXw4evxyvVqMi4f+q7d2tnFe3ng3SNHjtK+0EzGMGFUQX4/AQRA==
 
 "@types/range-parser@*":
   version "1.2.3"
@@ -1672,9 +1677,9 @@
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
 "@types/serve-static@*":
-  version "1.13.3"
-  resolved "https://devtools.devergage.com:4873/@types%2fserve-static/-/serve-static-1.13.3.tgz#eb7e1c41c4468272557e897e9171ded5e2ded9d1"
-  integrity sha512-oprSwp094zOglVrXdlo/4bAHtKTAxX6VT8FOZlBKrmyLbNvE1zxZyJ6yikMVtHIvwP45+ZQGJn+FdXGKTozq0g==
+  version "1.13.4"
+  resolved "https://devtools.devergage.com:4873/@types%2fserve-static/-/serve-static-1.13.4.tgz#6662a93583e5a6cabca1b23592eb91e12fa80e7c"
+  integrity sha512-jTDt0o/YbpNwZbQmE/+2e+lfjJEJJR0I3OFaKQKPWkASkCoW3i6fsUnqudSMcNAfbtmADGu8f4MV4q+GqULmug==
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
@@ -1707,9 +1712,9 @@
   integrity sha512-FA/BWv8t8ZWJ+gEOnLLd8ygxH/2UFbAvgEonyfN6yWGLKc7zVjbpl2Y4CTjid9h2RfgPP6SEt6uHwEOply00yw==
 
 "@types/yargs@^15.0.0":
-  version "15.0.4"
-  resolved "https://devtools.devergage.com:4873/@types%2fyargs/-/yargs-15.0.4.tgz#7e5d0f8ca25e9d5849f2ea443cf7c402decd8299"
-  integrity sha512-9T1auFmbPZoxHz0enUFlUuKRy3it01R+hlggyVUMtnCTQRunsQYifnSGb8hET4Xo8yiC0o0r1paW3ud5+rbURg==
+  version "15.0.5"
+  resolved "https://devtools.devergage.com:4873/@types%2fyargs/-/yargs-15.0.5.tgz#947e9a6561483bdee9adffc983e91a6902af8b79"
+  integrity sha512-Dk/IDOPtOgubt/IaevIUbTgV7doaKkoorvOyYM2CMwuDyP89bekI7H4xLIwunNYiK9jhCkmc6pUrJk3cj2AB9w==
   dependencies:
     "@types/yargs-parser" "*"
 
@@ -1914,9 +1919,9 @@ apollo-datasource@^0.7.1-alpha.0:
     apollo-server-env "^2.4.4-alpha.0"
 
 apollo-engine-reporting-protobuf@^0.5.1-alpha.0:
-  version "0.5.1-alpha.0"
-  resolved "https://devtools.devergage.com:4873/apollo-engine-reporting-protobuf/-/apollo-engine-reporting-protobuf-0.5.1-alpha.0.tgz#685b090e961b9b3a25b3ada0017d44098a1f17ce"
-  integrity sha512-gRIi8GAIQy0jJJqePtQtS8+/aYxhugDvCvi2K1T7jhRkVUJVZAEurp9+62+II0XitDrMraJYxwNi0jom4qfL5w==
+  version "0.5.1-alpha.1"
+  resolved "https://devtools.devergage.com:4873/apollo-engine-reporting-protobuf/-/apollo-engine-reporting-protobuf-0.5.1-alpha.1.tgz#d946a1943c52b2886dda911d54d9c9f3e33584e6"
+  integrity sha512-c533X6iGOTKvwWwoeb+6SXEgJBCMnKGBzSUfVgLdTHJpy41VDvVteRzCWa+JwblM66LiZasxzkQXOpm5OC49MA==
   dependencies:
     "@apollo/protobufjs" "^1.0.3"
 
@@ -2580,9 +2585,9 @@ camelize@1.0.0:
   integrity sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs=
 
 caniuse-lite@^1.0.30001043:
-  version "1.0.30001055"
-  resolved "https://devtools.devergage.com:4873/caniuse-lite/-/caniuse-lite-1.0.30001055.tgz#7b52c3537f7a8c0408aca867e83d2b04268b54cd"
-  integrity sha512-MbwsBmKrBSKIWldfdIagO5OJWZclpJtS4h0Jrk/4HFrXJxTdVdH23Fd+xCiHriVGvYcWyW8mR/CPsYajlH8Iuw==
+  version "1.0.30001062"
+  resolved "https://devtools.devergage.com:4873/caniuse-lite/-/caniuse-lite-1.0.30001062.tgz#d814b648338504b315222ace6f1a533d9a55e390"
+  integrity sha512-ei9ZqeOnN7edDrb24QfJ0OZicpEbsWxv7WusOiQGz/f2SfvBgHHbOEwBJ8HKGVSyx8Z6ndPjxzR6m0NQq+0bfw==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -3107,9 +3112,9 @@ date.js@~0.3.3:
     debug "~3.1.0"
 
 dayjs@~1.8.24, dayjs@~1.8.25:
-  version "1.8.26"
-  resolved "https://devtools.devergage.com:4873/dayjs/-/dayjs-1.8.26.tgz#c6d62ccdf058ca72a8d14bb93a23501058db9f1e"
-  integrity sha512-KqtAuIfdNfZR5sJY1Dixr2Is4ZvcCqhb0dZpCOt5dGEFiMzoIbjkTSzUb4QKTCsP+WNpGwUjAFIZrnZvUxxkhw==
+  version "1.8.27"
+  resolved "https://devtools.devergage.com:4873/dayjs/-/dayjs-1.8.27.tgz#a8ae63ee990af28c05c430f0e160ae835a0fbbf8"
+  integrity sha512-Jpa2acjWIeOkg8KURUHICk0EqnEFSSF5eMEscsOgyJ92ZukXwmpmRkPSUka7KHSfbj5eKH30ieosYip+ky9emQ==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -3385,9 +3390,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.413:
-  version "1.3.432"
-  resolved "https://devtools.devergage.com:4873/electron-to-chromium/-/electron-to-chromium-1.3.432.tgz#3bf7b191978ff2e8bc3caf811bb52b1e9f9eab25"
-  integrity sha512-/GdNhXyLP5Yl2322CUX/+Xi8NhdHBqL6lD9VJVKjH6CjoPGakvwZ5CpKgj/oOlbzuWWjOvMjDw1bBuAIRCNTlw==
+  version "1.3.445"
+  resolved "https://devtools.devergage.com:4873/electron-to-chromium/-/electron-to-chromium-1.3.445.tgz#ce2a2989864d233eeb80437b13069dbca900cd00"
+  integrity sha512-utucmBYnRyjO3GCsgn7vwTJyDWIyftZW5vuGoxHj2Mnt6yF/alOq1ZGqBGNVZs/vKvgfNZu56y5xpn37i3n0ew==
 
 emitter-listener@^1.1.1:
   version "1.1.2"
@@ -3551,9 +3556,9 @@ eslint-module-utils@^2.4.1:
     pkg-dir "^2.0.0"
 
 eslint-plugin-es@^3.0.0:
-  version "3.0.0"
-  resolved "https://devtools.devergage.com:4873/eslint-plugin-es/-/eslint-plugin-es-3.0.0.tgz#98cb1bc8ab0aa807977855e11ad9d1c9422d014b"
-  integrity sha512-6/Jb/J/ZvSebydwbBJO1R9E5ky7YeElfK56Veh7e4QGFHCXoIXGH9HhVz+ibJLM3XJ1XjP+T7rKBLUa/Y7eIng==
+  version "3.0.1"
+  resolved "https://devtools.devergage.com:4873/eslint-plugin-es/-/eslint-plugin-es-3.0.1.tgz#75a7cdfdccddc0589934aeeb384175f221c57893"
+  integrity sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==
   dependencies:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
@@ -3938,9 +3943,9 @@ fast-safe-stringify@^2.0.4:
   integrity sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==
 
 fastq@^1.6.0:
-  version "1.7.0"
-  resolved "https://devtools.devergage.com:4873/fastq/-/fastq-1.7.0.tgz#fcd79a08c5bd7ec5b55cd3f5c4720db551929801"
-  integrity sha512-YOadQRnHd5q6PogvAR/x62BGituF2ufiEA6s8aavQANw5YKHERI4AREboX6KotzP8oX2klxYF2wcV/7bn1clfQ==
+  version "1.8.0"
+  resolved "https://devtools.devergage.com:4873/fastq/-/fastq-1.8.0.tgz#550e1f9f59bbc65fe185cb6a9b4d95357107f481"
+  integrity sha512-SMIZoZdLh/fgofivvIkmknUXyPnvxRE3DhtZ5Me3Mrsk5gyPL42F0xr51TdRXskBxHfMp+07bcYzfsYEsSQA9Q==
   dependencies:
     reusify "^1.0.4"
 
@@ -6171,10 +6176,10 @@ module-details-from-path@^1.0.3:
   resolved "https://devtools.devergage.com:4873/module-details-from-path/-/module-details-from-path-1.0.3.tgz#114c949673e2a8a35e9d35788527aa37b679da2b"
   integrity sha1-EUyUlnPiqKNenTV4hSeqN7Z52is=
 
-moment-timezone@0.5.28, moment-timezone@^0.5.x, moment-timezone@~0.5.27:
-  version "0.5.28"
-  resolved "https://devtools.devergage.com:4873/moment-timezone/-/moment-timezone-0.5.28.tgz#f093d789d091ed7b055d82aa81a82467f72e4338"
-  integrity sha512-TDJkZvAyKIVWg5EtVqRzU97w0Rb0YVbfpqyjgu6GwXCAohVRqwZjf4fOzDE6p1Ch98Sro/8hQQi65WDXW5STPw==
+moment-timezone@0.5.31, moment-timezone@^0.5.x, moment-timezone@~0.5.27:
+  version "0.5.31"
+  resolved "https://devtools.devergage.com:4873/moment-timezone/-/moment-timezone-0.5.31.tgz#9c40d8c5026f0c7ab46eda3d63e49c155148de05"
+  integrity sha512-+GgHNg8xRhMXfEbv81iDtrVeTcWt0kWmTEY1XQK14dICTXnWJnT0dxdlPspwqF3keKMVPXwayEsk1DI0AA/jdA==
   dependencies:
     moment ">= 2.9.0"
 
@@ -6242,10 +6247,10 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://devtools.devergage.com:4873/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
-mongoose@5.9.13:
-  version "5.9.13"
-  resolved "https://devtools.devergage.com:4873/mongoose/-/mongoose-5.9.13.tgz#fa4af761a0b1d10471daa23aafcc775b04b6db42"
-  integrity sha512-MsFdJAaCTVbDA3gYskUEpUN1kThL7sp4zh8N9rGt0+9vYMn28q92NLK90vGssM9qjOGWp8HqLeT1fBgfMZDnKA==
+mongoose@5.9.15:
+  version "5.9.15"
+  resolved "https://devtools.devergage.com:4873/mongoose/-/mongoose-5.9.15.tgz#935e157d1429c0702b71c5ecf0e6801faa771091"
+  integrity sha512-dGIDqaQkAJoLl7lsRLy70mDg+VcL1IPOHr/0f23MLF45PtnM5exRdmienfyVjdrSVGgTus+1sMUKef6vSnrDZg==
   dependencies:
     bson "^1.1.4"
     kareem "2.3.1"
@@ -6352,10 +6357,10 @@ netmask@^1.0.6:
   resolved "https://devtools.devergage.com:4873/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
   integrity sha1-ICl+idhvb2QA8lDZ9Pa0wZRfzTU=
 
-newrelic@6.7.0:
-  version "6.7.0"
-  resolved "https://devtools.devergage.com:4873/newrelic/-/newrelic-6.7.0.tgz#577f3f4102b42617aab900fd1503f64124a739e4"
-  integrity sha512-NU5jCS8tm3T7A1ybEj+xShLilxPtKMS7nYzIf+QgbEsf8nFWoAvUdgr7J2Bszf6kC3mO0OsHKGLs/qb8CWU1qg==
+newrelic@6.7.1:
+  version "6.7.1"
+  resolved "https://devtools.devergage.com:4873/newrelic/-/newrelic-6.7.1.tgz#98dd2f606507de2fddf4633642680a532a1cdc33"
+  integrity sha512-xNp2VpAJ9vOOw45vlksCzatTP1y78VPpaC7e5TQBT4jcjCCxSbkLnMd3K6tt6E2HpMdU2whlA+SAAo3UR14apQ==
   dependencies:
     "@grpc/grpc-js" "1.0.3"
     "@grpc/proto-loader" "^0.5.3"
@@ -7870,9 +7875,9 @@ spdx-exceptions@^2.1.0:
   integrity sha512-/tTrYOC7PPI1nUAgx34hUpqXuyJG+DTHJTnIULG4rDygi4xu/tfgmq1e1cIRwRzwZgo4NLySi+ricLkZkw4i5A==
 
 spdx-expression-parse@^3.0.0:
-  version "3.0.0"
-  resolved "https://devtools.devergage.com:4873/spdx-expression-parse/-/spdx-expression-parse-3.0.0.tgz#99e119b7a5da00e05491c9fa338b7904823b41d0"
-  integrity sha512-Yg6D3XpRD4kkOmTpdgbUiEJFKghJH03fiC1OPll5h/0sO6neh2jqRDVHOQ4o/LMea0tgCkbMgea5ip/e+MkWyg==
+  version "3.0.1"
+  resolved "https://devtools.devergage.com:4873/spdx-expression-parse/-/spdx-expression-parse-3.0.1.tgz#cf70f50482eefdc98e3ce0a6833e4a53ceeba679"
+  integrity sha512-cbqHunsQWnJNE6KhVSMsMeH5H/L9EpymbzqTQ3uLwNCLZ1Q481oWaofqH7nO6V07xlXwY6PhQdQ2IedWx/ZK4Q==
   dependencies:
     spdx-exceptions "^2.1.0"
     spdx-license-ids "^3.0.0"
@@ -8143,9 +8148,9 @@ symbol-tree@^3.2.4:
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
 systeminformation@^4.23.3:
-  version "4.25.1"
-  resolved "https://devtools.devergage.com:4873/systeminformation/-/systeminformation-4.25.1.tgz#5c092f6e93e824089f3383df6092caf27d7a45b2"
-  integrity sha512-e/t+3a/oVTql4rAwDZxj/WKSeKmH2cHsgh1VD0Z8Yv9fLIuhNNtg2v+Jn9fVQDAtoUVk5t1UW1pn+PLWaS1+pw==
+  version "4.26.2"
+  resolved "https://devtools.devergage.com:4873/systeminformation/-/systeminformation-4.26.2.tgz#eaeaba6244686c4ef8493103c9fef0bf25cb2534"
+  integrity sha512-zDcoThFgQITeMRmuUYUdH8hvk3oahvRXROzszvtwHl2zCV5zeUY53h/vFOcvcwA0WLxvUTBTTm9JcqNYBIgaHQ==
 
 table@^5.2.3:
   version "5.4.6"
@@ -8318,9 +8323,9 @@ tslib@1.9.3:
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
 
 tslib@^1.10.0, tslib@^1.11.1, tslib@^1.9.0, tslib@^1.9.3:
-  version "1.11.2"
-  resolved "https://devtools.devergage.com:4873/tslib/-/tslib-1.11.2.tgz#9c79d83272c9a7aaf166f73915c9667ecdde3cc9"
-  integrity sha512-tTSkux6IGPnUGUd1XAZHcpu85MOkIl5zX49pO+jfsie3eP0B6pyhOlLXm3cAC6T7s+euSDDUUV+Acop5WmtkVg==
+  version "1.13.0"
+  resolved "https://devtools.devergage.com:4873/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
+  integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
 
 tunnel-agent@^0.6.0:
   version "0.6.0"

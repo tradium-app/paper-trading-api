@@ -11,7 +11,7 @@
 		"source:insert": "node ./src/db-service/scripts/source-data-caller.js"
 	},
 	"dependencies": {
-		"@bearer/node-agent": "3.1.0",
+		"@bearer/node-agent": "3.1.1",
 		"agenda": "3.1.0",
 		"apollo-server-express": "2.13.1",
 		"axios": "0.19.2",
@@ -26,11 +26,11 @@
 		"html-to-text": "^5.1.1",
 		"ip": "1.1.5",
 		"moment": "2.25.3",
-		"moment-timezone": "0.5.28",
+		"moment-timezone": "0.5.31",
 		"mongodb": "3.5.7",
-		"mongoose": "5.9.13",
+		"mongoose": "5.9.15",
 		"morgan": "1.10.0",
-		"newrelic": "6.7.0",
+		"newrelic": "6.7.1",
 		"offline-geo-from-ip": "^1.0.1",
 		"pm2": "4.4.0",
 		"require-graphql-file": "1.0.1",
