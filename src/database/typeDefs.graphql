@@ -88,10 +88,12 @@ type Response {
 }
 
 input StoreFcmInput {
-	fcmToken: String
+	nid: String!
+	fcmToken: String!
 	countryCode: String
 	timeZone: String
 }
+
 type Mutation {
 	storeFcmToken(input: StoreFcmInput): Response
 }

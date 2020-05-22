@@ -85,13 +85,14 @@ module.exports = {
 	Mutation: {
 		storeFcmToken: async (parent, args) => {
 			const {
-				input: { fcmToken, countryCode, timeZone },
+				input: { nid, fcmToken, countryCode, timeZone },
 			} = args
 
 			const response = await User.update(
-				{ fcmToken },
+				{ nid },
 				{
 					$set: {
+						fcmToken,
 						countryCode,
 						timeZone,
 					},

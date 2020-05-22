@@ -72,6 +72,7 @@ const Tweet = mongoose.model(
 const User = mongoose.model(
 	'User',
 	new Schema({
+		nid: { type: String, unique: true },
 		fcmToken: { type: String, unique: true },
 		countryCode: String,
 		timeZone: String,
