@@ -1,9 +1,10 @@
-const { post } = require('./http')
 const logger = require('../../config/logger')
+const axios = require('axios')
+const { FIREBASE_SERVER_KEY } = require('./config')
 
 const sendPushNotification = async (notification) => {
 	try {
-		const response = await post(undefined, notification)
+		const response = await makeRequest(notification)
 		if (response.status === 200 && response.data.success === 1) {
 			return { status: true, success: response.data.success, failure: response.data.failure }
 		} else {
@@ -14,6 +15,17 @@ const sendPushNotification = async (notification) => {
 		logger.error(error)
 		return { status: false, message: `Notification send failed: ${error.stack}` }
 	}
+}
+
+const makeRequest = async (data = {}) => {
+	const FIREBASE_NOTIFICATION_URL = 'https://fcm.googleapis.com/fcm/send'
+
+	return axios({
+		method: 'post',
+		url: FIREBASE_NOTIFICATION_URL,
+		data: data,
+		headers: { Authorization: `key=${FIREBASE_SERVER_KEY}` },
+	})
 }
 
 module.exports = {
