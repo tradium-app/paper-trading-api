@@ -11,7 +11,7 @@ describe('TweetDbService', () => {
 	})
 
 	it('saveTwitterHandles should save Twitter handles', async () => {
-		const handles = { name: 'dummy celebrity' }
+		const handles = { name: 'dummy celebrity', handle: 'duummy' }
 		const twitterHandles = await TweetDbService.saveTwitterHandles([handles])
 
 		TweetDbService.deleteTwitterHandles({ _id: twitterHandles[0]._id })
@@ -19,7 +19,7 @@ describe('TweetDbService', () => {
 
 	it('saveTweets should save tweets', async () => {
 		const tweet = {
-			text: 'dummy tweet'
+			text: 'dummy tweet',
 		}
 		const savedTweets = await TweetDbService.saveTweets([tweet])
 
