@@ -44,7 +44,7 @@ const TwitterHandle = mongoose.model(
 	new Schema({
 		id: String,
 		name: String,
-		handle: String,
+		handle: { type: String, required: true, unique: true },
 		category: String,
 		userWeight: Number,
 		categoryWeight: Number,

@@ -8,7 +8,7 @@
 		"format": "prettier --write \"src/**/*.js\"",
 		"test": "jest --testMatch '**/?(*.)+(spec|test).[tj]s?(x)' --detectOpenHandles --forceExit",
 		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit",
-		"source:insert": "node ./src/db-service/scripts/source-data-caller.js"
+		"updatedb": "node ./src/db-service/scripts/update-db.js"
 	},
 	"dependencies": {
 		"@bearer/node-agent": "3.1.1",

@@ -30,7 +30,7 @@ type Source {
 type TwitterHandle {
 	_id: String!
 	name: String
-	handle: String
+	handle: String!
 	category: String
 	userWeight: String
 	categoryWeight: String
