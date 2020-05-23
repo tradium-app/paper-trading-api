@@ -84,7 +84,7 @@ module.exports = [
 		category: 'ENTERTAINMENT',
 	},
 	{
-		handle: '@IamSandeep25',
+		handle: '@Sandeep25',
 		name: 'Sandeep Lamichhane',
 		userWeight: 20,
 		categoryWeight: 45,

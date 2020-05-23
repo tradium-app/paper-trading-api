@@ -58,7 +58,7 @@ const Tweet = mongoose.model(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'TwitterHandle',
 		},
-		tweetId: { type: String, unique: true },
+		tweetId: { type: String, required: true, unique: true },
 		handle: { type: String },
 		text: String,
 		createdAt: { type: Date, default: Date.now },
