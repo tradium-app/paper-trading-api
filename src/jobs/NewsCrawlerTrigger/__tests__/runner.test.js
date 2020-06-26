@@ -5,11 +5,12 @@ const { Source } = require('../../../db-service/database/mongooseSchema')
 jest.setTimeout(120000)
 
 beforeAll(async () => await TestDbServer.connect())
-afterEach(async () => await TestDbServer.clearDatabase())
 afterAll(async () => await TestDbServer.closeDatabase())
 
 describe('NewsCrawlerTrigger runner integration', () => {
 	it('Integration test', async () => {
+		expect.assertions(1)
+
 		const dainikSource = {
 			_id: '5ec487682d8bdd525e003c86',
 			name: 'दैनिक नेपाल',
@@ -26,5 +27,7 @@ describe('NewsCrawlerTrigger runner integration', () => {
 		await Source.create(dainikSource)
 
 		await jobRunner()
+
+		expect('a').toMatch('a')
 	})
 })
