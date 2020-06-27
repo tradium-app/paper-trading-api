@@ -12,7 +12,7 @@ describe('PushNotificationSender integration', () => {
 		const oneNotification = {
 			notification: {
 				title: latestArticle[0].title,
-				body: latestArticle[0].shortDescription,
+				body: latestArticle[0].shortDescription.substring(0, 100) + '...',
 			},
 			to: process.env.TEST_USER_FCM_TOKEN,
 			data: {
