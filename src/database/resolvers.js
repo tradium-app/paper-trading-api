@@ -83,7 +83,7 @@ module.exports = {
 	},
 
 	Mutation: {
-		storeFcmToken: async (parent, args) => {
+		storeFcmToken: async (parent, args, { ipAddress }) => {
 			const {
 				input: { nid, fcmToken, countryCode, timeZone, createdDate, modifiedDate },
 			} = args
@@ -95,6 +95,7 @@ module.exports = {
 						fcmToken,
 						countryCode,
 						timeZone,
+						ipAddress,
 						createdDate: createdDate || modifiedDate,
 						modifiedDate: modifiedDate || createdDate,
 					},
