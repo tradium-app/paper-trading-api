@@ -85,7 +85,7 @@ module.exports = {
 	Mutation: {
 		storeFcmToken: async (parent, args) => {
 			const {
-				input: { nid, fcmToken, countryCode, timeZone },
+				input: { nid, fcmToken, countryCode, timeZone, createdDate, modifiedDate },
 			} = args
 
 			const response = await User.update(
@@ -95,6 +95,8 @@ module.exports = {
 						fcmToken,
 						countryCode,
 						timeZone,
+						createdDate: createdDate || modifiedDate,
+						modifiedDate: modifiedDate || createdDate,
 					},
 				},
 				{ upsert: true },

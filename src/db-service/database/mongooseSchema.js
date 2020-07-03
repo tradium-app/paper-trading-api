@@ -76,6 +76,8 @@ const User = mongoose.model(
 		fcmToken: { type: String, unique: true },
 		countryCode: String,
 		timeZone: String,
+		createdDate: { type: Date, default: Date.now },
+		modifiedDate: { type: Date, default: Date.now },
 	}),
 )
 

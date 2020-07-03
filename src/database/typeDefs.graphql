@@ -92,6 +92,8 @@ input StoreFcmInput {
 	fcmToken: String!
 	countryCode: String
 	timeZone: String
+	createdDate: String
+	modifiedDate: String
 }
 
 type Mutation {
