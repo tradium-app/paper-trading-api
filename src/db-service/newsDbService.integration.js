@@ -3,7 +3,7 @@ const newsDbService = require('./newsDbService.js')
 const mongoose = require('mongoose')
 mongoose.promise = global.Promise
 
-// jest.setTimeout(200000)
+jest.setTimeout(200000)
 
 describe('NewsDbService', () => {
 	beforeAll(() => {
@@ -27,7 +27,6 @@ describe('NewsDbService', () => {
 
 	it('getLatestNewsArticle should return lastest news', async () => {
 		const singleArticle = await newsDbService.getLatestNewsArticle()
-		console.log(singleArticle)
 		expect(singleArticle).not.toBeUndefined()
 	})
 

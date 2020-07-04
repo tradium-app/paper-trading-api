@@ -1,4 +1,5 @@
 const { verifyNoticiableTime } = require('./notificationTime')
+
 describe('time test', () => {
 	it('test the noticiable time', () => {
 		expect(verifyNoticiableTime('6:00')).toBe(true)

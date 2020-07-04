@@ -19,7 +19,7 @@ describe('PushNotificationSender integration', () => {
 				_id: latestArticle[0]._id,
 			},
 		}
-		let notificationSentStatus = await sendPushNotification(oneNotification)
+		const notificationSentStatus = await sendPushNotification(oneNotification)
 
 		console.log(notificationSentStatus)
 		expect(notificationSentStatus.status).toBeTruthy()

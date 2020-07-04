@@ -32,7 +32,6 @@ const data = [
 describe('Sort Tweets by weight', () => {
 	it('sort tweet by weight', () => {
 		const sortedTweets = getSortedTweets(data)
-		console.log('printing sortedTweets', sortedTweets[0])
 		expect(sortedTweets[0]._id).toBe(102)
 	})
 })
