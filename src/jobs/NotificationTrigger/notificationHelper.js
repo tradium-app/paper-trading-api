@@ -11,11 +11,7 @@ const notificationExists = async (user, article) => {
 			(notification) => String(notification.user) === String(user._id) && String(notification.article) === String(article._id),
 		)
 
-		if (hasSent) {
-			return true
-		} else {
-			return false
-		}
+		return !!hasSent
 	} catch (error) {
 		console.log('could not get todays notification', error)
 	}

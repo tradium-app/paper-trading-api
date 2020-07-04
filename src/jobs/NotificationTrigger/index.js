@@ -8,24 +8,22 @@ module.exports = async function (context) {
 	const timeStamp = new Date().toISOString()
 
 	try {
-		let userWithCurrentTime = await getUsersWithCurrentTime()
+		const userWithCurrentTime = await getUsersWithCurrentTime()
 
 		if (userWithCurrentTime) {
 			const latestArticle = await newsDbService.getLatestNewsArticle()
 
 			if (latestArticle) {
 				const notifications = []
-				let continueToSend = true
 				for (const user of userWithCurrentTime) {
-					if (await notificationExists(user, latestArticle[0])) continueToSend = false
-					else continueToSend = true
+					const shouldSendNotification = !(await notificationExists(user, latestArticle[0]))
 
-					if (continueToSend) {
+					if (shouldSendNotification) {
 						const eligibleTime = verifyNoticiableTime(user.currentTime)
 
 						if (eligibleTime) {
 							const userWithNotification = createUserWithNotification(latestArticle[0], user)
-							let notificationSentStatus = await sendPushNotification(userWithNotification)
+							const notificationSentStatus = await sendPushNotification(userWithNotification)
 							if (notificationSentStatus.status) {
 								const payload = {
 									article: latestArticle[0]._id,

@@ -4,7 +4,7 @@
 		"node": true,
 		"jest": true
 	},
-	"extends": ["standard", "plugin:prettier/recommended", "@react-native-community"],
+	"extends": ["standard", "plugin:prettier/recommended"],
 	"globals": {
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly",
@@ -18,7 +18,7 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "prettier"],
+	"plugins": ["prettier"],
 	"rules": {
 		"semi": "off",
 		"indent": [
@@ -37,8 +37,6 @@
 				"ignoreUrls": true
 			}
 		],
-		"react/jsx-uses-react": "error",
-		"react/jsx-uses-vars": "error",
 		"no-tabs": "off",
 		"eol-last": "off",
 		"generator-star-spacing": "off",
