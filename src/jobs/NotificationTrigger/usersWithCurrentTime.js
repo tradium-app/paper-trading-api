@@ -6,16 +6,17 @@ const getUsersWithCurrentTime = async () => {
 		let usersWithCurrentTime = null
 		const users = await userDbService.getUsers()
 		if (users) {
-			usersWithCurrentTime = users.map((user) => {
-				const currentTime = moment()
-					.tz(user.timeZone)
-					.format('HH:m')
+			usersWithCurrentTime = users.reduce((filtered, user) => {
+				if (user.timeZone != null && user.timeZone != undefined) {
+					const currentTime = moment().tz(user.timeZone).format('HH:m')
 
-				return {
-					...user,
-					currentTime
+					filtered.push({
+						...user,
+						currentTime,
+					})
 				}
-			})
+				return filtered
+			}, [])
 		}
 		return usersWithCurrentTime
 	} catch (error) {
@@ -24,5 +25,5 @@ const getUsersWithCurrentTime = async () => {
 }
 
 module.exports = {
-	getUsersWithCurrentTime
+	getUsersWithCurrentTime,
 }

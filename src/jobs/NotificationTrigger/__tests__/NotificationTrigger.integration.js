@@ -1,4 +1,5 @@
 const NotificationTrigger = require('../index')
+require('../../../db-service/initialize')
 
 jest.setTimeout(200000)
 

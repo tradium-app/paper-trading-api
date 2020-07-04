@@ -1,16 +1,18 @@
+const { verifyNoticiableTime } = require('./notificationTime')
+const { newsDbService, NotificationDbService } = require('../../db-service')
+const { getUsersWithCurrentTime } = require('./usersWithCurrentTime')
+const { sendPushNotification } = require('./pushNotificationSender')
+const { notificationExists, createUserWithNotification } = require('./notificationHelper')
+
 module.exports = async function (context) {
 	const timeStamp = new Date().toISOString()
 
-	const { verifyNoticiableTime } = require('./notificationTime')
-	const { newsDbService, NotificationDbService } = require('../../db-service')
-	const { getUsersWithCurrentTime } = require('./usersWithCurrentTime')
-	const { sendPushNotification } = require('./pushNotificationSender')
-	const { notificationExists, createUserWithNotification } = require('./notificationHelper')
-
 	try {
 		let userWithCurrentTime = await getUsersWithCurrentTime()
+
 		if (userWithCurrentTime) {
 			const latestArticle = await newsDbService.getLatestNewsArticle()
+
 			if (latestArticle) {
 				const notifications = []
 				let continueToSend = true
@@ -20,6 +22,7 @@ module.exports = async function (context) {
 
 					if (continueToSend) {
 						const eligibleTime = verifyNoticiableTime(user.currentTime)
+
 						if (eligibleTime) {
 							const userWithNotification = createUserWithNotification(latestArticle[0], user)
 							let notificationSentStatus = await sendPushNotification(userWithNotification)
