@@ -6,8 +6,10 @@ const logger = winston.createLogger({
 	exitOnError: false,
 })
 
-logger.on('error', (error, transport) => {
-	console.log('Winston Logger crashed')
+logger.on('error', (error) => {
+	try {
+		console.log('Winston Logger crashed', error)
+	} catch {}
 })
 
 module.exports = logger

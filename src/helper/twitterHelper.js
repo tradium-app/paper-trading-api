@@ -11,5 +11,5 @@ const getSortedTweets = (tweets = []) => {
 }
 
 module.exports = {
-	getSortedTweets
+	getSortedTweets,
 }

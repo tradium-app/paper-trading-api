@@ -6,13 +6,13 @@ describe('Array Util Test', () => {
 			{ source: 'Kantipur', weight: 50 },
 			{ source: 'Ratopati', weight: 60 },
 			{ source: 'Setopati', weight: 70 },
-			{ source: 'Hariyopati', weight: 70 }
+			{ source: 'Hariyopati', weight: 70 },
 		]
 		const expected = [
 			{ source: 'Setopati', weight: 70 },
 			{ source: 'Hariyopati', weight: 70 },
 			{ source: 'Ratopati', weight: 60 },
-			{ source: 'Kantipur', weight: 50 }
+			{ source: 'Kantipur', weight: 50 },
 		]
 
 		const sortedArr = sortArrayByWeight(arr)
@@ -24,7 +24,7 @@ describe('Array Util Test', () => {
 		const expected = removeForwardSlashAndWhiteSpaces(value)
 
 		expect(expected).not.toBe(null)
-		//the matches any whitespaces in the string value
+		// the matches any whitespaces in the string value
 		expect(expected).not.toMatch(/\s+/g)
 		expect(expected).toBe('Hello')
 	})

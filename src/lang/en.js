@@ -6,10 +6,10 @@ const en = {
 		NEWS: 'news',
 		OPINION: 'opinion',
 		SOCIAL: 'social',
-		SPORTS: 'sports'
-	}
+		SPORTS: 'sports',
+	},
 }
 
 module.exports = {
-	en
+	en,
 }

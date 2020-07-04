@@ -12,7 +12,7 @@ describe('NotificationDbService', () => {
 	it('saveNotification should save an notification successfully', async () => {
 		const notification = {
 			article: new mongoose.Types.ObjectId(),
-			user: new mongoose.Types.ObjectId()
+			user: new mongoose.Types.ObjectId(),
 		}
 		const savedNotification = await NotificationDbService.saveNotification(notification)
 
@@ -27,16 +27,16 @@ describe('NotificationDbService', () => {
 		const notifications = [
 			{
 				article: new mongoose.Types.ObjectId(),
-				user: new mongoose.Types.ObjectId()
+				user: new mongoose.Types.ObjectId(),
 			},
 			{
 				article: new mongoose.Types.ObjectId(),
-				user: new mongoose.Types.ObjectId()
+				user: new mongoose.Types.ObjectId(),
 			},
 			{
 				article: new mongoose.Types.ObjectId(),
-				user: new mongoose.Types.ObjectId()
-			}
+				user: new mongoose.Types.ObjectId(),
+			},
 		]
 
 		const savedNotifications = await NotificationDbService.saveNotifications(notifications)

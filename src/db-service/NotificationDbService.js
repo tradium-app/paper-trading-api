@@ -28,5 +28,5 @@ module.exports = {
 	deleteNotification: async (conditions) => {
 		const deletedNotifications = await Notification.deleteMany(conditions)
 		return deletedNotifications
-	}
+	},
 }

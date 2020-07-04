@@ -57,5 +57,5 @@ const getSortedArticle = (articles = []) => {
 module.exports = {
 	getSortedArticle,
 	getSourceWeight,
-	getCategoryWeight
+	getCategoryWeight,
 }

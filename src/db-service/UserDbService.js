@@ -4,5 +4,5 @@ module.exports = {
 	getUsers: async () => {
 		const users = await User.find().lean()
 		return users
-	}
+	},
 }

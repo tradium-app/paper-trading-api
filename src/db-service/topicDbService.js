@@ -20,5 +20,5 @@ module.exports = {
 	getTopic: async (conditions = {}) => {
 		const topic = await Topic.find(conditions)
 		return topic
-	}
+	},
 }

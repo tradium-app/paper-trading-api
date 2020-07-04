@@ -14,5 +14,5 @@ const removeForwardSlashAndWhiteSpaces = (value) => {
 
 module.exports = {
 	sortArrayByWeight,
-	removeForwardSlashAndWhiteSpaces
+	removeForwardSlashAndWhiteSpaces,
 }

@@ -3,7 +3,7 @@ const weights = {
 		EKANTIPUR: 50,
 		SETOPATI: 45,
 		RATOPATI: 40,
-		DAINIK: 35
+		DAINIK: 35,
 	},
 	category: {
 		NEWS: 50,
@@ -12,10 +12,10 @@ const weights = {
 		BUSINESS: 30,
 		SOCIAL: 25,
 		SPORTS: 20,
-		OPINION: 15
-	}
+		OPINION: 15,
+	},
 }
 
 module.exports = {
-	weights
+	weights,
 }

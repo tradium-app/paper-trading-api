@@ -10,7 +10,7 @@ describe('NewsDbService', () => {
 		const article = {
 			title: 'dummy title',
 			link: 'link',
-			imageLink: 'imageLink'
+			imageLink: 'imageLink',
 		}
 		await newsDbService.saveArticles([article])
 

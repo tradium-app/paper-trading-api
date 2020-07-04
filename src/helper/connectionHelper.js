@@ -6,5 +6,5 @@ const dbConnection = () => {
 }
 
 module.exports = {
-	dbConnection
+	dbConnection,
 }
