@@ -7,7 +7,7 @@ const getUsersWithCurrentTime = async () => {
 		const users = await userDbService.getUsers()
 		if (users) {
 			usersWithCurrentTime = users.reduce((filtered, user) => {
-				if (user.timeZone != null && user.timeZone != undefined) {
+				if (user.timeZone != null && user.timeZone !== undefined) {
 					const currentTime = moment().tz(user.timeZone).format('HH:m')
 
 					filtered.push({

@@ -7,7 +7,7 @@ const notifier = require('../NotificationTrigger')
 const twitterJob = require('../TwitterTrigger')
 const coronaJob = require('../corona')
 
-module.exports = async function() {
+module.exports = async function () {
 	logger.info('starting jobs')
 
 	const agenda = new Agenda({ db: { address: process.env.DATABASE_URL } })

@@ -42,7 +42,7 @@ const scrapeKantipurNewsLink = (baseUrl, url) => {
 					links: null,
 				})
 			} else {
-				let $ = cheerio.load(body)
+				const $ = cheerio.load(body)
 				const links = []
 				$('article').each(function (index) {
 					const link = $(this).find('h2>a').attr('href')
@@ -69,7 +69,7 @@ const scrapeSetoPatiLink = (baseUrl, url) => {
 					links: null,
 				})
 			} else {
-				let $ = cheerio.load(body)
+				const $ = cheerio.load(body)
 				const links = []
 				$('.items').each(function (index) {
 					const link = $(this).find('a').attr('href')
@@ -96,7 +96,7 @@ const scrapeDainikNepalLinks = (baseUrl, url) => {
 					links: null,
 				})
 			} else {
-				let $ = cheerio.load(body)
+				const $ = cheerio.load(body)
 				const links = []
 				$('.news_loop').each(function (index) {
 					const link = $(this).find('a').attr('href')
@@ -123,7 +123,7 @@ const scrapeRatoPatiLink = (baseUrl, url) => {
 					links: null,
 				})
 			} else {
-				let $ = cheerio.load(body)
+				const $ = cheerio.load(body)
 				const links = []
 				$('.item-content').each(function (index) {
 					const link = $(this).find('a').attr('href')
@@ -150,7 +150,7 @@ const scrapeOnlineKhabarLinks = (baseUrl, url) => {
 					links: null,
 				})
 			} else {
-				let $ = cheerio.load(body)
+				const $ = cheerio.load(body)
 				const links = []
 				$('div.soft__wrap div.post__heading h2.title__small.post__title').each(function (index) {
 					const link = $(this).find('a').attr('href')
@@ -178,7 +178,7 @@ const scrapeBBCNepaliLinks = (baseUrl, url) => {
 					links: null,
 				})
 			} else {
-				let $ = cheerio.load(body)
+				const $ = cheerio.load(body)
 				const links = []
 				$('ul[class^="StoryPromoUl"] > li div h3').each(function () {
 					const link = $(this).find('a').attr('href')

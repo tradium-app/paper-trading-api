@@ -18,7 +18,7 @@ module.exports = async function () {
 
 		article.link = article.url
 		article.imageLink = article.leadImage
-		article.source = sources.find((source) => source.name == article.source)._id
+		article.source = sources.find((source) => source.name === article.source)._id
 
 		newsDbService.saveArticle(article)
 	})

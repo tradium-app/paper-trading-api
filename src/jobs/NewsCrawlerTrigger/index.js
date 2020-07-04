@@ -1,4 +1,4 @@
-module.exports = async function(context) {
+module.exports = async function (context) {
 	var timeStamp = new Date().toISOString()
 	const newsDbService = require('../../db-service/newsDbService')
 

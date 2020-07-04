@@ -3,7 +3,7 @@ const en = {
 		ENT: 'Entertainment',
 		SPORT: 'Sport',
 		POL: 'Politics',
-		TECH: 'Technology'
-	}
+		TECH: 'Technology',
+	},
 }
 module.exports = { en }

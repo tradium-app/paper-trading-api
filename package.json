@@ -8,7 +8,7 @@
     "format": "prettier --write \"src/**/*.js\"",
     "test": "jest --runInBand --testMatch \"**/?(*.)+(spec|test).[tj]s?(x)\" --detectOpenHandles --forceExit",
     "test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit",
-    "lint": "eslint src/**/*.js",
+    "lint": "eslint src/**/**/*.js",
     "updatedb": "node ./src/db-service/scripts/update-db.js",
     "snyk-protect": "snyk protect",
     "prepare": "yarn run snyk-protect"

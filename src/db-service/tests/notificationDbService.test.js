@@ -13,12 +13,12 @@ afterAll(async () => await TestDbServer.closeDatabase())
 const payload = [
 	{
 		article: articles[0]._id,
-		user: users[0]._id
+		user: users[0]._id,
 	},
 	{
 		article: articles[1]._id,
-		user: users[1]._id
-	}
+		user: users[1]._id,
+	},
 ]
 
 describe('Notification Db service ', () => {

@@ -16,6 +16,7 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/nepaltoday-api-qa
 3. Don't checkin .env file
 4. `yarn start` --to start api-server and worker
 5. `jest --runInBand -t 'some test description'` -- it will run tests with `some test description` in `it` description
+6. `yarn lint` --to show linting errors. Add [`--fix`] to auto fix errors.
 
 ## Key points
 

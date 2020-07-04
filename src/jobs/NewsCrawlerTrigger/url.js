@@ -4,5 +4,5 @@ const getSegment = (link = '', num = 0) => {
 }
 
 module.exports = {
-	getSegment
+	getSegment,
 }
