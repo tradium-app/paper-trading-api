@@ -151,6 +151,30 @@ const DistrictCoronaStats = mongoose.model(
 	})
 )
 
+const TrendingHandle = mongoose.model(
+	'TrendingHandle',
+	new Schema({
+		name: String,
+		handle: String,
+		searchTerms: [String],
+		image: String
+	})
+)
+
+const TrendingTweetCount = mongoose.model(
+	'TrendingTweetCount',
+	new Schema({
+		createdDate: String,
+		createdAt: { type: Date, default: Date.now() },
+		counts: [{
+			name: String,
+			handle: String,
+			count: Number,
+			image: String
+		}]
+	})
+)
+
 module.exports = {
 	User,
 	Tweet,
@@ -160,5 +184,7 @@ module.exports = {
 	TwitterHandle,
 	Topic,
 	CoronaStats,
-	DistrictCoronaStats
+	DistrictCoronaStats,
+	TrendingHandle,
+	TrendingTweetCount
 }

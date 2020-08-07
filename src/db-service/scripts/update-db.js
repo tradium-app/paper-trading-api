@@ -1,6 +1,7 @@
-const { TwitterHandle, Source } = require('../database/mongooseSchema')
+const { TwitterHandle, Source, TrendingHandle } = require('../database/mongooseSchema')
 const TwitterHandles = require('./twitter-handles')
 const NewsSources = require('./source-data')
+const TrendingTwitterHandles = require('./trending-handles')
 require('../initialize')
 
 const TwitterHandlesUpdate = async () => {
@@ -19,8 +20,16 @@ const NewsSourcesUpdate = async () => {
 	return Promise.all(resultPromises)
 }
 
+const TrendingHandlesUpdate = async() => {
+	const resultPromises = TrendingTwitterHandles.map(async (handle) => {
+		return TrendingHandle.updateOne({ handle: handle.handle}, handle, {upsert: true})
+	})
+
+	return Promise.all(resultPromises)
+}
+
 async function waitForUpdates() {
-	return Promise.all([TwitterHandlesUpdate(), NewsSourcesUpdate()])
+	return Promise.all([TwitterHandlesUpdate(), NewsSourcesUpdate(), TrendingHandlesUpdate()])
 }
 
 waitForUpdates().then(() => {

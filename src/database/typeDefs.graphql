@@ -100,6 +100,26 @@ type DistrictCoronaMetrics {
 	deaths: Int
 }
 
+type TrendingHandle{
+	name: String
+	handle: String
+	searchTerms: [String]
+	image: String
+}
+
+type TrendingTweetCount{
+	createdDate: String
+	createdAt: String
+	counts: [TrendingMetric]
+}
+
+type TrendingMetric {
+	name: String
+	handle: String
+	count: Int
+	image: String
+}
+
 type WeatherInfo {
 	ipAddress: String
 	temperature: Float!
@@ -115,6 +135,7 @@ type Query {
 	getLatestCoronaStats: CoronaStats
 	getWeatherInfo: WeatherInfo
 	getDistrictCoronaStats: DistrictCoronaStats
+	getTrending: TrendingTweetCount
 }
 
 type Response {
