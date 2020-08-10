@@ -1,3 +1,11 @@
+var Bugsnag = require('@bugsnag/js')
+var BugsnagPluginExpress = require('@bugsnag/plugin-express')
+
+Bugsnag.start({
+  apiKey: 'bf6ecbb87c478df6c456d6d297a82f4f',
+  plugins: [BugsnagPluginExpress]
+})
+
 module.exports = async function (context) {
 	var timeStamp = new Date().toISOString()
 	const newsDbService = require('../../db-service/newsDbService')
@@ -55,6 +63,8 @@ module.exports = async function (context) {
 									if (savedArticle) {
 										context.log('article saved successfully!!!!')
 									}
+								}else{
+									Bugsnag.notify("data null "+link)
 								}
 							}
 						}
