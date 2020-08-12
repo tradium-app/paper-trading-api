@@ -1,5 +1,5 @@
-var Bugsnag = require('@bugsnag/js')
-var BugsnagPluginExpress = require('@bugsnag/plugin-express')
+const Bugsnag = require('@bugsnag/js')
+const BugsnagPluginExpress = require('@bugsnag/plugin-express')
 
 Bugsnag.start({
   apiKey: 'bf6ecbb87c478df6c456d6d297a82f4f',
@@ -22,7 +22,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 
 const app = express()
 
-var middleware = Bugsnag.getPlugin('express')
+const middleware = Bugsnag.getPlugin('express')
 
 // This must be the first piece of middleware in the stack.
 // It can only capture errors in downstream middleware

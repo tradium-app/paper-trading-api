@@ -3,7 +3,7 @@ const newsDbService = require('../../db-service/newsDbService')
 const newsCrawler = require('news-crawler')
 
 module.exports = async function () {
-	var timeStamp = new Date().toISOString()
+	let timeStamp = new Date().toISOString()
 
 	const sourceConfig = require('./config/news-source-config.json')
 	const articles = await newsCrawler(sourceConfig)
