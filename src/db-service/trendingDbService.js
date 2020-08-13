@@ -22,7 +22,7 @@ module.exports = {
                 image
             })
             exceptTrending = exceptTrending.sort((a,b)=>(a.count < b.count) ? 1 : ((b.count < a.count) ? -1 : 0))
-            todayTrending.counts = exceptTrending.slice(0,20)
+            todayTrending.counts = exceptTrending.slice(0,5)
             let res = await todayTrending.save()
             return res
         }else{
