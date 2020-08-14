@@ -37,7 +37,9 @@ const createUserWithCoronaNotification = (stats, user) => {
 			body: `कुल संक्रमित : ${convertNumbertoNepali(stats.totalCases)}, नयाँ संक्रमित : ${convertNumbertoNepali(stats.newCases)}, कुल मृत्यु : ${convertNumbertoNepali(stats.totalDeaths)}, नयाँ मृत्यु : ${convertNumbertoNepali(stats.newDeaths)}`
 		},
 		to: user.fcmToken,
-		data: {}
+		data: {
+			notifType: 'corona'
+		}
 	}
 }
 
