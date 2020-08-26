@@ -118,7 +118,7 @@ module.exports = [
 	{
 		name: 'Swasthya Khabar',
 		link: 'https://swasthyakhabar.com',
-		logoLink: '/assets/images/sklogo.png',
+		logoLink: '/assets/logos/sklogo.png',
 		category: [
 			{
 				name: 'health',
