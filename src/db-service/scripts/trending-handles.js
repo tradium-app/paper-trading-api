@@ -335,7 +335,7 @@ const TrendingTwitterHandles = [
         category: 'Sports',
         handle: '@Sandeep25',
         searchTerms: ['Sandeep Lamicchane'],
-        image: 'https://pbs.twimg.com/profile_images/686208528088875008/7dN-KKz2_200x200.jpg'
+        image: 'https://pbs.twimg.com/profile_images/1291014777955921921/5-KR7GNa_200x200.jpg'
     },
     {
         name: 'Paras Khadka',
