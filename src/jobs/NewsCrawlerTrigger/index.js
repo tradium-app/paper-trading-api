@@ -95,6 +95,5 @@ module.exports = async function (context) {
 	} catch (error) {
 		context.log('error occured here', error)
 	}
-
 	context.log('JavaScript timer trigger function ran!', timeStamp)
 }
