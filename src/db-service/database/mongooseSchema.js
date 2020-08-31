@@ -23,36 +23,6 @@ const Article = mongoose.model(
 	}),
 )
 
-const Source = mongoose.model(
-	'Source',
-	new Schema({
-		id: String,
-		name: String,
-		link: String,
-		logoLink: String,
-		category: [
-			{
-				name: String,
-				path: String,
-			},
-		],
-		createdDate: { type: Date, default: Date.now },
-		modifiedDate: { type: Date, default: Date.now },
-	}),
-)
-
-const TwitterHandle = mongoose.model(
-	'TwitterHandle',
-	new Schema({
-		id: String,
-		name: String,
-		handle: { type: String, required: true, unique: true },
-		category: String,
-		userWeight: Number,
-		categoryWeight: Number,
-	}),
-)
-
 const Tweet = mongoose.model(
 	'Tweet',
 	new Schema({
@@ -151,17 +121,6 @@ const DistrictCoronaStats = mongoose.model(
 	}),
 )
 
-const TrendingHandle = mongoose.model(
-	'TrendingHandle',
-	new Schema({
-		name: String,
-		handle: String,
-		searchTerms: [String],
-		image: String,
-		category: String,
-	}),
-)
-
 const TrendingTweetCount = mongoose.model(
 	'TrendingTweetCount',
 	new Schema({
@@ -187,12 +146,9 @@ module.exports = {
 	User,
 	Tweet,
 	Article,
-	Source,
 	Notification,
-	TwitterHandle,
 	Topic,
 	CoronaStats,
 	DistrictCoronaStats,
-	TrendingHandle,
 	TrendingTweetCount,
 }
