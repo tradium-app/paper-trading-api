@@ -1,5 +1,3 @@
-const categories = ['Politics', 'Media Celebrity', 'Actor', 'Sports']
-
 const TrendingTwitterHandles = [
 	{
 		name: 'Baburam Bhattarai',
@@ -375,6 +373,5 @@ const TrendingTwitterHandles = [
 ]
 
 module.exports = {
-	categories,
 	TrendingTwitterHandles,
 }

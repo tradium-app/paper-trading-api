@@ -1,12 +1,10 @@
-const { TrendingHandle, TrendingTweetCount } = require('./database/mongooseSchema')
+const { TrendingTweetCount } = require('./database/mongooseSchema')
+const { TrendingTwitterHandles } = require('./../config/twitter-handles')
 
 module.exports = {
-	saveTrendingHandles: async (stats) => {
-		return await TrendingHandle.create(stats)
-	},
-
+	
 	getTrendingHandles: async () => {
-		return TrendingHandle.find()
+		return TrendingTwitterHandles
 	},
 
 	saveTrendingTweetCount: async (date, name, handle, count, image, category) => {
