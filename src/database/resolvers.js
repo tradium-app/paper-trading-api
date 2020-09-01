@@ -3,10 +3,10 @@ const mongooseSchema = require('../db-service/database/mongooseSchema')
 
 const { User, Article } = mongooseSchema
 const { categories } = require('../config/category')
-const { getSortedArticle } = require('../helper/articleHelper')
 const getWeather = require('../weather')
 const logger = require('../config/logger')
-const Sources = require('./../config/source-data')
+const { Tweet } = require('../db-service/database/mongooseSchema')
+const SourceConfig = require('../config/news-source-config.json')
 
 module.exports = {
 	Query: {
@@ -33,7 +33,7 @@ module.exports = {
 			const articleFlattened = _.flatten(articles)
 
 			const articleList = articleFlattened.map((article) => {
-				const mySource = Sources.find((x) => x.name === article.sourceName)
+				const mySource = SourceConfig.find((x) => x.sourceName === article.sourceName)
 				article.source = {
 					name: mySource.name,
 					url: mySource.link,
@@ -42,14 +42,12 @@ module.exports = {
 				return article
 			})
 
-			const sortedArticles = getSortedArticle(articleList)
-
-			return sortedArticles
+			return articleList
 		},
 
 		getArticle: async (parent, { _id }) => {
 			const article = await Article.findById(_id).lean()
-			const mySource = Sources.find((x) => x.name === article.sourceName)
+			const mySource = SourceConfig.find((x) => x.sourceName === article.sourceName)
 			return {
 				...article,
 				source: { name: mySource.name, url: mySource.link, logoLink: process.env.SERVER_BASE_URL + article.source.logoLink },
@@ -61,8 +59,13 @@ module.exports = {
 			args.criteria.lastQueryDate = args.criteria.lastQueryDate || new Date('2001-01-01')
 			args.criteria.lastTweetId = args.criteria.lastTweetId || '000000000000000000000000'
 
-			const tweets = await Tweet.find().populate('twitterHandle').sort({ publishedDate: -1 }).limit(100)
+			const tweets = await Tweet.find().sort({ publishedDate: -1 }).limit(100)
 
+			return tweets
+		},
+
+		getTweetByHandle: async (parent, { handle }) => {
+			const tweets = await Tweet.find({ handle }).sort({ publishedDate: -1 }).limit(100)
 			return tweets
 		},
 
