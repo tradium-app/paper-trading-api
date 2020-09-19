@@ -231,7 +231,7 @@
 		],
 		"article-detail-selectors":{
 			"title": "article > header > h2",
-			"excerpt": "article > section > p:nth-child(5)",
+			"excerpt": ".WordSection1 > p:nth-of-type(1)",
 			"lead-image": "article > section > figure > img",
 			"content": ["article > section"]
 		}
