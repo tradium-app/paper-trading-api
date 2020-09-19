@@ -44,7 +44,9 @@ async function getUserTimeline(handle) {
 		exclude_replies: true,
 		include_rts: false,
 	}
+
 	const rawTweets = await client.get('statuses/user_timeline', params)
+
 	const tweets =
 		rawTweets &&
 		rawTweets.map((tweet) => ({
@@ -52,7 +54,7 @@ async function getUserTimeline(handle) {
 			tweetId: tweet.id_str || tweet.id,
 			text: tweet.text,
 			name: tweet.user.name,
-			handle: tweet.user.screen_name,
+			handle: `@${tweet.user.screen_name}`,
 			description: tweet.user.description,
 			profileImage: tweet.user.profile_image_url_https,
 		}))
