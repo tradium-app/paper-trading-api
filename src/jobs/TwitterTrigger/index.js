@@ -23,7 +23,7 @@ async function fetchTweetsAndSaveByHandle(user) {
 		if (tweets && tweets.length > 0) {
 			saveTweets(tweets, user)
 		} else {
-			logger.error('Error fetching tweets for user: ', user.handle)
+			logger.info('No tweets from user: ', user.handle)
 		}
 	} catch (error) {
 		logger.error('Error fetching tweets for user: ', user.handle, error)
