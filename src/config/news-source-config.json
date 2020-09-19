@@ -206,7 +206,7 @@
 			{
 				"url": "https://swasthyakhabar.com",
 				"category": "health",
-				"link-selector": "article > header > h2 > a"
+				"link-selector": "article > section h3 > a"
 			}
 		],
 		"article-detail-selectors":{
