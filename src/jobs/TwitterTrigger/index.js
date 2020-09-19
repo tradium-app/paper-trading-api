@@ -12,7 +12,7 @@ module.exports = async function () {
 			}
 		}
 	} catch (error) {
-		logger.error(error)
+		logger.error('Error fetching tweets:', error)
 	}
 }
 
@@ -23,10 +23,10 @@ async function fetchTweetsAndSaveByHandle(user) {
 		if (tweets && tweets.length > 0) {
 			saveTweets(tweets, user)
 		} else {
-			logger.info('error on getting tweets !!!!!!!!!!!!!!!!!')
+			logger.error('Error fetching tweets for user: ', user.handle)
 		}
 	} catch (error) {
-		logger.info('error occured', error)
+		logger.error('Error fetching tweets for user: ', user.handle, error)
 	}
 }
 
@@ -72,6 +72,6 @@ async function saveTweets(tweets, user) {
 
 	const savedTweets = await TweetDbService.saveTweets(filterdTweets)
 	if (savedTweets) {
-		logger.info('tweet saved successfully')
+		logger.info('Tweets saved successfully')
 	}
 }
