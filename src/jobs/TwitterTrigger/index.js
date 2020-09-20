@@ -12,7 +12,7 @@ module.exports = async function () {
 			}
 		}
 	} catch (error) {
-		logger.error('Error fetching tweets:', error)
+		logger.error('Error fetching tweets:', { error })
 	}
 }
 
@@ -23,10 +23,10 @@ async function fetchTweetsAndSaveByHandle(user) {
 		if (tweets && tweets.length > 0) {
 			saveTweets(tweets, user)
 		} else {
-			logger.info('No tweets from user: ', user.handle)
+			logger.info('No tweets from user: ', { handle: user.handle })
 		}
 	} catch (error) {
-		logger.error('Error fetching tweets for user: ', user.handle, error)
+		logger.error('Error fetching tweets for user: ', { handle: user.handle, error: error })
 	}
 }
 

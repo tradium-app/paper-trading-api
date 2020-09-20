@@ -32,7 +32,7 @@ module.exports = async function () {
 
 		await saveArticles(checkWithOldArticles)
 	} catch (error) {
-		logger.error('Error while crawling:', error)
+		logger.error('Error while crawling:', { error })
 	}
-	logger.info('News Crawler ran!', new Date().toISOString())
+	logger.info('News Crawler ran!', { date: new Date().toISOString() })
 }
