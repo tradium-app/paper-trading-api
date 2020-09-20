@@ -50,7 +50,7 @@
 		"pages": [
 			{
 				"url": "https://www.setopati.com/politics",
-				"category": "politics",
+				"category": "news",
 				"link-selector": "#content > div > section > div > div > a"
 			},
 			{
@@ -285,7 +285,7 @@
 		"pages": [
 			{
 				"url": "https://baahrakhari.com/news-article/1/Politics",
-				"category": "politics",
+				"category": "news",
 				"link-selector": "article > section > div.row.page-news-list > div > div > h3 > a"
 			},
 			{
@@ -320,7 +320,7 @@
 		"pages": [
 			{
 				"url": "https://pahilopost.com/content/category/politics.html",
-				"category": "politics",
+				"category": "news",
 				"link-selector": "h2 > a"
 			},
 			{
