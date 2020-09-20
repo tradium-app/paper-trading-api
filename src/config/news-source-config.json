@@ -192,7 +192,7 @@
 		"article-detail-selectors": {
 			"title": "#content",
 			"excerpt": "main > div > p",
-			"lead-image": "main > div > figure > div > div.NestedGridItemChildLarge-sc-12lwanc-9.fkKpIa > div > img",
+			"lead-image": "main > div > figure div > img",
 			"content": ["main > div"]
 		}
 	},
