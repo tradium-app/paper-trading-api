@@ -354,7 +354,7 @@
 		"weight": 50,
 		"pages": [
 			{
-				"url": "http://nepalipaisa.com/Stock-Market.aspx",
+				"url": "https://nepalipaisa.com/Stock-Market.aspx",
 				"category": "share",
 				"link-selector": "#divCategoryNews .list-wrap-latestNews h2 > a"
 			}
