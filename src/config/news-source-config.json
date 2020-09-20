@@ -224,9 +224,9 @@
 		"weight": 50,
 		"pages": [
 			{
-				"url": "https://halokhabar.com/",
+				"url": "https://halokhabar.com",
 				"category": "agriculture",
-				"link-selector": "div.container-wrapper > div > article > header > h2 > a"
+				"link-selector": "#home.tab-pane.active ul.section > li > h3 > a"
 			}
 		],
 		"article-detail-selectors": {
