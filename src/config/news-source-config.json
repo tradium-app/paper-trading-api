@@ -206,12 +206,12 @@
 			{
 				"url": "https://swasthyakhabar.com",
 				"category": "health",
-				"link-selector": "article > section h3 > a"
+				"link-selector": "article.module-flash-news > header > h2 > a:nth-child(1)"
 			}
 		],
 		"article-detail-selectors": {
 			"title": "article.module.module-detail > h1",
-			"excerpt": "article.module.module-detail > section > p:nth-child(7)",
+			"excerpt": "article.module.module-detail > section > p:nth-of-type(2)",
 			"lead-image": "article.module.module-detail > section > div.img-wrap > figure > fig > img",
 			"content": ["article.module.module-detail > section"]
 		}
@@ -226,7 +226,7 @@
 			{
 				"url": "https://halokhabar.com/",
 				"category": "agriculture",
-				"link-selector": "body > div.container-wrapper > div > article > header > h2 > a"
+				"link-selector": "div.container-wrapper > div > article > header > h2 > a"
 			}
 		],
 		"article-detail-selectors": {
