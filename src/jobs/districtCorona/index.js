@@ -142,7 +142,7 @@ module.exports = async function () {
 			createdDate: new Date(),
 			timeLine: coronaTimeLine,
 			districts: districtMetrics,
-			source: 'nepalcorona.info',
+			source: 'source: nepalcorona.info',
 		}
 
 		await DistrictCoronaDbService.saveDistrictStats(stats)
