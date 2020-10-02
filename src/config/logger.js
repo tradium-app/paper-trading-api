@@ -8,6 +8,7 @@ const logger = winston.createLogger({
 
 logger.on('error', (error) => {
 	try {
+		// eslint-disable-next-line no-console
 		console.log('Winston Logger crashed', error)
 	} catch {}
 })
