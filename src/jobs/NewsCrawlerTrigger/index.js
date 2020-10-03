@@ -9,7 +9,7 @@ module.exports = async function () {
 	const ipAddress = require('ip').address()
 
 	try {
-		const articles = await NewsCrawler(SourceConfig.slice(0, 1), { headless: true })
+		const articles = await NewsCrawler(SourceConfig, { headless: true })
 		const trendingTopics = await TrendingTopic.find()
 		const savedArticles = await Article.find({ createdDate: { $gt: new Date(Date.now() - 12 * 60 * 60 * 1000) } })
 		const articleWithTags = []

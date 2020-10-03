@@ -10,6 +10,8 @@ require('./db-service/initialize')
 const mongooseSchema = require('./db-service/database/mongooseSchema')
 const resolvers = require('./database/resolvers')
 const colors = require('colors/safe')
+const Agenda = require('agenda')
+const Agendash = require('agendash')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -26,6 +28,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(morgan('combined'))
 app.use('/assets', express.static('assets'))
+
+const agenda = new Agenda({ db: { address: process.env.DATABASE_URL } })
+app.use('/dash', Agendash(agenda))
 
 const typeDefSchema = requireGraphQLFile('./database/typeDefs.graphql')
 const typeDefs = gql(typeDefSchema)
