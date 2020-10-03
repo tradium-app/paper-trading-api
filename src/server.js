@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(morgan('combined'))
 app.use('/assets', express.static('assets'))
 
-const agenda = new Agenda({ db: { address: process.env.DATABASE_URL } })
+const agenda = new Agenda({ db: { address: process.env.DATABASE_READONLY_URL } })
 app.use('/dash', Agendash(agenda))
 
 const typeDefSchema = requireGraphQLFile('./database/typeDefs.graphql')
