@@ -1,4 +1,5 @@
 const NewsCrawler = require('news-crawler')
+const errorToJSON = require('error-to-json').default
 const { saveArticles } = require('../../db-service/newsDbService')
 const SourceConfig = require('../../config/news-source-config.json')
 const logger = require('../../config/logger')
@@ -38,7 +39,7 @@ module.exports = async function () {
 
 		await saveArticles(checkWithOldArticles)
 	} catch (error) {
-		logger.error('Error while crawling:', { error })
+		logger.error('Error while crawling:', errorToJSON(error))
 	}
 	logger.info('News Crawler ran!', { date: new Date().toISOString() })
 }
