@@ -75,6 +75,7 @@ module.exports = {
 		},
 
 		getTweetByHandle: async (parent, { handle }) => {
+			if (handle.charAt(0) !== '@') handle = '@' + handle
 			const tweets = await Tweet.find({ handle }).sort({ publishedDate: -1 }).limit(100)
 			return tweets
 		},
