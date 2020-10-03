@@ -66,6 +66,6 @@ module.exports = async function () {
 			logger.info('No latest news to post to facebook')
 		}
 	} catch (error) {
-		logger.error('Error here fb post', { error })
+		logger.error('Error here fb post', error)
 	}
 }

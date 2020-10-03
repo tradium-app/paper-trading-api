@@ -110,8 +110,7 @@ module.exports = {
 					place: weatherInfo.name,
 				}
 			} catch (error) {
-				logger.error(`Printing ip: ${ipAddress}`)
-				throw error
+				logger.error(`Error to getWeatherInfo for ip: ${ipAddress}`)
 			}
 		},
 	},

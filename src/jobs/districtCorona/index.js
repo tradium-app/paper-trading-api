@@ -149,6 +149,6 @@ module.exports = async function () {
 
 		return stats
 	} catch (error) {
-		logger.error('error in national corona stats ', { error })
+		logger.error('Error in national corona stats:', error)
 	}
 }
