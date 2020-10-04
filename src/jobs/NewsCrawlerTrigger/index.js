@@ -11,7 +11,7 @@ module.exports = async function () {
 	try {
 		const articles = await NewsCrawler(SourceConfig, { headless: true })
 		const trendingTopics = await TrendingTopic.find()
-		const savedArticles = await Article.find({ createdDate: { $gt: new Date(Date.now() - 12 * 60 * 60 * 1000) } })
+		const savedArticles = await Article.find({ createdDate: { $gt: new Date(Date.now() - 24 * 60 * 60 * 1000) } })
 		const articleWithTags = []
 
 		const exceptHeadlineArticles = articles.filter((x) => x.category !== 'headline')
@@ -35,7 +35,6 @@ module.exports = async function () {
 		const checkWithOldArticles = articleWithTags.filter((article) => !savedArticles.some((sa) => sa.link === article.link))
 
 		checkWithOldArticles.forEach((x) => (x.hostIp = ipAddress))
-
 		await saveArticles(checkWithOldArticles)
 	} catch (error) {
 		logger.error('Error while crawling:', error)
