@@ -57,7 +57,7 @@ async function getUserTimeline(handle) {
 			name: tweet.user.name,
 			handle: `@${tweet.user.screen_name}`,
 			description: tweet.user.description,
-			profileImage: tweet.user.profile_image_url_https,
+			profileImage: tweet.user.profile_image_url_https.replace('_normal', ''),
 		}))
 
 	return tweets
