@@ -8,7 +8,6 @@ const twitterJob = require('../TwitterTrigger')
 const coronaJob = require('../corona')
 const districtCoronaJob = require('../districtCorona')
 const trendingJob = require('../trending')
-const facebookPost = require('../facebookPost')
 const trendingTopic = require('../trendingTopics')
 
 module.exports = async function () {

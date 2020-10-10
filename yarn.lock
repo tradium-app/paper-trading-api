@@ -6415,7 +6415,7 @@ netmask@^1.0.6:
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
   integrity sha1-ICl+idhvb2QA8lDZ9Pa0wZRfzTU=
 
-news-crawler@*:
+news-crawler@^1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/news-crawler/-/news-crawler-1.12.0.tgz#952f78027d4813db63bb1aeb336accd5dcba6525"
   integrity sha512-1qQfdq4OnQr7ZcbUbAJCOrueLLuIAzSDUEcMpLaUtzEC6yrN3THLgabtNUOyw7LybNS8r2OYpwB+zKY1J/CicA==
