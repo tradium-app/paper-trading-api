@@ -1,5 +1,4 @@
 require('dotenv').config()
-const { Translate } = require('@google-cloud/translate').v2
 const { nouns } = require('./../../config/nouns')
 
 const repeatedArticles = (articles) => {
@@ -39,29 +38,15 @@ const getMatchedNewArticles = (newArticles, oldArticles) => {
 }
 
 const isSubsentence = (array1, array2) => {
-	if(array1.length && array2.length){
+	if (array1.length && array2.length) {
 		const result = array2.every((val) => array1.includes(val))
 		return result
-	}else{
+	} else {
 		return false
 	}
 }
 
 module.exports = {
-	googleTranslate: async function (content) {
-		return new Promise((resolve, reject) => {
-			const translator = new Translate({ projectId: process.env.GOOGLE_PROJECT_ID, key: process.env.GOOGLE_TRANSLATE_API_KEY })
-
-			translator.translate(content, 'en', function (err, translation) {
-				if (!translation) {
-					reject(err)
-				} else {
-					resolve(translation)
-				}
-			})
-		})
-	},
-
 	removeDuplicateArticles: function (articles) {
 		const set1 = new Set(articles)
 		const set2 = new Set(repeatedArticles(articles))
