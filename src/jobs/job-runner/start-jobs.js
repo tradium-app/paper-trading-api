@@ -23,7 +23,7 @@ module.exports = async function () {
 
 	agenda.define('notify users', async (job) => {
 		logger.info('notify users job started')
-		notifier(console)
+		notifier()
 	})
 
 	agenda.define('pull tweets', async (job) => {
@@ -46,11 +46,6 @@ module.exports = async function () {
 		trendingJob()
 	})
 
-	agenda.define('post to facebook', async (job) => {
-		logger.info('posting to facebook started')
-		facebookPost(console)
-	})
-
 	agenda.define('fetch trending topics', async (job) => {
 		logger.info('fetch trending topics started')
 		trendingTopic()
@@ -64,6 +59,5 @@ module.exports = async function () {
 	await agenda.every('2 hours', 'fetch corona stats')
 	await agenda.every('1 hours', 'fetch district corona stats')
 	await agenda.every('2 hours', 'fetch trending')
-	await agenda.every('136 minutes', 'post to facebook')
 	await agenda.every('24 hours', 'fetch trending topics')
 }

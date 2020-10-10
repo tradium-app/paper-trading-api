@@ -9,18 +9,20 @@ module.exports = async function () {
 	const ipAddress = require('ip').address()
 
 	try {
-		const articles = await NewsCrawler(SourceConfig, { headless: true })
+		let articles = await NewsCrawler(SourceConfig, { headless: true })
+		articles = articles.filter((a) => a.imageLink !== null)
+
 		const trendingTopics = await TrendingTopic.find()
 		const savedArticles = await Article.find({ createdDate: { $gt: new Date(Date.now() - 24 * 60 * 60 * 1000) } })
 		const articleWithTags = []
 
-		const exceptHeadlineArticles = articles.filter((x) => x.category !== 'headline')
+		const nonHeadlineArticles = articles.filter((x) => x.category !== 'headline')
 		const savedHeadlineArticles = savedArticles.filter((x) => x.category === 'headline')
-		for (const article of exceptHeadlineArticles)  {
+		for (const article of nonHeadlineArticles) {
 			const repeated = savedHeadlineArticles.filter((x) => x.link === article.link)
 			if (repeated.length > 0) {
 				await Article.findOneAndUpdate({ link: repeated[0].link }, { category: article.category })
-			} 
+			}
 		}
 
 		for (const article of articles) {
@@ -36,8 +38,9 @@ module.exports = async function () {
 
 		checkWithOldArticles.forEach((x) => (x.hostIp = ipAddress))
 		await saveArticles(checkWithOldArticles)
+
+		logger.info(`News Crawler ran! Articles Saved: ${checkWithOldArticles.length}`, { date: new Date().toISOString() })
 	} catch (error) {
 		logger.error('Error while crawling:', error)
 	}
-	logger.info('News Crawler ran!', { date: new Date().toISOString() })
 }

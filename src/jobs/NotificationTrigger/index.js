@@ -3,10 +3,9 @@ const { newsDbService, NotificationDbService, DistrictCoronaDbService } = requir
 const { getUsersWithCurrentTime } = require('./usersWithCurrentTime')
 const { sendPushNotification } = require('./pushNotificationSender')
 const { notificationExists, createUserWithNotification, createUserWithCoronaNotification } = require('./notificationHelper')
+const logger = require('../../config/logger')
 
-module.exports = async function (context) {
-	const timeStamp = new Date().toISOString()
-
+module.exports = async function () {
 	try {
 		const userWithCurrentTime = await getUsersWithCurrentTime()
 
@@ -33,13 +32,13 @@ module.exports = async function (context) {
 							}
 						}
 					} else {
-						console.log('user has already got the notification')
+						logger.info('User has already got the notification.')
 					}
 				}
 				if (notifications.length > 0) {
 					const notificationResponse = await NotificationDbService.saveNotifications(notifications)
 					if (notificationResponse) {
-						context.log('_____________notifications are saved successfully__________')
+						logger.debug('Notifications saved successfully.')
 					}
 				}
 			}
@@ -57,8 +56,8 @@ module.exports = async function (context) {
 			}
 		}
 	} catch (error) {
-		context.log('_____________error__________', error)
+		logger.error('Error while sending notifications:', error)
 	}
 
-	context.log('JavaScript timer trigger function ran!', timeStamp)
+	logger.info('Notification Job completed successfully!', { date: new Date().toISOString() })
 }
