@@ -51,7 +51,7 @@
 		"sourceName": "setopati",
 		"nepaliName": "सेतोपाटी",
 		"logoLink": "/assets/logos/setopati.jpg",
-		"weight": 10,
+		"weight": 9,
 		"pages": [
 			{
 				"url": "https://www.setopati.com",
@@ -221,7 +221,7 @@
 		"sourceName": "Swasthya Khabar",
 		"nepaliName": "स्वास्थ्य खबर",
 		"logoLink": "/assets/logos/sklogo-1.png",
-		"weight": 8,
+		"weight": 7,
 		"pages": [
 			{
 				"url": "https://swasthyakhabar.com",

@@ -22,15 +22,12 @@ const Article = mongoose.model(
 		createdAt: { type: Date, expires: expiryTime, default: Date.now },
 		nouns: [String],
 		tags: [String],
-		weights: [
-			{
-				source: Number,
-				category: Number,
-				date: Number,
-				user: Number,
-			},
-		],
-		totalWeight: Number,
+		weights: {
+			source: Number,
+			category: Number,
+			date: Number,
+			user: Number,
+		},
 	}),
 )
 
