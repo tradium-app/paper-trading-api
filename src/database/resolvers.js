@@ -18,7 +18,7 @@ module.exports = {
 
 			const promises = categories.map(async (category) => {
 				const _articles = await Article.find({
-					category,
+					category: category.name,
 					link: { $ne: null },
 					modifiedDate: { $gt: new Date(args.criteria.lastQueryDate) },
 					_id: { $gt: args.criteria.lastArticleId },
@@ -116,10 +116,9 @@ module.exports = {
 			}
 		},
 
-		getFmList: async (parent, args, {FM}) => {
+		getFmList: async (parent, args, { FM }) => {
 			return fmDetails
-		}
-
+		},
 	},
 
 	Mutation: {
