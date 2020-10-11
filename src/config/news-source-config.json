@@ -200,7 +200,7 @@
 		"name": "bbcnepali",
 		"sourceName": "BBC Nepali",
 		"nepaliName": "BBC नेपाली",
-		"logoLink": "/assets/logos/bbc.png",
+		"logoLink": "/assets/logos/bbc-1.png",
 		"weight": 50,
 		"pages": [
 			{
@@ -220,7 +220,7 @@
 		"name": "Swasthya Khabar",
 		"sourceName": "Swasthya Khabar",
 		"nepaliName": "स्वास्थ्य खबर",
-		"logoLink": "/assets/logos/sklogo.png",
+		"logoLink": "/assets/logos/sklogo-1.png",
 		"weight": 50,
 		"pages": [
 			{
@@ -240,7 +240,7 @@
 		"name": "Halo Khabar",
 		"sourceName": "Halo Khabar",
 		"nepaliName": "हलो खबर",
-		"logoLink": "/assets/logos/halokhabar.jpeg",
+		"logoLink": "/assets/logos/halokhabar.png",
 		"weight": 50,
 		"pages": [
 			{
@@ -300,7 +300,7 @@
 		"name": "Baahrakhari",
 		"sourceName": "Baahrakhari",
 		"nepaliName": "बाह्रखरी",
-		"logoLink": "/assets/logos/baahrakhari.png",
+		"logoLink": "/assets/logos/baahrakhari-1.png",
 		"weight": 50,
 		"pages": [
 			{
@@ -400,7 +400,7 @@
 		"name": "Mero Lagani",
 		"sourceName": "Mero Lagani",
 		"nepaliName": "मेरो लगानी",
-		"logoLink": "/assets/logos/merolagani.png",
+		"logoLink": "/assets/logos/merolagani-1.png",
 		"weight": 50,
 		"pages": [
 			{
@@ -420,23 +420,23 @@
 		"name": "Annnapurna Post",
 		"sourceName": "Annapurna Post",
 		"nepaliName": "अन्‍नपूर्ण पोस्ट्",
-		"logoLink": "/assets/logos/annapurna.png",
+		"logoLink": "/assets/logos/annapurna-1.png",
 		"weight": 50,
-		"pages":[
+		"pages": [
 			{
 				"url": "http://annapurnapost.com/cartoon",
 				"category": "cartoon",
 				"image-selector": "div.select-cartoon > div > div > figure > a > img"
 			}
-		]	
+		]
 	},
 	{
 		"name": "Baahrakhari",
 		"sourceName": "Baahrakhari",
 		"nepaliName": "बाह्रखरी",
-		"logoLink": "/assets/logos/baahrakhari.png",
+		"logoLink": "/assets/logos/baahrakhari-1.png",
 		"weight": 50,
-		"pages":[
+		"pages": [
 			{
 				"url": "https://baahrakhari.com/news-article/65/Cartoon",
 				"category": "cartoon",
