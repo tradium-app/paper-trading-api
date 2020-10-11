@@ -53,12 +53,9 @@ module.exports = async function () {
 				`http://portal.edcd.gov.np/rest/api/fetch?filter=outcomeOfDay&type=dayByDay&eDate=${yesterday}&disease=COVID-19`,
 			)
 		}
-		console.log('printing todayOutcomes.data', todayOutcomes.data)
 
 		const totalNewDeaths = todayOutcomes.data[0]['Number of deaths']
 		const totalNewRecovered = todayOutcomes.data[0]['Number of cases recovered']
-
-		console.log(`http://portal.edcd.gov.np/rest/api/fetch?filter=casesOfDay&type=dayByDay&eDate=${today}&disease=COVID-19`)
 
 		let todayCasesbyDistricts = await axios.get(
 			`http://portal.edcd.gov.np/rest/api/fetch?filter=casesOfDay&type=dayByDay&eDate=${today}&disease=COVID-19`,
@@ -69,15 +66,12 @@ module.exports = async function () {
 				`http://portal.edcd.gov.np/rest/api/fetch?filter=casesOfDay&type=dayByDay&eDate=${yesterday}&disease=COVID-19`,
 			)
 		}
-		console.log('printing todayCasesbyDistricts.data', todayCasesbyDistricts.data)
 
 		let totalNewCases = 0
 		todayCasesbyDistricts.data &&
 			todayCasesbyDistricts.data.forEach((district) => {
 				totalNewCases += parseInt(district.Value)
 			})
-
-		console.log('printing todayCasesbyDistricts.data', todayCasesbyDistricts.data)
 
 		let allOutcomes = await axios.get(
 			`http://portal.edcd.gov.np/rest/api/fetch?filter=outcomeBetween&type=dayByDay&eDate=${today}&disease=COVID-19`,
@@ -87,7 +81,6 @@ module.exports = async function () {
 				`http://portal.edcd.gov.np/rest/api/fetch?filter=outcomeBetween&type=dayByDay&eDate=${yesterday}&disease=COVID-19`,
 			)
 		}
-		console.log('printing allOutcomes.data', allOutcomes.data)
 
 		let totalDeaths = 0
 		let totalRecovered = 0
@@ -107,7 +100,6 @@ module.exports = async function () {
 				{ httpsAgent },
 			)
 		}
-		console.log('printing allCases.data', allCases.data)
 
 		let totalCases = 0
 		allCases.data.forEach((district) => {
@@ -122,8 +114,6 @@ module.exports = async function () {
 			totalDeaths,
 			newDeaths: totalNewDeaths,
 		}
-
-		console.log('printing coronaTimeLine', coronaTimeLine)
 
 		const districts = await axios.get('https://data.nepalcorona.info/api/v1/districts')
 
