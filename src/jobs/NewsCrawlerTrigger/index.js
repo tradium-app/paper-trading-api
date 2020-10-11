@@ -9,7 +9,7 @@ module.exports = async function () {
 	const ipAddress = require('ip').address()
 
 	try {
-		let articles = await NewsCrawler(SourceConfig.slice(1, 2), { headless: true })
+		let articles = await NewsCrawler(SourceConfig, { headless: true })
 		articles = articles.filter((a) => a.imageLink !== null)
 
 		const trendingTopics = await TrendingTopic.find()
