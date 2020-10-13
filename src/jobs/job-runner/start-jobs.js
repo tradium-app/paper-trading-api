@@ -6,7 +6,7 @@ const crawler = require('../NewsCrawlerTrigger/index')
 const notifier = require('../NotificationTrigger')
 const twitterJob = require('../TwitterTrigger')
 const coronaJob = require('../corona')
-const districtCoronaJob = require('../districtCorona')
+const districtCoronaJob = require('../districtCorona/metricsJob')
 const trendingJob = require('../trending')
 const trendingTopic = require('../trendingTopics')
 

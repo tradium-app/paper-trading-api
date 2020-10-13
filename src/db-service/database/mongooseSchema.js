@@ -120,6 +120,7 @@ const DistrictCoronaStats = mongoose.model(
 				name: String,
 				nepaliName: String,
 				totalCases: Number,
+				newCases: Number,
 				activeCases: Number,
 				recovered: Number,
 				deaths: Number,
@@ -168,9 +169,9 @@ const TrendingTopic = mongoose.model(
 const FavoriteFM = mongoose.model(
 	'FavoriteFM',
 	new Schema({
-		nid: {type: String},
-		fmId: {type: String}
-	})
+		nid: { type: String },
+		fmId: { type: String },
+	}),
 )
 
 module.exports = {
@@ -184,5 +185,5 @@ module.exports = {
 	TrendingTweetCount,
 	FacebookPosts,
 	TrendingTopic,
-	FavoriteFM
+	FavoriteFM,
 }
