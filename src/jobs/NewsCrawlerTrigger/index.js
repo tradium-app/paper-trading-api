@@ -37,7 +37,10 @@ module.exports = async function () {
 		const newArticles = articleWithTags.filter((article) => !savedArticles.some((sa) => sa.link === article.link))
 		const newArticlesWithWeight = assignWeights(newArticles)
 
-		newArticlesWithWeight.forEach((x) => (x.hostIp = ipAddress))
+		newArticlesWithWeight.forEach((x) => {
+			x.hostIp = ipAddress
+			x.shortDescription = x.shortDescription || '..'
+		})
 		await saveArticles(newArticlesWithWeight)
 
 		logger.info(`News Crawler ran! Articles Saved: ${newArticlesWithWeight.length}`, { date: new Date().toISOString() })
