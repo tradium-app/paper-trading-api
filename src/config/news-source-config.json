@@ -306,7 +306,7 @@
 			{
 				"url": "https://baahrakhari.com",
 				"category": "headline",
-				"link-selector": "div.container-wrapper > div > h2"
+				"link-selector": "div.container-wrapper > div > h2 > a"
 			},
 			{
 				"url": "https://baahrakhari.com/news-article/1/Politics",
