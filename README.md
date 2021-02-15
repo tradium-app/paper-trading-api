@@ -7,7 +7,9 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/nepaltoday-api-qa
 [![DeepScan grade](https://deepscan.io/api/teams/5348/projects/7147/branches/66890/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5348&pid=7147&bid=66890)
 [![codecov](https://codecov.io/gh/siristechnology/nepaltoday-api/branch/master/graph/badge.svg)](https://codecov.io/gh/siristechnology/nepaltoday-api)
 
-![alt text](/assets/images/graphql-interface.png)
+### GraphQL
+
+![graphql](/packages/server/assets/images/graphql-interface.png)
 
 ## Steps to run
 
