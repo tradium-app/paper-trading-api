@@ -6,11 +6,11 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock .yarnrc ./
 
 RUN yarn install --frozen-lockfile
-RUN yarn global add react react-scripts pm2
 
 COPY . .
 
 RUN npm rebuild node-sass
+RUN yarn global add react react-scripts pm2
 RUN yarn build
 
 EXPOSE 8080
