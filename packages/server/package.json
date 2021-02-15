@@ -8,8 +8,7 @@
 		"format": "prettier --write \"src/**/*.js\"",
 		"test": "jest --testMatch \"**/?(*.)+(spec|test).[tj]s?(x)\" --detectOpenHandles --forceExit --runInBand",
 		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit --runInBand",
-		"lint": "eslint src/**/**/*.js",
-		"build": "yarn install --frozen-lockfile"
+		"lint": "eslint src/**/**/*.js"
 	},
 	"dependencies": {
 		"@bearer/node-agent": "3.1.3",
