@@ -5,9 +5,7 @@ const { users } = require('./users.json')
 const { articles } = require('./articles.json')
 
 beforeAll(async () => await TestDbServer.connect())
-
 afterEach(async () => await TestDbServer.clearDatabase())
-
 afterAll(async () => await TestDbServer.closeDatabase())
 
 const payload = [

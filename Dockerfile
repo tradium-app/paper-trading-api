@@ -10,7 +10,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 RUN npm rebuild node-sass
-RUN yarn add react react-scripts pm2
+RUN yarn global add react react-scripts pm2
 RUN yarn build
 
 EXPOSE 8080

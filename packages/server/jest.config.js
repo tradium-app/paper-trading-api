@@ -151,6 +151,8 @@ module.exports = {
 	// This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
 	// testURL: "http://localhost",
 
+	testTimeout: 30000,
+
 	// Setting this value to "fake" allows the use of fake timers for functions such as "setTimeout"
 	// timers: "real",
 
