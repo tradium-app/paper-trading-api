@@ -7,7 +7,7 @@
 		"start": "pm2-runtime start ecosystem.config.js",
 		"format": "prettier --write \"src/**/*.js\"",
 		"test": "jest --runInBand --testMatch \"**/?(*.)+(spec|test).[tj]s?(x)\" --detectOpenHandles --forceExit",
-		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit",
+		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit --runInBand",
 		"lint": "eslint src/**/**/*.js",
 		"build": "yarn install --frozen-lockfile"
 	},
