@@ -118,33 +118,6 @@ type DistrictCoronaMetrics {
 	deaths: Int
 }
 
-type TrendingHandle {
-	name: String
-	handle: String
-	searchTerms: [String]
-	image: String
-}
-
-type TrendingTweetCount {
-	createdDate: String
-	createdAt: String
-	trendings: [TrendingArr]
-	counts: [TrendingMetric]
-}
-
-type TrendingArr {
-	category: String
-	counts: [TrendingMetric]
-}
-
-type TrendingMetric {
-	name: String
-	nepaliName: String
-	handle: String
-	count: Int
-	image: String
-}
-
 type WeatherInfo {
 	ipAddress: String
 	temperature: Float!
@@ -176,11 +149,6 @@ type MyFm {
 	favoriteFm: [FM]
 }
 
-type TrendingTag {
-	tags: [String]
-	createdAt: String
-}
-
 type CategoryData {
 	category: String
 	data: Int
@@ -200,13 +168,11 @@ type Query {
 	getLatestCoronaStats: CoronaStats
 	getWeatherInfo: WeatherInfo
 	getDistrictCoronaStats: DistrictCoronaStats
-	getTrending: TrendingTweetCount
 	getTweetByHandle(handle: String): [Tweet]
 	getFmList: [FM]
 	getMyFavoriteFm(nid: String): [FM]
 	getMyFm(nid: String): MyFm
 	getNepaliEvent(date: String): NepaliEvent
-	getTrendingTags: TrendingTag
 	getReadCategoryData: ReadCategoryStat
 }
 

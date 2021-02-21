@@ -12,7 +12,6 @@ const { fmDetails } = require('./../config/fm')
 const { calculateTotalWeights } = require('./calculateTotalWeights')
 const { NepaliEvents } = require('../config/nepaliCalender')
 const { getTwitterHandles } = require('../db-service/TweetDbService')
-const trendingTagDbService = require('../db-service/trendingTagDbService')
 
 module.exports = {
 	Query: {
@@ -137,11 +136,6 @@ module.exports = {
 			return await DistrictCoronaDbService.getDistrictCoronaStats()
 		},
 
-		getTrending: async (parent, args, { TrendingTweetCount }) => {
-			const { TrendingDbService } = require('./../db-service')
-			return await TrendingDbService.getTrendingTweetCount()
-		},
-
 		getWeatherInfo: async (parent, args, { ipAddress }) => {
 			try {
 				if (ipAddress === '::1' || ipAddress === '::ffff:127.0.0.1') ipAddress = '27.111.16.0'
@@ -197,11 +191,6 @@ module.exports = {
 			const currentMonth = currentYear.months.find((x) => x.month == month)
 			const currentDay = currentMonth.days.find((x) => x.dayInEn == day)
 			return currentDay
-		},
-
-		getTrendingTags: async (parent, {}) => {
-			const trendingTags = await trendingTagDbService.getTrendingTags()
-			return trendingTags
 		},
 
 		getReadCategoryData: async (parent, args, {}) => {

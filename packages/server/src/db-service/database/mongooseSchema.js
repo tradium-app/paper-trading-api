@@ -30,14 +30,14 @@ const Article = mongoose.model(
 		},
 		likes: [
 			{
-				nid: String
-			}
+				nid: String,
+			},
 		],
 		dislikes: [
 			{
-				nid: String
-			}
-		]
+				nid: String,
+			},
+		],
 	}),
 )
 
@@ -65,7 +65,7 @@ const User = mongoose.model(
 		ipAddress: String,
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
-		status: String
+		status: String,
 	}),
 )
 
@@ -88,112 +88,6 @@ const Topic = mongoose.model(
 	}),
 )
 
-const CoronaStats = mongoose.model(
-	'CoronaStats',
-	new Schema({
-		createdDate: { type: Date, default: Date.now },
-		createdAt: { type: Date, default: Date.now, expires: expiryTime },
-		stats: [
-			{
-				country: String,
-				total_cases: Number,
-				total_deaths: Number,
-				new_cases: Number,
-				new_deaths: Number,
-			},
-		],
-		worldSummary: {
-			totalCases: Number,
-			newCases: Number,
-			totalDeaths: Number,
-			newDeaths: Number,
-		},
-		source: String,
-	}),
-)
-
-const DistrictCoronaStats = mongoose.model(
-	'DistrictCoronaStats',
-	new Schema({
-		createdDate: { type: Date, default: Date.now },
-		createdAt: { type: Date, default: Date.now, expires: expiryTime },
-		timeLine: {
-			date: String,
-			totalCases: Number,
-			newCases: Number,
-			totalRecoveries: Number,
-			newRecoveries: Number,
-			totalDeaths: Number,
-			newDeaths: Number,
-		},
-		districts: [
-			{
-				name: String,
-				nepaliName: String,
-				totalCases: Number,
-				newCases: Number,
-				activeCases: Number,
-				recovered: Number,
-				deaths: Number,
-			},
-		],
-		source: String,
-	}),
-)
-
-const TrendingTweetCount = mongoose.model(
-	'TrendingTweetCount',
-	new Schema({
-		createdDate: { type: Date, default: Date.now() },
-		createdAt: { type: Date, default: Date.now(), expires: expiryTime },
-		trendings: [
-			{
-				category: String,
-				counts: [
-					{
-						name: String,
-						nepaliName: String,
-						handle: String,
-						count: Number,
-						image: String,
-					},
-				],
-			},
-		],
-	}),
-)
-
-const FacebookPosts = mongoose.model(
-	'FacebookPosts',
-	new Schema({
-		createdAt: { type: Date, default: Date.now(), expires: 86400 },
-		articleLink: { type: String, required: true, unique: true },
-	}),
-)
-
-const TrendingTopic = mongoose.model(
-	'TrendingTopic',
-	new Schema({
-		topics: [{ type: String, unique: true }],
-	}),
-)
-
-const TrendingTag = mongoose.model(
-	'TrendingTag',
-	new Schema({
-		tags: [{ type: String }],
-		createdAt: { type: Date, default: Date.now(), expires: 86400 }
-	}),
-)
-
-const FavoriteFM = mongoose.model(
-	'FavoriteFM',
-	new Schema({
-		nid: { type: String },
-		fmId: { type: String },
-	}),
-)
-
 const ReadArticle = mongoose.model(
 	'ReadArticles',
 	new Schema({
@@ -202,10 +96,10 @@ const ReadArticle = mongoose.model(
 			{
 				articleId: String,
 				category: String,
-				createdDate: { type: Date, default: Date.now }
-			}
-		]
-	})
+				createdDate: { type: Date, default: Date.now },
+			},
+		],
+	}),
 )
 
 const Like = mongoose.model(
@@ -213,8 +107,8 @@ const Like = mongoose.model(
 	new Schema({
 		nid: String,
 		articleId: String,
-		category: String
-	})
+		category: String,
+	}),
 )
 
 const Dislike = mongoose.model(
@@ -222,8 +116,8 @@ const Dislike = mongoose.model(
 	new Schema({
 		nid: String,
 		articleId: String,
-		category: String
-	})
+		category: String,
+	}),
 )
 
 module.exports = {
@@ -232,14 +126,7 @@ module.exports = {
 	Article,
 	Notification,
 	Topic,
-	CoronaStats,
-	DistrictCoronaStats,
-	TrendingTweetCount,
-	FacebookPosts,
-	TrendingTopic,
-	FavoriteFM,
 	ReadArticle,
 	Like,
 	Dislike,
-	TrendingTag
 }
