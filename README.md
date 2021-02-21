@@ -1,11 +1,12 @@
-# NepalToday-Api
+# HyperGrowth-Api
 
-A graphql based api endpoint for NepalToday mobile app and Admin Dashboard in React
-It is set to auto-deploy to https://dashboard.heroku.com/apps/nepaltoday-api-qa
+A graphql based api endpoint for HyperGrowth mobile app and Admin Dashboard in React
 
-![Node CI](https://github.com/siristechnology/nepaltoday-api/workflows/Node%20CI/badge.svg?branch=master)
+It is set to auto-deploy to https://dashboard.heroku.com/apps/hypergrowth-api-qa
+
+![Node CI](https://github.com/siristechnology/hypergrowth-api/workflows/Node%20CI/badge.svg?branch=master)
 [![DeepScan grade](https://deepscan.io/api/teams/5348/projects/7147/branches/66890/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5348&pid=7147&bid=66890)
-[![codecov](https://codecov.io/gh/siristechnology/nepaltoday-api/branch/master/graph/badge.svg)](https://codecov.io/gh/siristechnology/nepaltoday-api)
+[![codecov](https://codecov.io/gh/siristechnology/hypergrowth-api/branch/master/graph/badge.svg)](https://codecov.io/gh/siristechnology/hypergrowth-api)
 
 ### GraphQL
 
@@ -29,16 +30,16 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/nepaltoday-api-qa
 
 ## Most basic MongoDB commands (terminal)
 
-- `show dbs` --to show all dbs
-- `use nepaltodaydb` --to switch to nepaltodaydb
-- `show collections` --to show all collections/tables
-- `db.articles.find()` --to show all articles in the collection
-- `db.articles.find({title: 'new title'})` --to show article/articles with title = 'new title'
-- `db.articles.find({}, {title: 1})` --to show title field of all articles (no criteria)
-- `db.articles.remove({})` --to remove all articles documents
-- `db.articles.remove({title: 'new title'})` --to remove all articles with title = 'new title'
-- `db.articles.update({_id:{$exists:true}}, { $set: {createdDate: '2019-01-01'}}, {multi: true})` --to update multiple articles with createdDate = '2019-01-01'
-- `db.articles.find().sort({_id: -1}).limit(10)` -- to display latest articles (i.e order by descending and take 10 records)
+-   `show dbs` --to show all dbs
+-   `use hypergrowthdb` --to switch to hypergrowthdb
+-   `show collections` --to show all collections/tables
+-   `db.articles.find()` --to show all articles in the collection
+-   `db.articles.find({title: 'new title'})` --to show article/articles with title = 'new title'
+-   `db.articles.find({}, {title: 1})` --to show title field of all articles (no criteria)
+-   `db.articles.remove({})` --to remove all articles documents
+-   `db.articles.remove({title: 'new title'})` --to remove all articles with title = 'new title'
+-   `db.articles.update({_id:{$exists:true}}, { $set: {createdDate: '2019-01-01'}}, {multi: true})` --to update multiple articles with createdDate = '2019-01-01'
+-   `db.articles.find().sort({_id: -1}).limit(10)` -- to display latest articles (i.e order by descending and take 10 records)
 
 ## Some helpful commands
 

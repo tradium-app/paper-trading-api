@@ -1,5 +1,5 @@
 config:
-    # target: 'https://nepaltoday-api-qa.herokuapp.com'
+    # target: 'https://hypergrowth-api-qa.herokuapp.com'
     target: 'http://localhost:8080'
     phases:
         - duration: 60

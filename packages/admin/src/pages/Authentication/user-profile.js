@@ -51,7 +51,7 @@ const UserProfile = (props) => {
                     <Container fluid>
 
                         {/* Render Breadcrumb */}
-                        <Breadcrumb title="NepalToday" breadcrumbItem="Profile" />
+                        <Breadcrumb title="HyperGrowth" breadcrumbItem="Profile" />
 
                          <Row>
                             <Col lg="12">

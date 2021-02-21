@@ -1,17 +1,17 @@
 {
-  "name": "nepaltoday-api",
+  "name": "hypergrowth-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "private": "true",
   "scripts": {
-    "client": "yarn workspace nepaltoday.admin start",
-    "server": "yarn workspace nepaltoday.api start",
-    "build": "yarn workspace nepaltoday.admin build",
+    "client": "yarn workspace hypergrowth.admin start",
+    "server": "yarn workspace hypergrowth.api start",
+    "build": "yarn workspace hypergrowth.admin build",
     "dev": "concurrently \"yarn client\"  \"yarn server\"",
-    "start": "yarn workspace nepaltoday.api start",
-    "test": "yarn workspace nepaltoday.api test",
-    "test:coverage": "yarn workspace nepaltoday.api test:coverage"
+    "start": "yarn workspace hypergrowth.api start",
+    "test": "yarn workspace hypergrowth.api test",
+    "test:coverage": "yarn workspace hypergrowth.api test:coverage"
   },
   "workspaces": {
     "packages": [
@@ -24,14 +24,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/siristechnology/nepaltoday-api.git"
+    "url": "git+https://github.com/siristechnology/hypergrowth-api.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/siristechnology/nepaltoday-api/issues"
+    "url": "https://github.com/siristechnology/hypergrowth-api/issues"
   },
-  "homepage": "https://github.com/siristechnology/nepaltoday-api#readme",
+  "homepage": "https://github.com/siristechnology/hypergrowth-api#readme",
   "dependencies": {
     "concurrently": "^5.3.0"
   }

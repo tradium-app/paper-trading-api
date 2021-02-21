@@ -1,7 +1,7 @@
 {
-	"name": "nepaltoday.api",
+	"name": "hypergrowth.api",
 	"version": "1.0.0",
-	"description": "A graphql based api endpoint for NepalToday mobile app",
+	"description": "A graphql based api endpoint for HyperGrowth mobile app",
 	"main": "src/server.js",
 	"scripts": {
 		"start": "pm2-runtime start ecosystem.config.js",
@@ -69,14 +69,14 @@
 		"npm": ">=6.2.0"
 	},
 	"keywords": [
-		"NepalToday",
-		"Nepal News",
-		"Nepal Politician",
-		"Nepal Celebrities"
+		"HyperGrowth",
+		"Penny Stocks",
+		"Stock News",
+		"Stock Catalysts"
 	],
 	"author": "Siris Technology",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/siristechnology/nepaltoday-api/issues"
+		"url": "https://github.com/siristechnology/hypergrowth-api/issues"
 	}
 }
