@@ -1,228 +1,41 @@
-type Article {
-	_id: String!
-	title: String!
-	shortDescription: String
-	content: String
-	link: String
-	imageLink: String
-	source: Source
-	category: String
-	publishedDate: String
+type User {
+	name: String!
+	authProvider: String
+	watchList: [Stock]
 	createdDate: String
 	modifiedDate: String
-	topic: String
-	tags: [String]
-	totalWeight: Float
-	likes: [NidObj]
-	dislikes: [NidObj]
 }
 
-type NidObj {
-	nid: String
+type Stock {
+	symbol: String!
+	company: String
+	price: Float
+	change: Float
+	modifiedDate: String
 }
 
-input ArticleCriteria {
-	lastArticleId: String
-	lastQueryDate: String
-	categories: [ArticleCriteriaCategory]
-	nid: String
-}
-
-input ArticleCriteriaCategory {
-	name: String
-	count: Int
-}
-
-type Source {
-	_id: String
-	name: String
-	url: String
-	category: String
-	link: String
-	logoLink: String
-}
-
-type TwitterHandle {
-	_id: String!
-	name: String
-	handle: String!
-	category: String
-	userWeight: String
-	categoryWeight: String
-}
-
-type Tweet {
-	_id: String!
-	text: String
-	tweetId: String
-	handle: String
-	twitterHandle: TwitterHandle
-	publishedDate: String
-	createdAt: String
-	name: String
-	profileImage: String
-	description: String
-}
-
-input TweetCriteria {
-	lastTweetId: String
-	lastQueryDate: String
-}
-
-type CoronaStats {
-	createdDate: String
-	stats: [CoronaMetrics]
-	worldSummary: worldSummary
+type News {
+	headline: String!
 	source: String
-}
-
-type worldSummary {
-	totalCases: Int
-	newCases: Int
-	totalDeaths: Int
-	newDeaths: Int
-}
-
-type CoronaMetrics {
-	country: String
-	total_cases: Int
-	total_deaths: Int
-	new_cases: Int
-	new_deaths: Int
-}
-
-type DistrictCoronaStats {
+	url: String!
+	summary: String!
+	relatedStocks: [Stock]
+	image: String
+	hasPaywall: String
 	createdDate: String
-	timeLine: coronaTimeLine
-	districts: [DistrictCoronaMetrics]
-	source: String
-}
-
-type coronaTimeLine {
-	date: String
-	totalCases: Int
-	newCases: Int
-	totalRecoveries: Int
-	newRecoveries: Int
-	totalDeaths: Int
-	newDeaths: Int
-}
-
-type DistrictCoronaMetrics {
-	name: String
-	nepaliName: String
-	totalCases: Int
-	newCases: Int
-	activeCases: Int
-	recovered: Int
-	deaths: Int
-}
-
-type WeatherInfo {
-	ipAddress: String
-	temperature: Float!
-	condition: String
-	description: String
-	place: String
-}
-
-type FM {
-	id: String
-	url: String
-	title: String
-	artist: String
-	artwork: String
-	province: String
-}
-
-type NepaliEvent {
-	isHoliday: Boolean 
-	tithi: String 
-	event: String 
-	day: String
-	dayInEn: String 
-	en: String
-}
-
-type MyFm {
-	allFm: [FM]
-	favoriteFm: [FM]
-}
-
-type CategoryData {
-	category: String
-	data: Int
-}
-
-type ReadCategoryStat {
-	weekStat: [CategoryData]
-	monthStat: [CategoryData]
+	modifiedDate: String
 }
 
 type Query {
-	getArticles(criteria: ArticleCriteria): [Article]!
-	getTweets(criteria: TweetCriteria): [Tweet]!
-	getArticle(_id: String!): Article
-	getIndividualArticles(name: String): [Article]
-	getArticlesFromTag(tag: String): [Article]
-	getLatestCoronaStats: CoronaStats
-	getWeatherInfo: WeatherInfo
-	getDistrictCoronaStats: DistrictCoronaStats
-	getTweetByHandle(handle: String): [Tweet]
-	getFmList: [FM]
-	getMyFavoriteFm(nid: String): [FM]
-	getMyFm(nid: String): MyFm
-	getNepaliEvent(date: String): NepaliEvent
-	getReadCategoryData: ReadCategoryStat
+	getWatchList: [Stock]
+	getStockNews: [News]
 }
 
 type Response {
 	success: Boolean
 }
 
-input StoreFcmInput {
-	nid: String!
-	fcmToken: String!
-	countryCode: String
-	timeZone: String
-	createdDate: String
-	modifiedDate: String
-}
-
-input SaveFavorite {
-	nid: String!
-	fmId: String
-}
-
-input SaveReadArticle {
-	nid: String!
-	articles: [ReadArticleArr]
-}
-
-input ReadArticleArr {
-	articleId: String
-	category: String
-	createdDate: String
-}
-
-input PostLikeObj {
-	nid: String
-	articleId: String
-	category: String
-}
-
-input RemoveLikeObj {
-	nid: String
-	articleId: String
-}
-
 type Mutation {
-	storeFcmToken(input: StoreFcmInput): Response
-	saveFavorite(input: SaveFavorite): Response
-	deleteFavorite(input: SaveFavorite): Response
-	saveReadArticle(input: SaveReadArticle): Response
-	postLike(input: PostLikeObj): Response
-	postDislike(input: PostLikeObj): Response
-	removeLike(input: RemoveLikeObj): Response
-	removeDislike(input: RemoveLikeObj): Response
+	addStockToWatchList(symbol: String): Response
 }
+
