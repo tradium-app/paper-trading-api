@@ -1,7 +1,12 @@
 type User {
+	hid: String!
 	name: String!
 	authProvider: String
 	watchList: [Stock]
+	fcmToken: String
+	countryCode: String
+	timeZone: String
+	ipAddress: String
 	createdDate: String
 	modifiedDate: String
 }
@@ -18,9 +23,9 @@ type News {
 	headline: String!
 	source: String
 	url: String!
+	imageUrl: String
 	summary: String!
-	relatedStocks: [Stock]
-	image: String
+	relatedStocks: [Stock]	
 	hasPaywall: String
 	createdDate: String
 	modifiedDate: String
@@ -36,6 +41,6 @@ type Response {
 }
 
 type Mutation {
+	loginUser(accessToken: String): Response
 	addStockToWatchList(symbol: String): Response
 }
-

@@ -8,12 +8,14 @@ const helmet = require('helmet')
 const requireGraphQLFile = require('require-graphql-file')
 const { ApolloServer, gql } = require('apollo-server-express')
 require('./db-service/initialize')
+
 const mongooseSchema = require('./db-service/database/mongooseSchema')
 const resolvers = require('./database/resolvers')
 const colors = require('colors/safe')
 const Agenda = require('agenda')
 const Agendash = require('agendash')
 const GraphQlErrorLoggingPlugin = require('./config/graphql-error-logging')
+require('./firebaseInit')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -46,23 +48,12 @@ const apolloServer = new ApolloServer({
 	typeDefs: typeDefs,
 	resolvers: resolvers,
 	context: ({ req, res }) => ({
-		...{ userContext: req.payload, ipAddress: getIpAdressFromRequest(req) },
+		userContext: req.payload,
 		...mongooseSchema,
 	}),
 	plugins: [GraphQlErrorLoggingPlugin],
 })
 apolloServer.applyMiddleware({ app })
-
-const getIpAdressFromRequest = (req) => {
-	let ipAddr = req.headers['x-forwarded-for']
-	if (ipAddr) {
-		ipAddr = ipAddr.split(',')[0]
-	} else {
-		ipAddr = req.connection.remoteAddress || req.ip
-	}
-
-	return ipAddr
-}
 
 app.use((err, req, res, next) => {
 	res.status(err.status || 500)
