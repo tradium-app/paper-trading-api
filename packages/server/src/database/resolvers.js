@@ -1,6 +1,5 @@
 /* eslint-disable eqeqeq */
 const firebase = require('firebase')
-const _ = require('lodash')
 const mongooseSchema = require('../db-service/database/mongooseSchema')
 
 const { News, Stock, User } = mongooseSchema
