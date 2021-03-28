@@ -14,6 +14,7 @@ module.exports = async function () {
 		})
 
 		news.forEach((n) => {
+			n.publishedDate = n.datetime
 			n.imageUrl = n.image
 			n.relatedStockSymbols = n.related
 		})
