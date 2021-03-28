@@ -41,7 +41,7 @@ const News = mongoose.model(
 		imageUrl: String,
 		headline: { type: String, unique: true, required: true },
 		summary: String,
-		relatedStockSymbols: { type: String, required: true },
+		relatedStockSymbols: String,
 		relatedStocks: { type: [mongoose.Schema.Types.ObjectId], ref: 'Stock' },
 		hasPaywall: Boolean,
 		createdAt: { type: Date, expires: expiryTime, default: Date.now },

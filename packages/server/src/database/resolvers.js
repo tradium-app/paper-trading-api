@@ -1,8 +1,6 @@
 /* eslint-disable eqeqeq */
 const firebase = require('firebase')
-const mongooseSchema = require('../db-service/database/mongooseSchema')
-
-const { News, Stock, User } = mongooseSchema
+const { News, Stock, User } = require('../db-service/database/mongooseSchema')
 const { categories } = require('../config/category')
 const logger = require('../config/logger')
 

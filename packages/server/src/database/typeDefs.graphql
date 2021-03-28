@@ -25,6 +25,7 @@ type News {
 	url: String!
 	imageUrl: String
 	summary: String!
+	relatedStockSymbols: String
 	relatedStocks: [Stock]
 	hasPaywall: String
 	publishedDate: String
