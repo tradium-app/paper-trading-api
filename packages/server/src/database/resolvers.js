@@ -6,16 +6,15 @@ const mongooseSchema = require('../db-service/database/mongooseSchema')
 const { News, Stock, User } = mongooseSchema
 const { categories } = require('../config/category')
 const logger = require('../config/logger')
-const { calculateTotalWeights } = require('./calculateTotalWeights')
 
 module.exports = {
 	Query: {
-		getStockNews: async (parent, args, { News }) => {
+		getStockNews: async (parent, args) => {
 			// get stocks from users watchlist
 			// get news for those stocks
 			// limit only [5] news from each stock
 
-			const news = News.find().lean().sort({ _id: -1 }).limit(20)
+			const news = News.find().lean().sort({ publishedDate: -1 }).limit(20)
 
 			return news
 		},
