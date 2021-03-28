@@ -9,12 +9,12 @@ module.exports = async function () {
 
 	const agenda = new Agenda({ db: { address: process.env.DATABASE_URL } })
 
-	agenda.define('refresh stocks', async () => {
+	agenda.define('Refresh stocks', async () => {
 		logger.info('stocks refresh job started')
 		stocksRefresher()
 	})
 
 	await agenda.start()
 
-	await agenda.every('10 minutes', 'refresh stocks')
+	await agenda.every('20 minutes', 'Refresh stocks')
 }

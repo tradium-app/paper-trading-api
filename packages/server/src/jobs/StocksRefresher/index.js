@@ -1,65 +1,33 @@
-const NewsCrawler = require('news-crawler')
-const { saveArticles } = require('../../db-service/newsDbService')
-const SourceConfig = require('../../config/news-source-config.json')
 const logger = require('../../config/logger')
-const { getTagsFromArticle, assignWeights } = require('./helper')
-const { Article, TrendingTopic } = require('../../db-service/database/mongooseSchema')
-const { convertArticleDateToAD } = require('./dateConverter')
+const { News } = require('../../db-service/database/mongooseSchema')
+const batchRequest = require('./batchRequest')
 
 module.exports = async function () {
-	const ipAddress = require('ip').address()
-
 	try {
-		let articles = await NewsCrawler(SourceConfig, { headless: true })
-		articles = articles.filter((a) => a.imageLink !== null)
+		// get list of unique stocks from db
+		const stocks = ['aapl', 'tsla']
+		const response = await batchRequest(stocks)
 
-		let cartoonArticles = articles.filter(x=>x.category=='cartoon')
-		cartoonArticles = cartoonArticles.map(article=>{
-			article.title = article.imageLink
-			return article
-		})
-		const exceptCartoonArticles = articles.filter(x=>x.category!='cartoon')
+		console.log('printing Object.entries(response.data)', Object.entries(response.data))
 
-		let dateConvertedCartoonArticles = []
-		cartoonArticles.map(article=>{
-			dateConvertedCartoonArticles.push(convertArticleDateToAD(article))
+		let news = []
+		Object.keys(response.data).forEach((key) => {
+			news = news.concat(response.data[key].news)
 		})
 
-		articles = exceptCartoonArticles.concat(dateConvertedCartoonArticles)
-
-		const trendingTopics = await TrendingTopic.find()
-		const savedArticles = await Article.find({ createdDate: { $gt: new Date(Date.now() - 24 * 60 * 60 * 1000) } })
-		const articleWithTags = []
-
-		const nonHeadlineArticles = articles.filter((x) => x.category !== 'headline')
-		const savedHeadlineArticles = savedArticles.filter((x) => x.category === 'headline')
-		for (const article of nonHeadlineArticles) {
-			const repeated = savedHeadlineArticles.filter((x) => x.link === article.link)
-			if (repeated.length > 0) {
-				await Article.findOneAndUpdate({ link: repeated[0].link }, { category: article.category })
-			}
-		}
-
-		for (const article of articles) {
-			if (savedArticles.filter((x) => x.title === article.title).length === 0) {
-				if (trendingTopics.length > 0) {
-					article.tags = getTagsFromArticle(trendingTopics[0].topics, article.content)
-				}
-				articleWithTags.push(article)
-			}
-		}
-
-		const newArticles = articleWithTags.filter((article) => !savedArticles.some((sa) => sa.link === article.link))
-		const newArticlesWithWeight = assignWeights(newArticles)
-
-		newArticlesWithWeight.forEach((x) => {
-			x.hostIp = ipAddress
-			x.shortDescription = x.shortDescription || '..'
+		news.forEach((n) => {
+			n.imageUrl = n.image
+			n.relatedStockSymbols = n.related
 		})
-		await saveArticles(newArticlesWithWeight)
 
-		logger.info(`News Crawler ran! Articles Saved: ${newArticlesWithWeight.length}`, { date: new Date().toISOString() })
+		console.log('printing news', news)
+
+		news.forEach((n) => {
+			News.create(n)
+		})
+
+		logger.info('Total stocks refreshed.', stocks.length)
 	} catch (error) {
-		logger.error('Error while crawling:', error)
+		logger.error('Error while refreshing stocks:', error)
 	}
 }
