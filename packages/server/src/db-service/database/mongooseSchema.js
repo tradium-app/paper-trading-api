@@ -39,6 +39,7 @@ const News = mongoose.model(
 		source: String,
 		url: { type: String, unique: true, required: true },
 		imageUrl: String,
+		headline: { type: String, unique: true, required: true },
 		summary: String,
 		relatedStockSymbols: { type: String, required: true },
 		relatedStocks: { type: [mongoose.Schema.Types.ObjectId], ref: 'Stock' },
