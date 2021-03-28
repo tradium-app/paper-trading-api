@@ -2,7 +2,7 @@ require('dotenv').config()
 const Agenda = require('agenda')
 const logger = require('../../config/logger')
 
-const stocksRefresher = require('../StocksRefresher/index')
+const stocksRefresher = require('../newsFetcher/index')
 
 module.exports = async function () {
 	logger.info('starting jobs')

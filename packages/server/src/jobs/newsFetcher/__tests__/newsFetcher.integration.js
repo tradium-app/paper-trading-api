@@ -1,4 +1,4 @@
-const StocksRefresher = require('../index')
+const NewsFetcher = require('../index')
 const { dbConnection } = require('../../../helper/connectionHelper')
 
 jest.setTimeout(1200000)
@@ -7,8 +7,8 @@ beforeAll(async () => {
 	await dbConnection()
 })
 
-describe('StocksRefresher', () => {
+describe('NewsFetcher', () => {
 	it('integration test', async () => {
-		await StocksRefresher()
+		await NewsFetcher()
 	})
 })

@@ -9,6 +9,6 @@ module.exports = async function (symobls) {
 	symobls = symobls.join()
 	const iex_token = process.env.IEX_API_TOKEN
 
-	const url = `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symobls}&types=quote,news&last=5&token=${iex_token}`
+	const url = `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${symobls}&types=news&last=5&token=${iex_token}`
 	return axios(url)
 }

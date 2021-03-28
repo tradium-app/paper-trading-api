@@ -15,7 +15,9 @@ module.exports = {
 			// get news for those stocks
 			// limit only [5] news from each stock
 
-			return [{}]
+			const news = News.find().lean().sort({ _id: -1 }).limit(20)
+
+			return news
 		},
 
 		getWatchList: async (parent, { _id }) => {

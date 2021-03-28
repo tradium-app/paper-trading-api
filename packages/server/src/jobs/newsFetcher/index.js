@@ -8,8 +8,6 @@ module.exports = async function () {
 		const stocks = ['aapl', 'tsla']
 		const response = await batchRequest(stocks)
 
-		console.log('printing Object.entries(response.data)', Object.entries(response.data))
-
 		let news = []
 		Object.keys(response.data).forEach((key) => {
 			news = news.concat(response.data[key].news)
@@ -19,8 +17,6 @@ module.exports = async function () {
 			n.imageUrl = n.image
 			n.relatedStockSymbols = n.related
 		})
-
-		console.log('printing news', news)
 
 		news.forEach((n) => {
 			News.create(n)
