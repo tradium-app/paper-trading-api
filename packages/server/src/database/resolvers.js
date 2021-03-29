@@ -16,8 +16,8 @@ module.exports = {
 			return news
 		},
 
-		getWatchList: async (parent, { _id }) => {
-			return [{}]
+		getWatchList: async () => {
+			return Stock.find().lean().limit(20)
 		},
 	},
 
