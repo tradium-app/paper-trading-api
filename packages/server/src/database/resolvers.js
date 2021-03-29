@@ -1,7 +1,6 @@
 /* eslint-disable eqeqeq */
 const firebase = require('firebase')
 const { News, Stock, User } = require('../db-service/database/mongooseSchema')
-const { categories } = require('../config/category')
 const logger = require('../config/logger')
 
 module.exports = {
