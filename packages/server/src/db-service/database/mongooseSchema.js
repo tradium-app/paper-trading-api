@@ -25,8 +25,8 @@ const Stock = mongoose.model(
 	new Schema({
 		symbol: { type: String, unique: true },
 		company: String,
-		price: { type: Number, unique: true },
-		change: { type: Number, unique: true },
+		price: { type: Number, required: true },
+		change: { type: Number, required: true },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
 	}),
