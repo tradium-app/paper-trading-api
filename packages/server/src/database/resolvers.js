@@ -6,17 +6,22 @@ const logger = require('../config/logger')
 module.exports = {
 	Query: {
 		getStockNews: async (parent, args) => {
-			// get stocks from users watchlist
-			// get news for those stocks
-			// limit only [5] news from each stock
+			// todo: limit only [5] news from each stock
+			const watchlist = (await User.findOne({})).watchlist
 
-			const news = News.find().lean().sort({ publishedDate: -1 }).limit(20)
+			const news = await News.find({ relatedStocks: { $in: watchlist } })
+				.populate('relatedStocks')
+				.lean()
+				.sort({ publishedDate: -1 })
+				.limit(20)
 
 			return news
 		},
 
-		getWatchList: async () => {
-			return Stock.find().lean().limit(20)
+		getWatchList: async (parent, args, { uid }) => {
+			const watchlist = (await User.findOne({}).populate('watchlist')).watchlist
+
+			return watchlist
 		},
 	},
 

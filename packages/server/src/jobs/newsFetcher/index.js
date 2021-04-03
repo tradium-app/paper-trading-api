@@ -1,29 +1,32 @@
 const logger = require('../../config/logger')
-const { News } = require('../../db-service/database/mongooseSchema')
+const { News, Stock } = require('../../db-service/database/mongooseSchema')
 const batchRequest = require('./batchRequest')
 
 module.exports = async function () {
 	try {
-		// get list of unique stocks from db
-		const stocks = ['aapl', 'tsla']
-		const response = await batchRequest(stocks)
+		const allStocks = await Stock.find()
+		const response = await batchRequest(allStocks.map((s) => s.symbol))
 
 		let news = []
 		Object.keys(response.data).forEach((key) => {
 			news = news.concat(response.data[key].news)
 		})
 
-		news.forEach((n) => {
+		news = news.map((n) => {
 			n.publishedDate = n.datetime
 			n.imageUrl = n.image
 			n.relatedStockSymbols = n.related
+			n.relatedStocks = allStocks.filter((a) => n.related.toUpperCase().split(',').includes(a.symbol.toUpperCase()))
+			return n
 		})
 
 		news.forEach((n) => {
-			News.create(n)
+			try {
+				News.create(n)
+			} catch {}
 		})
 
-		logger.info('Total stocks refreshed.', stocks.length)
+		logger.info('Total news fetched.', news.length)
 	} catch (error) {
 		logger.error('Error while refreshing stocks:', error)
 	}
