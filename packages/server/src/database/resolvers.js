@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 const firebase = require('firebase')
-const { News, Stock, User } = require('../db-service/database/mongooseSchema')
+const { News, Stock, User, AllStocks } = require('../db-service/database/mongooseSchema')
 const logger = require('../config/logger')
 
 module.exports = {
@@ -49,6 +49,12 @@ module.exports = {
 		addStockToWatchList: async (parent, args, { uid }) => {
 			let { symbol: symbol } = args
 			symbol = symbol.toUpperCase()
+
+			const validStock = await AllStocks.findOne({ symbol })
+
+			if (!validStock) {
+				return { success: false, message: 'Invalid Stock Symbol' }
+			}
 
 			const stock = await Stock.findOneAndUpdate({ symbol }, { $set: { symbol } }, { upsert: true, new: true })
 

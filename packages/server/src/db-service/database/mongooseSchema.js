@@ -35,6 +35,21 @@ const Stock = mongoose.model(
 	}),
 )
 
+const AllStocks = mongoose.model(
+	'AllStocks',
+	new Schema({
+		symbol: { type: String, unique: true },
+		company: String,
+		exchange: String,
+		type: String,
+		region: String,
+		currency: String,
+		isEnabled: Boolean,
+		createdDate: { type: Date, default: Date.now },
+		modifiedDate: { type: Date, default: Date.now },
+	}),
+)
+
 const News = mongoose.model(
 	'News',
 	new Schema({
@@ -57,5 +72,6 @@ const News = mongoose.model(
 module.exports = {
 	User,
 	Stock,
+	AllStocks,
 	News,
 }

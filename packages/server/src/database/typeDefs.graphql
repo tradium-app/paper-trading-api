@@ -41,6 +41,7 @@ type Query {
 
 type Response {
 	success: Boolean
+	message: String
 }
 
 type Mutation {
