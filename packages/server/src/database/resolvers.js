@@ -24,8 +24,13 @@ module.exports = {
 			return watchlist
 		},
 
-		getAllStocks: async (parent, args, { uid }) => {
-			return AllStocks.find({})
+		searchStocks: async (parent, args) => {
+			const { searchTerm } = args
+			const regexTerm = `\\b${searchTerm}`
+
+			return AllStocks.find({
+				$or: [{ symbol: { $regex: regexTerm, $options: 'gmi' } }, { company: { $regex: regexTerm, $options: 'gmi' } }],
+			}).limit(20)
 		},
 	},
 
