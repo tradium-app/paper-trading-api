@@ -8,10 +8,25 @@ module.exports = async function () {
 		const response = await axios(url)
 
 		if (response.data.length > 0) {
-			await AllStocks.insertMany(response.data, { ordered: false })
-		}
+			const stocks = response.data.map((s) => {
+				return {
+					...s,
+					company: s.name,
+					exchange: s.exchange,
+					type: s.type,
+					region: s.region,
+					currency: s.currency,
+					isEnabled: s.isEnabled,
+					modifiedDate: s.date,
+				}
+			})
 
-		logger.info(`All US based list of stocks fetched. ${response.data.length}`)
+			try {
+				await AllStocks.insertMany(stocks, { ordered: false })
+			} catch {}
+
+			logger.info(`All US based list of stocks fetched. ${response.data.length}`)
+		}
 	} catch (error) {
 		logger.error('Error while fetching list of stocks:', error)
 	}

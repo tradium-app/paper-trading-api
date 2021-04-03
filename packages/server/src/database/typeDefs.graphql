@@ -37,6 +37,7 @@ type News {
 type Query {
 	getWatchList: [Stock]
 	getStockNews: [News]
+	getAllStocks: [Stock]
 }
 
 type Response {

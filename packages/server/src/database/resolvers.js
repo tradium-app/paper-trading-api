@@ -23,6 +23,10 @@ module.exports = {
 
 			return watchlist
 		},
+
+		getAllStocks: async (parent, args, { uid }) => {
+			return AllStocks.find({})
+		},
 	},
 
 	Mutation: {
