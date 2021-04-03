@@ -23,5 +23,5 @@ module.exports = async function () {
 	await agenda.start()
 
 	await agenda.every('30 minutes', 'Refresh stock news')
-	await agenda.every('*/20 9-5 * * 1-5', 'Refresh stock quote')
+	await agenda.every('*/20 9-17 * * 1-5', 'Refresh stock quote')
 }
