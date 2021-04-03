@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const expiryTime = 604800
 
+mongoose.set('returnOriginal', false)
+
 const User = mongoose.model(
 	'User',
 	new Schema({
@@ -10,10 +12,11 @@ const User = mongoose.model(
 		profileImageUrl: String,
 		name: String,
 		authProvider: String,
-		fcmToken: { type: String, unique: true },
+		fcmToken: { type: String },
 		countryCode: String,
 		timeZone: String,
 		ipAddress: String,
+		watchlist: { type: [mongoose.Schema.Types.ObjectId], ref: 'Stock' },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
 		status: String,
@@ -25,8 +28,8 @@ const Stock = mongoose.model(
 	new Schema({
 		symbol: { type: String, unique: true },
 		company: String,
-		price: { type: Number, required: true },
-		change: { type: Number, required: true },
+		price: { type: Number, default: 0 },
+		change: { type: Number, default: 0 },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
 	}),

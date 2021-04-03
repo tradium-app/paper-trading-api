@@ -49,6 +49,7 @@ const apolloServer = new ApolloServer({
 	resolvers: resolvers,
 	context: ({ req, res }) => ({
 		userContext: req.payload,
+		uid: 1, //set default for now
 		...mongooseSchema,
 	}),
 	plugins: [GraphQlErrorLoggingPlugin],

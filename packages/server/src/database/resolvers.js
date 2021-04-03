@@ -41,24 +41,22 @@ module.exports = {
 				return { success: true, id: result }
 			}
 		},
-		addStockToWatchList: async (parent, args, { ipAddress }) => {
-			const {
-				input: { nid, fcmToken, countryCode, timeZone, createdDate, modifiedDate },
-			} = args
+		addStockToWatchList: async (parent, args, { uid }) => {
+			let { symbol: symbol } = args
+			symbol = symbol.toUpperCase()
 
-			const response = await User.update(
-				{ nid },
+			const stock = await Stock.findOneAndUpdate({ symbol }, { $set: { symbol } }, { upsert: true, new: true })
+
+			const firstUser = await User.findOne({})
+			uid = firstUser._id
+
+			const response = await User.updateOne(
+				{ _id: uid },
 				{
-					$set: {
-						fcmToken,
-						countryCode,
-						timeZone,
-						ipAddress,
-						createdDate: createdDate || modifiedDate,
-						modifiedDate: modifiedDate || createdDate,
+					$push: {
+						watchlist: stock,
 					},
 				},
-				{ upsert: true },
 			)
 
 			return { success: !!response.ok }

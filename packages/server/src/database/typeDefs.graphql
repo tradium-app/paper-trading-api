@@ -1,5 +1,5 @@
 type User {
-	hid: String!
+	_id: String!
 	name: String!
 	authProvider: String
 	watchList: [Stock]
