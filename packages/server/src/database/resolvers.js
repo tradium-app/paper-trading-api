@@ -58,7 +58,7 @@ module.exports = {
 			const response = await User.updateOne(
 				{ _id: uid },
 				{
-					$push: {
+					$addToSet: {
 						watchlist: stock,
 					},
 				},
