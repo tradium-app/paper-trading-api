@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 const firebase = require('firebase')
 const { News, Stock, User, AllStocks } = require('../db-service/database/mongooseSchema')
 const logger = require('../config/logger')
@@ -67,7 +66,7 @@ module.exports = {
 
 			const stock = await Stock.findOneAndUpdate({ symbol }, { $set: { symbol } }, { upsert: true, new: true })
 
-			const firstUser = await User.findOne({})
+			const firstUser = await User.findOne({}) //temp thing
 			uid = firstUser._id
 
 			const response = await User.updateOne(
@@ -80,6 +79,27 @@ module.exports = {
 			)
 
 			return { success: !!response.ok }
+		},
+		removeStockFromWatchList: async (parent, args, { uid }) => {
+			let { symbol: symbol } = args
+			symbol = symbol.toUpperCase()
+
+			const firstUser = await User.findOne({}) //temp thing
+			uid = firstUser._id
+
+			const stock = await Stock.findOne({ symbol })
+
+			if (!stock) return { success: false, message: 'Stock symbol is invalid.' }
+
+			const result = await User.updateOne({ _id: uid }, { $pull: { watchlist: stock._id } })
+
+			const otherUsersExist = await User.exists({ watchlist: stock._id })
+
+			if (!otherUsersExist) {
+				await Stock.deleteOne({ _id: stock._id })
+			}
+
+			return { success: !!result.ok }
 		},
 	},
 }

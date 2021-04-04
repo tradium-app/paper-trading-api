@@ -48,4 +48,5 @@ type Response {
 type Mutation {
 	loginUser(accessToken: String): Response
 	addStockToWatchList(symbol: String): Response
+	removeStockFromWatchList(symbol: String): Response
 }
