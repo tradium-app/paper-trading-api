@@ -12,6 +12,7 @@ type User {
 }
 
 type Stock {
+	_id: String!
 	symbol: String!
 	company: String
 	price: Float
