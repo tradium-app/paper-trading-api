@@ -16,7 +16,12 @@ type Stock {
 	symbol: String!
 	company: String
 	price: Float
-	change: Float
+	changePercent: Float
+	marketCap: Float
+	peRatio: Float
+	week52High: Float
+	week52Low: Float
+	ytdChange: Float
 	modifiedDate: String
 }
 
