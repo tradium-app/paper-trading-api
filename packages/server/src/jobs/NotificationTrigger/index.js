@@ -15,7 +15,7 @@ module.exports = async function () {
 			if (latestArticle) {
 				const notifications = []
 				for (const user of userWithCurrentTime) {
-					if(!user.status || (user.status && user.status!="inactive")){
+					if (!user.status || (user.status && user.status != 'inactive')) {
 						const shouldSendNotification = !(await notificationExists(user, latestArticle[0]))
 						if (shouldSendNotification) {
 							const eligibleTime = verifyNoticiableTime(user.currentTime)

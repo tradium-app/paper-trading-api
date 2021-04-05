@@ -14,13 +14,12 @@ const notificationExists = async (user, article) => {
 
 		// return !!hasSent
 
-		const isExist = await Notification.countDocuments({article:article._id, user: user._id})
-		if(isExist>0){
+		const isExist = await Notification.countDocuments({ article: article._id, user: user._id })
+		if (isExist > 0) {
 			return true
-		}else{
+		} else {
 			return false
 		}
-
 	} catch (error) {
 		console.log('could not get todays notification', error)
 	}

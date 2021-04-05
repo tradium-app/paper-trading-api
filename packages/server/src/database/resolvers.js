@@ -55,7 +55,7 @@ module.exports = {
 			}
 		},
 		addStockToWatchList: async (parent, args, { uid }) => {
-			let { symbol: symbol } = args
+			let { symbol } = args
 			symbol = symbol.toUpperCase()
 
 			const validStock = await AllStocks.findOne({ symbol })
@@ -81,7 +81,7 @@ module.exports = {
 			return { success: !!response.ok }
 		},
 		removeStockFromWatchList: async (parent, args, { uid }) => {
-			let { symbol: symbol } = args
+			let { symbol } = args
 			symbol = symbol.toUpperCase()
 
 			const firstUser = await User.findOne({}) //temp thing

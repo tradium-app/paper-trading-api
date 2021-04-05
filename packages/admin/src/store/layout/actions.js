@@ -7,58 +7,52 @@ import {
 	SHOW_RIGHT_SIDEBAR,
 	SHOW_SIDEBAR,
 	CHANGE_PRELOADER,
-	TOGGLE_LEFTMENU
-} from "./actionTypes";
+	TOGGLE_LEFTMENU,
+} from './actionTypes'
 
-export const changeLayout = layout => ({
+export const changeLayout = (layout) => ({
 	type: CHANGE_LAYOUT,
-	payload: layout
-});
+	payload: layout,
+})
 
-export const changePreloader = layout => ({
+export const changePreloader = (layout) => ({
 	type: CHANGE_PRELOADER,
-	payload: layout
-});
+	payload: layout,
+})
 
-export const changeLayoutWidth = width => ({
+export const changeLayoutWidth = (width) => ({
 	type: CHANGE_LAYOUT_WIDTH,
-	payload: width
-});
+	payload: width,
+})
 
-export const changeSidebarTheme = theme => ({
+export const changeSidebarTheme = (theme) => ({
 	type: CHANGE_SIDEBAR_THEME,
-	payload: theme
-});
+	payload: theme,
+})
 
 export const changeSidebarType = (sidebarType, isMobile) => {
 	return {
 		type: CHANGE_SIDEBAR_TYPE,
-		payload: { sidebarType, isMobile }
-	};
-};
+		payload: { sidebarType, isMobile },
+	}
+}
 
-export const changeTopbarTheme = topbarTheme => ({
+export const changeTopbarTheme = (topbarTheme) => ({
 	type: CHANGE_TOPBAR_THEME,
-	payload: topbarTheme
-});
-
+	payload: topbarTheme,
+})
 
 export const showRightSidebarAction = (isopen) => ({
 	type: SHOW_RIGHT_SIDEBAR,
-	payload: isopen
-});
+	payload: isopen,
+})
 
 export const showSidebar = (isopen) => ({
 	type: SHOW_SIDEBAR,
-	payload: isopen
-});
+	payload: isopen,
+})
 
 export const toggleLeftmenu = (isopen) => ({
 	type: TOGGLE_LEFTMENU,
-	payload: isopen
-});
-
-
-
-
-
+	payload: isopen,
+})

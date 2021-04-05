@@ -12,7 +12,8 @@
     "start": "yarn workspace hypergrowth.api start",
     "test": "yarn workspace hypergrowth.api test",
     "test:coverage": "yarn workspace hypergrowth.api test:coverage",
-    "lint": "eslint 'packages/**/*.{js,jsx,ts,tsx}'"
+    "lint": "eslint 'packages/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "prettier-eslint --write packages/'**/*.js'"
   },
   "workspaces": {
     "packages": [
@@ -46,6 +47,8 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "prettier-eslint": "^12.0.0",
+    "prettier-eslint-cli": "^5.0.1"
   }
 }

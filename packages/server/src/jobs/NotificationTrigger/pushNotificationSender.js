@@ -9,7 +9,10 @@ const sendPushNotification = async (notification) => {
 		if (response.status === 200 && response.data.success === 1) {
 			return { status: true, success: response.data.success, failure: response.data.failure }
 		} else {
-			if(response.data.results.length && (response.data.results[0].error=="NotRegistered" || response.data.results[0].error=="InvalidRegistration")){
+			if (
+				response.data.results.length &&
+				(response.data.results[0].error == 'NotRegistered' || response.data.results[0].error == 'InvalidRegistration')
+			) {
 				UserDbService.removeUnRegisteredUser(notification.to)
 			}
 			logger.error('Notification send failed: ', { response: response.data.results })
