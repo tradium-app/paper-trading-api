@@ -20,11 +20,9 @@ module.exports = async function () {
 			return n
 		})
 
-		news.forEach((n) => {
-			try {
-				News.create(n)
-			} catch {}
-		})
+		news = news.filter((n) => n.lang == 'en')
+
+		await News.insertMany(news, { ordered: false })
 
 		logger.info('Total news fetched.', news.length)
 	} catch (error) {
