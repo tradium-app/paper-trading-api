@@ -34,7 +34,7 @@ const Stock = mongoose.model(
 		peRatio: { type: Number, default: 0 },
 		week52High: { type: Number, default: 0 },
 		week52Low: { type: Number, default: 0 },
-		ytdChange: { type: Number, default: 0 },
+		ytdChangePercent: { type: Number, default: 0 },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
 	}),

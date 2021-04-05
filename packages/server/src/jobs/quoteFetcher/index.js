@@ -23,7 +23,7 @@ module.exports = async function () {
 							peRatio: value.quote.peRatio,
 							week52High: value.quote.week52High,
 							week52Low: value.quote.week52Low,
-							ytdChange: value.quote.ytdChange,
+							ytdChangePercent: value.quote.ytdChange * 100,
 							modifiedDate: value.quote.closeTime,
 						},
 					},

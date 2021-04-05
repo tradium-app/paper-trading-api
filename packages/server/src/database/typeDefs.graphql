@@ -21,7 +21,7 @@ type Stock {
 	peRatio: Float
 	week52High: Float
 	week52Low: Float
-	ytdChange: Float
+	ytdChangePercent: Float
 	modifiedDate: String
 }
 
