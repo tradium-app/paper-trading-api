@@ -1,5 +1,5 @@
 const firebase = require('firebase')
-const { News, Stock, User, AllStocks } = require('../db-service/database/mongooseSchema')
+const { News, Stock, User } = require('../db-service/database/mongooseSchema')
 const logger = require('../config/logger')
 
 module.exports = {
@@ -58,13 +58,11 @@ module.exports = {
 			let { symbol } = args
 			symbol = symbol.toUpperCase()
 
-			const validStock = await AllStocks.findOne({ symbol })
+			const stock = await Stock.findOneAndUpdate({ symbol }, { $set: { shouldRefresh: true } }, { new: true })
 
-			if (!validStock) {
+			if (!stock) {
 				return { success: false, message: 'Invalid Stock Symbol' }
 			}
-
-			const stock = await Stock.findOneAndUpdate({ symbol }, { $set: { symbol } }, { upsert: true, new: true })
 
 			const firstUser = await User.findOne({}) //temp thing
 			uid = firstUser._id
@@ -96,7 +94,14 @@ module.exports = {
 			const otherUsersExist = await User.exists({ watchlist: stock._id })
 
 			if (!otherUsersExist) {
-				await Stock.deleteOne({ _id: stock._id })
+				await Stock.updateOne(
+					{ _id: stock._id },
+					{
+						$set: {
+							shouldRefresh: false,
+						},
+					},
+				)
 			}
 
 			return { success: !!result.ok }
