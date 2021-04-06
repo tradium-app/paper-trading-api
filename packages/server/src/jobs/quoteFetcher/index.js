@@ -24,7 +24,7 @@ module.exports = async function () {
 							week52High: value.quote.week52High,
 							week52Low: value.quote.week52Low,
 							ytdChangePercent: value.quote.ytdChange * 100,
-							modifiedDate: value.quote.closeTime,
+							modifiedDate: value.quote.latestUpdate,
 						},
 					},
 					{ upsert: true },
