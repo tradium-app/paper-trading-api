@@ -27,17 +27,17 @@ module.exports = {
 			const { searchTerm } = args
 			const regexTerm = `\\b${searchTerm}`
 
-			return AllStocks.find({
+			return Stock.find({
 				$or: [{ symbol: { $regex: regexTerm, $options: 'gmi' } }, { company: { $regex: regexTerm, $options: 'gmi' } }],
 			}).limit(20)
 		},
 	},
 
 	Mutation: {
-		loginUser: async (parent, args, {}) => {
+		loginUser: async (parent, args) => {
 			const credential = firebase.auth.GoogleAuthProvider.credential(null, args.accessToken)
 			const firebaseRes = await firebase.auth().signInWithCredential(credential)
-			const firebaseUser = await UserDAO.readbyUid(firebaseRes.user.uid)
+			const firebaseUser = await User.findOne({ firebaseUid: firebaseRes.user.uid })
 
 			if (firebaseUser) {
 				return { success: true, id: firebaseUser.id }
