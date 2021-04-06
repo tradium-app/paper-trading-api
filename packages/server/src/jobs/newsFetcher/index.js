@@ -4,8 +4,8 @@ const batchRequest = require('./batchRequest')
 
 module.exports = async function () {
 	try {
-		const allStocks = await Stock.find()
-		const response = await batchRequest(allStocks.map((s) => s.symbol))
+		const activeStocks = await Stock.find({ shouldRefresh: true })
+		const response = await batchRequest(activeStocks.map((s) => s.symbol))
 
 		let news = []
 		Object.keys(response.data).forEach((key) => {
@@ -16,7 +16,7 @@ module.exports = async function () {
 			n.publishedDate = n.datetime
 			n.imageUrl = n.image
 			n.relatedStockSymbols = n.related
-			n.relatedStocks = allStocks.filter((a) => n.related.toUpperCase().split(',').includes(a.symbol.toUpperCase()))
+			n.relatedStocks = activeStocks.filter((a) => n.related.toUpperCase().split(',').includes(a.symbol.toUpperCase()))
 			return n
 		})
 

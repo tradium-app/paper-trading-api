@@ -4,7 +4,7 @@ const batchRequest = require('./batchRequest')
 
 module.exports = async function () {
 	try {
-		const symbols = (await Stock.find().lean()).map((s) => s.symbol)
+		const symbols = (await Stock.find({ shouldRefresh: true }).lean()).map((s) => s.symbol)
 		if (symbols.length <= 0) return
 
 		const response = await batchRequest(symbols)

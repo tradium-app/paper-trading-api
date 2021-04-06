@@ -35,21 +35,12 @@ const Stock = mongoose.model(
 		week52High: { type: Number, default: 0 },
 		week52Low: { type: Number, default: 0 },
 		ytdChangePercent: { type: Number, default: 0 },
-		createdDate: { type: Date, default: Date.now },
-		modifiedDate: { type: Date, default: Date.now },
-	}),
-)
-
-const AllStocks = mongoose.model(
-	'AllStocks',
-	new Schema({
-		symbol: { type: String, unique: true },
-		company: String,
 		exchange: String,
 		type: String,
 		region: String,
 		currency: String,
 		isEnabled: Boolean,
+		shouldRefresh: { type: Boolean, default: false },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
 	}),
@@ -77,6 +68,5 @@ const News = mongoose.model(
 module.exports = {
 	User,
 	Stock,
-	AllStocks,
 	News,
 }

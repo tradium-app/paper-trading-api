@@ -8,5 +8,6 @@ mongoose
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useCreateIndex: true,
+		useFindAndModify: true,
 	})
 	.catch((error) => logger.error('mongo error: ', error))

@@ -1,4 +1,4 @@
-const { AllStocks } = require('../../db-service/database/mongooseSchema')
+const { Stock } = require('../../db-service/database/mongooseSchema')
 const axios = require('axios')
 const logger = require('../../config/logger')
 
@@ -17,12 +17,13 @@ module.exports = async function () {
 					region: s.region,
 					currency: s.currency,
 					isEnabled: s.isEnabled,
+					shouldRefresh: false,
 					modifiedDate: s.date,
 				}
 			})
 
 			try {
-				await AllStocks.insertMany(stocks, { ordered: false })
+				await Stock.insertMany(stocks, { ordered: false })
 			} catch {}
 
 			logger.info(`All US based list of stocks fetched. ${response.data.length}`)
