@@ -29,6 +29,12 @@ const Stock = mongoose.model(
 		symbol: { type: String, unique: true },
 		company: String,
 		price: { type: Number, default: 0 },
+		price_history: [
+			{
+				timeStamp: { type: Number, default: 0 },
+				price: { type: Number, default: 0 },
+			},
+		],
 		changePercent: { type: Number, default: 0 },
 		marketCap: { type: Number, default: 0 },
 		peRatio: { type: Number, default: 0 },

@@ -26,10 +26,17 @@ module.exports = async function () {
 							ytdChangePercent: value.quote.ytdChange * 100,
 							modifiedDate: value.quote.latestUpdate,
 						},
+						$push: {
+							price_history: {
+								price: value.quote.latestPrice,
+								timeStamp: value.quote.latestUpdate,
+							},
+						},
 					},
 					{ upsert: true },
 				)
 			} catch (error) {
+				console.log('printing error', error)
 				logger.error('Error while refreshing stock:', { key, error })
 			}
 		}
