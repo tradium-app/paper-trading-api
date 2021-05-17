@@ -1,12 +1,12 @@
-# HyperGrowth-Api
+# DevPolls-Api
 
-A graphql based api endpoint for HyperGrowth mobile app and Admin Dashboard in React
+A graphql based api endpoint for DevPolls web app
 
-It is set to auto-deploy to https://dashboard.heroku.com/apps/hypergrowth-api-qa
+It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
 
-![Node CI](https://github.com/siristechnology/hypergrowth-api/workflows/Node%20CI/badge.svg?branch=master)
+![Node CI](https://github.com/siristechnology/devpolls-api/workflows/Node%20CI/badge.svg?branch=master)
 [![DeepScan grade](https://deepscan.io/api/teams/5348/projects/7147/branches/66890/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5348&pid=7147&bid=66890)
-[![codecov](https://codecov.io/gh/siristechnology/hypergrowth-api/branch/master/graph/badge.svg)](https://codecov.io/gh/siristechnology/hypergrowth-api)
+[![codecov](https://codecov.io/gh/siristechnology/devpolls-api/branch/master/graph/badge.svg)](https://codecov.io/gh/siristechnology/devpolls-api)
 
 ### GraphQL
 
@@ -31,7 +31,7 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/hypergrowth-api-qa
 ## Most basic MongoDB commands (terminal)
 
 -   `show dbs` --to show all dbs
--   `use hypergrowthdb` --to switch to hypergrowthdb
+-   `use devpollsdb` --to switch to devpollsdb
 -   `show collections` --to show all collections/tables
 -   `db.articles.find()` --to show all articles in the collection
 -   `db.articles.find({title: 'new title'})` --to show article/articles with title = 'new title'
