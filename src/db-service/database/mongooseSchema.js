@@ -25,7 +25,7 @@ const Poll = mongoose.model(
 	'Poll',
 	new Schema({
 		author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-		question: String,
+		question: { type: String, unique: true, required: true, trim: true },
 		options: [
 			{
 				text: String,

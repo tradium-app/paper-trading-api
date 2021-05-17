@@ -9,5 +9,6 @@ mongoose
 		useUnifiedTopology: true,
 		useCreateIndex: true,
 		useFindAndModify: true,
+		autoIndex: true,
 	})
 	.catch((error) => logger.error('mongo error: ', error))

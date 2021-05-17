@@ -1,49 +1,49 @@
 type User {
 	_id: String!
 	name: String!
+	imageUrl: String
 	authProvider: String
-	watchList: [Stock]
 	fcmToken: String
 	countryCode: String
 	timeZone: String
 	ipAddress: String
 	createdDate: String
 	modifiedDate: String
+	status: String
 }
 
-type Stock {
+type Poll {
 	_id: String!
-	symbol: String!
-	company: String
-	price: Float
-	changePercent: Float
-	marketCap: Float
-	peRatio: Float
-	week52High: Float
-	week52Low: Float
-	ytdChangePercent: Float
-	modifiedDate: String
-}
-
-type News {
-	_id: String!
-	headline: String!
-	source: String
-	url: String!
-	imageUrl: String
-	summary: String!
-	relatedStockSymbols: String
-	relatedStocks: [Stock]
-	hasPaywall: String
-	publishedDate: String
+	author: User
+	question: String!
+	options: [PollOption]
+	comments: [PollComment]
 	createdDate: String
 	modifiedDate: String
 }
 
+type PollOption {
+	text: String
+	count: Int
+}
+
+type PollComment {
+	author: User
+	text: String
+}
+
+input PollInput {
+	question: String!
+	options: [PollOptionInput]
+}
+
+input PollOptionInput {
+	text: String
+}
+
 type Query {
-	getWatchList: [Stock]
-	getStockNews: [News]
-	searchStocks(searchTerm: String): [Stock]
+	getTopPolls: [Poll]
+	getTopTrendingPolls: [Poll]
 }
 
 type Response {
@@ -53,6 +53,5 @@ type Response {
 
 type Mutation {
 	loginUser(accessToken: String): Response
-	addStockToWatchList(symbol: String): Response
-	removeStockFromWatchList(symbol: String): Response
+	createPoll(pollInput: PollInput): Response
 }
