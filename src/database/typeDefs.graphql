@@ -24,7 +24,7 @@ type Poll {
 
 type PollOption {
 	text: String
-	count: Int
+	votes: Int
 }
 
 type PollComment {
