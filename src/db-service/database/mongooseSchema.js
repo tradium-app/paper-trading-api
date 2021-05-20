@@ -29,6 +29,7 @@ const Poll = mongoose.model(
 		options: [
 			{
 				text: String,
+				order: { type: Number, required: true },
 				votes: Number,
 			},
 		],

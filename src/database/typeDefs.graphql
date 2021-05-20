@@ -24,6 +24,7 @@ type Poll {
 
 type PollOption {
 	text: String
+	order: Int
 	votes: Int
 }
 
