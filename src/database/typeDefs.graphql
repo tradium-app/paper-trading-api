@@ -40,6 +40,7 @@ input PollInput {
 
 input PollOptionInput {
 	text: String
+	order: Int
 }
 
 type Query {
