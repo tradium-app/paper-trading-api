@@ -5,8 +5,12 @@ const logger = require('../config/logger')
 module.exports = {
 	Query: {
 		getTopPolls: async (parent, args) => {
-			const news = await Poll.find().lean().sort({ createdDate: -1 }).limit(20)
-			return news
+			return await Poll.find().lean().sort({ createdDate: -1 }).limit(100)
+		},
+		getUserProfile: async (parent, args) => {
+			const user = await User.find().lean().limit(1)
+			user.pollsCreated = await Poll.find({ 'author._id': user._id }).lean().sort({ createdDate: -1 }).limit(20)
+			return user
 		},
 	},
 
@@ -22,7 +26,8 @@ module.exports = {
 				const userObj = {
 					name: firebaseRes.user.displayName,
 					firebaseUid: firebaseRes.user.uid,
-					profileImage: firebaseRes.user.photoURL,
+					imageUrl: firebaseRes.user.photoURL,
+					email: firebaseRes.user.email,
 					authProvider: credential.providerId,
 				}
 

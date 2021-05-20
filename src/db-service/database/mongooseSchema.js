@@ -10,6 +10,7 @@ const User = mongoose.model(
 		firebaseUid: String,
 		name: String,
 		authProvider: String,
+		email: String,
 		imageUrl: String,
 		fcmToken: { type: String },
 		countryCode: String,

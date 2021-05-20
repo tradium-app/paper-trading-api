@@ -3,12 +3,11 @@ type User {
 	name: String!
 	imageUrl: String
 	authProvider: String
-	fcmToken: String
 	countryCode: String
 	timeZone: String
-	ipAddress: String
 	createdDate: String
 	modifiedDate: String
+	pollsCreated: [Poll]
 	status: String
 }
 
@@ -46,6 +45,7 @@ input PollOptionInput {
 type Query {
 	getTopPolls: [Poll]
 	getTopTrendingPolls: [Poll]
+	getUserProfile: [User]
 }
 
 type Response {
