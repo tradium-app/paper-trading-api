@@ -18,10 +18,10 @@ module.exports = {
 		loginUser: async (parent, args) => {
 			const credential = firebase.auth.GoogleAuthProvider.credential(null, args.accessToken)
 			const firebaseRes = await firebase.auth().signInWithCredential(credential)
-			const firebaseUser = await User.findOne({ firebaseUid: firebaseRes.user.uid })
+			const user = await User.findOne({ firebaseUid: firebaseRes.user.uid })
 
-			if (firebaseUser) {
-				return { success: true, id: firebaseUser.id }
+			if (user) {
+				return { success: true, user }
 			} else {
 				const userObj = {
 					name: firebaseRes.user.displayName,
