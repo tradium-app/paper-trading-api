@@ -51,6 +51,7 @@ type Query {
 type Response {
 	success: Boolean
 	message: String
+	user: User
 }
 
 type Mutation {

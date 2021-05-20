@@ -31,9 +31,8 @@ module.exports = {
 					authProvider: credential.providerId,
 				}
 
-				const result = await User.create(userObj)
-
-				return { success: true, id: result }
+				const userCreated = await User.create(userObj)
+				return { success: true, user: userCreated }
 			}
 		},
 		createPoll: async (parent, args, { uid }) => {
