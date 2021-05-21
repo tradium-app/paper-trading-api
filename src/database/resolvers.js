@@ -5,7 +5,13 @@ const logger = require('../config/logger')
 module.exports = {
 	Query: {
 		getTopPolls: async (parent, args) => {
-			return await Poll.find().lean().sort({ createdDate: -1 }).limit(100)
+			const polls = await Poll.find().lean().sort({ createdDate: -1 }).limit(100)
+			polls.forEach((poll) => {
+				poll.options.forEach((option) => {
+					option.totalVotes = option.votes.length
+				})
+			})
+			return polls
 		},
 		getUserProfile: async (parent, args) => {
 			const user = await User.find().lean().limit(1)
@@ -52,16 +58,20 @@ module.exports = {
 			const poll = await Poll.findByIdAndUpdate(
 				pollVote.pollId,
 				{
-					$addToSet: { 'options.$[element].votes': '60a6d535aabf6bace8830f9d' },
-					$inc: { 'options.$[element].totalVotes': 1 },
+					$addToSet: { 'options.$[element1].votes': '60a6d535aabf6bace8830f9d' },
+					$pull: { 'options.$[element2].votes': '60a6d535aabf6bace8830f9d' },
 				},
-				{ arrayFilters: [{ 'element._id': pollVote.optionId }], upsert: true },
-				(err) => {
-					if (err) {
-						logger.error(err)
-					}
+				{
+					arrayFilters: [{ 'element1._id': pollVote.optionId }, { 'element2._id': { $ne: pollVote.optionId } }],
+					multi: false,
+					upsert: true,
+					new: true,
 				},
-			)
+			).lean()
+
+			poll.options.forEach((option) => {
+				option.totalVotes = option.votes.length
+			})
 
 			return { success: !!poll, poll }
 		},
