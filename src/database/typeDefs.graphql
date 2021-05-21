@@ -59,6 +59,7 @@ type Response {
 	success: Boolean
 	message: String
 	user: User
+	poll: Poll
 }
 
 type Mutation {

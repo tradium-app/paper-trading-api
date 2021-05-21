@@ -46,7 +46,10 @@ module.exports = {
 
 			const poll = await Poll.findByIdAndUpdate(
 				pollVote.pollId,
-				{ $addToSet: { 'options.$[element].votes': '60a6d535aabf6bace8830f9d' } },
+				{
+					$addToSet: { 'options.$[element].votes': '60a6d535aabf6bace8830f9d' },
+					$inc: { 'options.$[element].totalVotes': 1 },
+				},
 				{ arrayFilters: [{ 'element._id': pollVote.optionId }], upsert: true },
 				(err) => {
 					if (err) {
@@ -55,7 +58,7 @@ module.exports = {
 				},
 			)
 
-			return { success: !!poll }
+			return { success: !!poll, poll }
 		},
 	},
 }
