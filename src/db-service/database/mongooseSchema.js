@@ -31,7 +31,8 @@ const Poll = mongoose.model(
 			{
 				text: String,
 				order: { type: Number, required: true },
-				votes: Number,
+				votes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+				totalVotes: Number,
 			},
 		],
 		comments: [

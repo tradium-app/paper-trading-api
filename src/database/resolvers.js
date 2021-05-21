@@ -41,5 +41,21 @@ module.exports = {
 
 			return { success: true }
 		},
+		submitVote: async (parent, args, { uid }) => {
+			let { pollVote } = args
+
+			const poll = await Poll.findByIdAndUpdate(
+				pollVote.pollId,
+				{ $addToSet: { 'options.$[element].votes': '60a6d535aabf6bace8830f9d' } },
+				{ arrayFilters: [{ 'element._id': pollVote.optionId }], upsert: true },
+				(err) => {
+					if (err) {
+						logger.error(err)
+					}
+				},
+			)
+
+			return { success: !!poll }
+		},
 	},
 }

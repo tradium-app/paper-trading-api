@@ -1,5 +1,5 @@
 type User {
-	_id: String!
+	_id: ID!
 	name: String!
 	imageUrl: String
 	authProvider: String
@@ -12,7 +12,7 @@ type User {
 }
 
 type Poll {
-	_id: String!
+	_id: ID!
 	author: User
 	question: String!
 	options: [PollOption]
@@ -22,9 +22,11 @@ type Poll {
 }
 
 type PollOption {
+	_id: ID
 	text: String
 	order: Int
-	votes: Int
+	totalVotes: Int
+	selected: Boolean
 }
 
 type PollComment {
@@ -42,6 +44,11 @@ input PollOptionInput {
 	order: Int
 }
 
+input PollVote {
+	pollId: ID!
+	optionId: ID!
+}
+
 type Query {
 	getTopPolls: [Poll]
 	getTopTrendingPolls: [Poll]
@@ -57,4 +64,5 @@ type Response {
 type Mutation {
 	loginUser(accessToken: String): Response
 	createPoll(pollInput: PollInput): Response
+	submitVote(pollVote: PollVote): Response
 }
