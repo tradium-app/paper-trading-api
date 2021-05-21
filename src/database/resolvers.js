@@ -36,10 +36,15 @@ module.exports = {
 			}
 		},
 		createPoll: async (parent, args, { uid }) => {
-			let { pollInput } = args
-			await Poll.create(pollInput)
+			const { pollInput } = args
+			pollInput.options = pollInput.options.filter((o) => !!o.text)
 
-			return { success: true }
+			if (pollInput.question && pollInput.options.length > 1) {
+				await Poll.create(pollInput)
+				return { success: true }
+			} else {
+				return { success: false }
+			}
 		},
 		submitVote: async (parent, args, { uid }) => {
 			let { pollVote } = args
