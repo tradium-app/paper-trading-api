@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const express = require('express')
 const path = require('path')
 const timeout = require('connect-timeout')
+const cors = require('cors')
 const helmet = require('helmet')
 const requireGraphQLFile = require('require-graphql-file')
 const { ApolloServer, gql } = require('apollo-server-express')
@@ -20,6 +21,15 @@ require('./firebaseInit')
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 const app = express()
+
+const corsOptionsDelegate = (req, callback) => {
+	const origin = req.header('Origin')
+	const allowedDomains = process.env.ALLOWED_DOMAINS.split(',')
+	const isDomainAllowed = !origin || allowedDomains.some((a) => req.header('Origin').startsWith(a))
+
+	callback(null, { origin: isDomainAllowed, credentials: true })
+}
+app.use(cors(corsOptionsDelegate))
 
 app.use(timeout('30s'))
 app.use((req, res, next) => {
@@ -50,11 +60,12 @@ const apolloServer = new ApolloServer({
 	context: ({ req, res }) => ({
 		userContext: req.payload,
 		uid: 1, //set default for now
+		res,
 		...mongooseSchema,
 	}),
 	plugins: [GraphQlErrorLoggingPlugin],
 })
-apolloServer.applyMiddleware({ app })
+apolloServer.applyMiddleware({ app, cors: false })
 
 app.use((err, req, res, next) => {
 	res.status(err.status || 500)
