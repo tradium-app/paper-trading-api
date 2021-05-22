@@ -5,27 +5,26 @@ const logger = require('../config/logger')
 
 module.exports = {
 	Query: {
-		getTopPolls: async (parent, args, { userContext }) => {
+		getTopPolls: async (_, args, { userContext }) => {
 			const polls = await Poll.find().populate('author').lean().sort({ createdDate: -1 }).limit(100)
-			polls.forEach((poll) => {
-				poll.options.forEach((option) => {
-					option.totalVotes = option.votes.length
-					option.selected = userContext && option.votes.some((v) => v == userContext._id)
-				})
-			})
+
+			calculatePollVotes(polls, userContext && userContext._id)
 			return polls
 		},
-		getUserProfile: async (parent, { userId }, { userContext }) => {
+		getUserProfile: async (_, { userId }, { userContext }) => {
 			const user = await User.findById(userId || userContext._id)
 				.lean()
 				.limit(1)
-			user.pollsCreated = await Poll.find({ 'author._id': user._id }).lean().sort({ createdDate: -1 }).limit(20)
+
+			user.pollsCreated = await Poll.find({ author: user._id }).lean().sort({ createdDate: -1 }).limit(20)
+
+			calculatePollVotes(user.pollsCreated, userId || userContext._id)
 			return user
 		},
 	},
 
 	Mutation: {
-		loginUser: async (parent, args) => {
+		loginUser: async (_, args) => {
 			const credential = firebase.auth.GoogleAuthProvider.credential(null, args.accessToken)
 			const firebaseRes = await firebase.auth().signInWithCredential(credential)
 
@@ -92,4 +91,15 @@ module.exports = {
 			return { success: !!poll, poll }
 		},
 	},
+}
+
+const calculatePollVotes = (polls, userId) => {
+	polls.forEach((poll) => {
+		poll.options.forEach((option) => {
+			option.totalVotes = option.votes.length
+			option.selected = userId && option.votes.some((v) => v == userId)
+		})
+	})
+
+	return polls
 }
