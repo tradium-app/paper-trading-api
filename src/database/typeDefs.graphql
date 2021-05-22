@@ -49,10 +49,13 @@ input PollVote {
 	optionId: ID!
 }
 
-type Query {
-	getTopPolls: [Poll]
-	getTopTrendingPolls: [Poll]
-	getUserProfile: [User]
+input UserInput {
+	imageUrl: String
+	title: String
+	shortBio: String
+	githubLink: String
+	linkedinLink: String
+	stackOverflowLink: String
 }
 
 type Response {
@@ -63,8 +66,15 @@ type Response {
 	poll: Poll
 }
 
+type Query {
+	getTopPolls: [Poll]
+	getTopTrendingPolls: [Poll]
+	getUserProfile: [User]
+}
+
 type Mutation {
 	loginUser(accessToken: String): Response
+	updateProfile(userInput: UserInput): Response
 	createPoll(pollInput: PollInput): Response
 	submitVote(pollVote: PollVote): Response
 }

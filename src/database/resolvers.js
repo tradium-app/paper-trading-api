@@ -41,6 +41,15 @@ module.exports = {
 			const accessToken = jwt.sign(userObj, process.env.ACCESS_TOKEN_SECRET, { algorithm: 'HS256' })
 			return { success: true, user, accessToken }
 		},
+		updateProfile: async (parent, { userInput }, { userContext }) => {
+			if (!userContext) {
+				return { success: false, message: 'Please Login first.' }
+			}
+
+			const response = await User.findByIdAndUpdate(userContext._id, userInput, { upsert: false }).lean()
+
+			return { success: !!response }
+		},
 		createPoll: async (parent, args, { userContext }) => {
 			const { pollInput } = args
 			pollInput.author = userContext._id
@@ -57,7 +66,7 @@ module.exports = {
 			let { pollVote } = args
 
 			if (!pollVote || !userContext) {
-				return { success: false }
+				return { success: false, message: 'Please Login to vote.' }
 			}
 
 			const poll = await Poll.findByIdAndUpdate(
