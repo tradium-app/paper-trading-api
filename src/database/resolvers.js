@@ -10,6 +10,7 @@ module.exports = {
 			polls.forEach((poll) => {
 				poll.options.forEach((option) => {
 					option.totalVotes = option.votes.length
+					option.selected = userContext && option.votes.some((v) => v == userContext._id)
 				})
 			})
 			return polls
