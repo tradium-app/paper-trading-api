@@ -58,6 +58,7 @@ type Query {
 type Response {
 	success: Boolean
 	message: String
+	accessToken: String
 	user: User
 	poll: Poll
 }

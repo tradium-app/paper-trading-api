@@ -1,10 +1,11 @@
 const firebase = require('firebase')
+const jwt = require('jsonwebtoken')
 const { User, Poll } = require('../db-service/database/mongooseSchema')
 const logger = require('../config/logger')
 
 module.exports = {
 	Query: {
-		getTopPolls: async (parent, args) => {
+		getTopPolls: async (parent, args, { userContext }) => {
 			const polls = await Poll.find().lean().sort({ createdDate: -1 }).limit(100)
 			polls.forEach((poll) => {
 				poll.options.forEach((option) => {
@@ -24,22 +25,20 @@ module.exports = {
 		loginUser: async (parent, args) => {
 			const credential = firebase.auth.GoogleAuthProvider.credential(null, args.accessToken)
 			const firebaseRes = await firebase.auth().signInWithCredential(credential)
-			const user = await User.findOne({ firebaseUid: firebaseRes.user.uid })
 
-			if (user) {
-				return { success: true, user }
-			} else {
-				const userObj = {
-					name: firebaseRes.user.displayName,
-					firebaseUid: firebaseRes.user.uid,
-					imageUrl: firebaseRes.user.photoURL,
-					email: firebaseRes.user.email,
-					authProvider: credential.providerId,
-				}
-
-				const userCreated = await User.create(userObj)
-				return { success: true, user: userCreated }
+			const userObj = {
+				name: firebaseRes.user.displayName,
+				firebaseUid: firebaseRes.user.uid,
+				imageUrl: firebaseRes.user.photoURL,
+				email: firebaseRes.user.email,
+				authProvider: credential.providerId,
 			}
+
+			const user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, userObj, { upsert: true, new: true }).lean()
+			userObj._id = user._id
+
+			const accessToken = jwt.sign(userObj, 'accessTokenSecret', { algorithm: 'HS256' })
+			return { success: true, user, accessToken }
 		},
 		createPoll: async (parent, args, { uid }) => {
 			const { pollInput } = args
@@ -52,14 +51,14 @@ module.exports = {
 				return { success: false }
 			}
 		},
-		submitVote: async (parent, args, { uid }) => {
+		submitVote: async (parent, args, { userContext }) => {
 			let { pollVote } = args
 
 			const poll = await Poll.findByIdAndUpdate(
 				pollVote.pollId,
 				{
-					$addToSet: { 'options.$[element1].votes': '60a6d535aabf6bace8830f9d' },
-					$pull: { 'options.$[element2].votes': '60a6d535aabf6bace8830f9d' },
+					$addToSet: { 'options.$[element1].votes': userContext._id },
+					$pull: { 'options.$[element2].votes': userContext._id },
 				},
 				{
 					arrayFilters: [{ 'element1._id': pollVote.optionId }, { 'element2._id': { $ne: pollVote.optionId } }],

@@ -17,6 +17,7 @@ const Agenda = require('agenda')
 const Agendash = require('agendash')
 const GraphQlErrorLoggingPlugin = require('./config/graphql-error-logging')
 require('./firebaseInit')
+const authMiddlware = require('./auth-express-middleware')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -31,6 +32,7 @@ const corsOptionsDelegate = (req, callback) => {
 }
 app.use(cors(corsOptionsDelegate))
 
+app.use(authMiddlware)
 app.use(timeout('30s'))
 app.use((req, res, next) => {
 	if (!req.timedout) {
@@ -58,8 +60,8 @@ const apolloServer = new ApolloServer({
 	typeDefs: typeDefs,
 	resolvers: resolvers,
 	context: ({ req, res }) => ({
-		userContext: req.payload,
-		uid: 1, //set default for now
+		userContext: req.userContext,
+		req,
 		res,
 		...mongooseSchema,
 	}),

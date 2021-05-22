@@ -6,8 +6,7 @@ mongoose.set('returnOriginal', false)
 const User = mongoose.model(
 	'User',
 	new Schema({
-		googleId: String,
-		firebaseUid: String,
+		firebaseUid: { type: String, unique: true, required: true, trim: true },
 		name: String,
 		authProvider: String,
 		email: String,
