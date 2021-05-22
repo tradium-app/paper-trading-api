@@ -16,7 +16,7 @@ module.exports = {
 				.lean()
 				.limit(1)
 
-			user.pollsCreated = await Poll.find({ author: user._id }).lean().sort({ createdDate: -1 }).limit(20)
+			user.pollsCreated = await Poll.find({ author: user._id }).populate('author').lean().sort({ createdDate: -1 }).limit(20)
 
 			calculatePollVotes(user.pollsCreated, userId || userContext._id)
 			return user
