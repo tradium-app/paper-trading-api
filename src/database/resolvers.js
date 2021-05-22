@@ -6,7 +6,7 @@ const logger = require('../config/logger')
 module.exports = {
 	Query: {
 		getTopPolls: async (parent, args, { userContext }) => {
-			const polls = await Poll.find().lean().sort({ createdDate: -1 }).limit(100)
+			const polls = await Poll.find().populate('author').lean().sort({ createdDate: -1 }).limit(100)
 			polls.forEach((poll) => {
 				poll.options.forEach((option) => {
 					option.totalVotes = option.votes.length
@@ -40,8 +40,9 @@ module.exports = {
 			const accessToken = jwt.sign(userObj, process.env.ACCESS_TOKEN_SECRET, { algorithm: 'HS256' })
 			return { success: true, user, accessToken }
 		},
-		createPoll: async (parent, args, { uid }) => {
+		createPoll: async (parent, args, { userContext }) => {
 			const { pollInput } = args
+			pollInput.author = userContext._id
 			pollInput.options = pollInput.options.filter((o) => !!o.text)
 
 			if (pollInput.question && pollInput.options.length > 1) {
@@ -53,6 +54,10 @@ module.exports = {
 		},
 		submitVote: async (parent, args, { userContext }) => {
 			let { pollVote } = args
+
+			if (!pollVote || !userContext) {
+				return { success: false }
+			}
 
 			const poll = await Poll.findByIdAndUpdate(
 				pollVote.pollId,
