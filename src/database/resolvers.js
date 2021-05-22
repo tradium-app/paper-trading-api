@@ -15,8 +15,10 @@ module.exports = {
 			})
 			return polls
 		},
-		getUserProfile: async (parent, args) => {
-			const user = await User.find().lean().limit(1)
+		getUserProfile: async (parent, { userId }, { userContext }) => {
+			const user = await User.findById(userId || userContext._id)
+				.lean()
+				.limit(1)
 			user.pollsCreated = await Poll.find({ 'author._id': user._id }).lean().sort({ createdDate: -1 }).limit(20)
 			return user
 		},

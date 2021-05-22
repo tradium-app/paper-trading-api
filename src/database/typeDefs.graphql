@@ -2,9 +2,11 @@ type User {
 	_id: ID!
 	name: String!
 	imageUrl: String
-	authProvider: String
-	countryCode: String
-	timeZone: String
+	title: String
+	shortBio: String
+	githubLink: String
+	linkedinLink: String
+	stackOverflowLink: String
 	createdDate: String
 	modifiedDate: String
 	pollsCreated: [Poll]
@@ -69,7 +71,7 @@ type Response {
 type Query {
 	getTopPolls: [Poll]
 	getTopTrendingPolls: [Poll]
-	getUserProfile: [User]
+	getUserProfile(userId: String): User
 }
 
 type Mutation {
