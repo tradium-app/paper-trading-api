@@ -63,6 +63,14 @@ module.exports = {
 				return { success: false }
 			}
 		},
+		deletePoll: async (parent, { pollId }, { userContext }) => {
+			if (!userContext) {
+				return { success: false, message: 'Please Login to delete.' }
+			}
+			const response = await Poll.deleteOne({ _id: pollId, author: userContext._id })
+
+			return { success: response.ok && response.deletedCount == 1 }
+		},
 		submitVote: async (parent, args, { userContext }) => {
 			let { pollVote } = args
 
