@@ -37,7 +37,7 @@ module.exports = {
 			const user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, userObj, { upsert: true, new: true }).lean()
 			userObj._id = user._id
 
-			const accessToken = jwt.sign(userObj, 'accessTokenSecret', { algorithm: 'HS256' })
+			const accessToken = jwt.sign(userObj, process.env.ACCESS_TOKEN_SECRET, { algorithm: 'HS256' })
 			return { success: true, user, accessToken }
 		},
 		createPoll: async (parent, args, { uid }) => {

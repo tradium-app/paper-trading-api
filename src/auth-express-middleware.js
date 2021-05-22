@@ -13,7 +13,7 @@ const getTokenFromHeader = (req) => {
 }
 
 const auth = expressJwt({
-	secret: 'accessTokenSecret',
+	secret: process.env.ACCESS_TOKEN_SECRET,
 	credentialsRequired: false,
 	algorithms: ['HS256'],
 	userProperty: 'userContext',
