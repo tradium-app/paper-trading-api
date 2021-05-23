@@ -34,8 +34,8 @@ app.use(cors(corsOptionsDelegate))
 // set up rate limiter: maximum of five requests per minute
 var RateLimit = require('express-rate-limit')
 var limiter = new RateLimit({
-	windowMs: 10 * 1000,
-	max: 5,
+	windowMs: 30 * 1000,
+	max: 30,
 })
 app.use(limiter)
 
