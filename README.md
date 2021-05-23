@@ -5,6 +5,7 @@ A graphql based api endpoint for DevPolls web app
 It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
 
 [![Node CI](https://github.com/devpolls/devpolls-api/actions/workflows/nodejs.yml/badge.svg)](https://github.com/devpolls/devpolls-api/actions/workflows/nodejs.yml)
+[![CodeQL](https://github.com/devpolls/devpolls-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/devpolls/devpolls-api/actions/workflows/codeql-analysis.yml)
 [![DeepScan grade](https://deepscan.io/api/teams/5348/projects/17276/branches/390641/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5348&pid=17276&bid=390641)
 [![codecov](https://codecov.io/gh/devpolls/devpolls-api/branch/master/graph/badge.svg?token=9EVGK74JKQ)](https://codecov.io/gh/devpolls/devpolls-api)
 
