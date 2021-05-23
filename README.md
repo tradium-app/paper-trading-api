@@ -17,11 +17,9 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
 1. `yarn` --to install npm modules
 2. Create .env file as per .env.sample file. Get actual values from Heroku env if you need to.
 3. Don't checkin .env file
-4. `yarn dev` --to start api-server and worker in development mode
-5. `yarn build` --to build admin dashboard
-6. `yarn start` --to start api-server and worker in prod mode
-7. `jest --runInBand -t 'some test description'` -- it will run tests with `some test description` in `it` description
-8. `yarn lint` --to show linting errors. Add [`--fix`] to auto fix errors.
+4. `yarn start` --to start api-server and worker
+5. `jest --runInBand -t 'some test description'` -- it will run tests with `some test description` in `it` description
+6. `yarn lint` --to show linting errors. Add [`--fix`] to auto fix errors.
 
 ## Key points
 
