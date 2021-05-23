@@ -2,7 +2,6 @@ require('./config/env')
 
 const morgan = require('morgan')
 const express = require('express')
-const path = require('path')
 const timeout = require('connect-timeout')
 const cors = require('cors')
 const helmet = require('helmet')
@@ -31,6 +30,14 @@ const corsOptionsDelegate = (req, callback) => {
 	callback(null, { origin: isDomainAllowed, credentials: true })
 }
 app.use(cors(corsOptionsDelegate))
+
+// set up rate limiter: maximum of five requests per minute
+var RateLimit = require('express-rate-limit')
+var limiter = new RateLimit({
+	windowMs: 10 * 1000,
+	max: 5,
+})
+app.use(limiter)
 
 app.use(authMiddlware)
 app.use(timeout('30s'))
