@@ -10,7 +10,7 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
 
 ### GraphQL
 
-![graphql](/packages/server/assets/images/graphql-interface.png)
+![graphql](assets/images/graphql-interface.png)
 
 ## Steps to run
 
