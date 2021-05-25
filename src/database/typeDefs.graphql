@@ -19,6 +19,7 @@ type Poll {
 	question: String!
 	options: [PollOption]
 	comments: [PollComment]
+	tags: [String]
 	createdDate: String
 	modifiedDate: String
 }
@@ -39,6 +40,7 @@ type PollComment {
 input PollInput {
 	question: String!
 	options: [PollOptionInput]
+	tags: [String]
 }
 
 input PollOptionInput {

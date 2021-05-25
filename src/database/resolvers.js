@@ -51,8 +51,7 @@ module.exports = {
 
 			return { success: !!response }
 		},
-		createPoll: async (parent, args, { userContext }) => {
-			const { pollInput } = args
+		createPoll: async (parent, { pollInput }, { userContext }) => {
 			pollInput.author = userContext._id
 			pollInput.options = pollInput.options.filter((o) => !!o.text)
 
