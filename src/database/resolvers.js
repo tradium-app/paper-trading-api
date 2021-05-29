@@ -21,7 +21,7 @@ module.exports = {
 
 			user.pollsCreated = await Poll.find({ author: user._id }).populate('author').lean().sort({ createdDate: -1 }).limit(20)
 
-			calculatePollVotes(user.pollsCreated, userId || userContext._id)
+			calculatePollVotes(user.pollsCreated, userContext && userContext._id)
 			return user
 		},
 	},
@@ -128,7 +128,11 @@ const calculatePollVotes = (polls, userId) => {
 	polls.forEach((poll) => {
 		poll.options.forEach((option) => {
 			option.totalVotes = option.votes.length
-			option.selected = userId && option.votes.some((v) => v == userId)
+			option.selected =
+				userId &&
+				option.votes.some((v) => {
+					return v.toString() == userId.toString()
+				})
 		})
 	})
 
