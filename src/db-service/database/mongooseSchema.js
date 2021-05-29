@@ -7,6 +7,7 @@ const User = mongoose.model(
 	'User',
 	new Schema({
 		firebaseUid: { type: String, unique: true, required: true, trim: true },
+		userId: { type: String, unique: true, required: true, trim: true },
 		name: String,
 		authProvider: String,
 		email: String,
@@ -29,6 +30,7 @@ const User = mongoose.model(
 const Poll = mongoose.model(
 	'Poll',
 	new Schema({
+		pollId: { type: String, unique: true, trim: true },
 		author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 		question: { type: String, unique: true, required: true, trim: true },
 		options: [

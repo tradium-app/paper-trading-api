@@ -52,8 +52,17 @@ module.exports = {
 			return { success: !!response }
 		},
 		createPoll: async (parent, { pollInput }, { userContext }) => {
+			if (!userContext) {
+				return { success: false, message: 'Please Login to delete.' }
+			}
+			pollInput.pollId = pollInput.question.replace(/[^a-zA-z0-9?.]/gm, '-').replace(/[?.]/gm, '')
 			pollInput.author = userContext._id
 			pollInput.options = pollInput.options.filter((o) => !!o.text)
+
+			const uniqueOptions = pollInput.options.map((o) => o.order).filter((order, index, inputArray) => inputArray.indexOf(order) == index)
+			if (pollInput.options.length > uniqueOptions.length) {
+				return { success: false, message: 'Multiple options have same order.' }
+			}
 
 			if (pollInput.question && pollInput.options.length > 1) {
 				await Poll.create(pollInput)
