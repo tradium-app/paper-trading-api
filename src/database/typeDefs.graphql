@@ -1,6 +1,6 @@
 type User {
 	_id: ID!
-	userId: String!
+	userUrlId: String!
 	name: String!
 	imageUrl: String
 	title: String
@@ -16,6 +16,7 @@ type User {
 
 type Poll {
 	_id: ID!
+	pollUrlId: String!
 	author: User
 	question: String!
 	options: [PollOption]
@@ -72,9 +73,10 @@ type Response {
 }
 
 type Query {
+	getPoll(userUrlId: String, pollUrlId: String): Poll
 	getTopPolls: [Poll]
 	getTopTrendingPolls: [Poll]
-	getUserProfile(userId: String): User
+	getUserProfile(userUrlId: String): User
 }
 
 type Mutation {

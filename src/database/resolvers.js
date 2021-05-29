@@ -5,23 +5,31 @@ const logger = require('../config/logger')
 
 module.exports = {
 	Query: {
+		getPoll: async (_, { userUrlId, pollUrlId }, { userContext }) => {
+			const author = await User.findOne({ userUrlId })
+
+			const poll = await Poll.findOne({ pollUrlId, author: author._id }).populate('author').lean()
+
+			userContext && calculatePollVotes([poll], userContext._id)
+			return poll
+		},
 		getTopPolls: async (_, args, { userContext }) => {
 			const polls = await Poll.find().populate('author').lean().sort({ createdDate: -1 }).limit(100)
 
-			calculatePollVotes(polls, userContext && userContext._id)
+			userContext && calculatePollVotes(polls, userContext._id)
 			return polls
 		},
-		getUserProfile: async (_, { userId }, { userContext }) => {
+		getUserProfile: async (_, { userUrlId }, { userContext }) => {
 			let user
-			if (!!userId) {
-				user = await User.findOne({ userId: userId.toLowerCase() }).lean()
+			if (!!userUrlId) {
+				user = await User.findOne({ userUrlId: userUrlId.toLowerCase() }).lean()
 			} else {
 				user = await User.findOne({ _id: userContext._id }).lean()
 			}
 
 			user.pollsCreated = await Poll.find({ author: user._id }).populate('author').lean().sort({ createdDate: -1 }).limit(20)
 
-			calculatePollVotes(user.pollsCreated, userContext && userContext._id)
+			userContext && calculatePollVotes(user.pollsCreated, userContext._id)
 			return user
 		},
 	},
@@ -42,16 +50,16 @@ module.exports = {
 			let user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, userObj, { upsert: true, new: true }).lean()
 			userObj._id = user._id
 
-			if (!user.userId) {
-				userObj.userId = firebaseRes.user.displayName.toLowerCase().replace(/[^a-zA-z0-9]/gm, '-')
+			if (!user.userUrlId) {
+				userObj.userUrlId = firebaseRes.user.displayName.toLowerCase().replace(/[^a-zA-z0-9]/gm, '-')
 
-				const existingUsers = await User.find({ userId: userObj.userId })
+				const existingUsers = await User.find({ userUrlId: userObj.userUrlId })
 
 				if (existingUsers.length > 0) {
-					userObj.userId = userObj.userId + '-' + existingUsers.length
+					userObj.userUrlId = userObj.userUrlId + '-' + existingUsers.length
 				}
 
-				user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, { userId: userObj.userId }, { new: true }).lean()
+				user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, { userUrlId: userObj.userUrlId }, { new: true }).lean()
 			}
 
 			const accessToken = jwt.sign(userObj, process.env.ACCESS_TOKEN_SECRET, { algorithm: 'HS256' })
@@ -70,7 +78,7 @@ module.exports = {
 			if (!userContext) {
 				return { success: false, message: 'Please Login to delete.' }
 			}
-			pollInput.pollId = pollInput.question.replace(/[^a-zA-z0-9?.]/gm, '-').replace(/[?.]/gm, '')
+			pollInput.pollUrlId = pollInput.question.replace(/[^a-zA-z0-9]/gm, '-').replace(/[?.]/gm, '')
 			pollInput.author = userContext._id
 			pollInput.options = pollInput.options.filter((o) => !!o.text)
 

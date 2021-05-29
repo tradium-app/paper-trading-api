@@ -7,7 +7,7 @@ const User = mongoose.model(
 	'User',
 	new Schema({
 		firebaseUid: { type: String, unique: true, required: true, trim: true },
-		userId: { type: String, unique: true, required: true, trim: true },
+		userUrlId: { type: String, unique: true, required: true, trim: true },
 		name: String,
 		authProvider: String,
 		email: String,
@@ -30,8 +30,8 @@ const User = mongoose.model(
 const Poll = mongoose.model(
 	'Poll',
 	new Schema({
-		pollId: { type: String, unique: true, trim: true },
-		author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+		pollUrlId: { type: String, unique: true, required: true, trim: true },
+		author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 		question: { type: String, unique: true, required: true, trim: true },
 		options: [
 			{
@@ -54,7 +54,19 @@ const Poll = mongoose.model(
 	}),
 )
 
+const Notification = mongoose.model(
+	'Notification',
+	new Schema({
+		message: { type: String, required: true },
+		poll: { type: mongoose.Schema.Types.ObjectId, ref: 'Poll', required: true },
+		user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+		createdAt: { type: Date, default: Date.now() },
+		updatedAt: { type: Date, default: Date.now() },
+	}),
+)
+
 module.exports = {
 	User,
 	Poll,
+	Notification,
 }
