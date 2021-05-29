@@ -42,6 +42,12 @@ module.exports = {
 			if (!user.userId) {
 				userObj.userId = firebaseRes.user.displayName.replace(/[^a-zA-z0-9]/gm, '-')
 
+				const existingUsers = await User.find({ userId: userObj.userId })
+
+				if (existingUsers.length > 0) {
+					userObj.userId = userObj.userId + '-' + existingUsers.length
+				}
+
 				user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, { userId: userObj.userId }, { new: true }).lean()
 			}
 
