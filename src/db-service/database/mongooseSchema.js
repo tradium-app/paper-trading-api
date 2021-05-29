@@ -8,7 +8,7 @@ const User = mongoose.model(
 	new Schema({
 		firebaseUid: { type: String, unique: true, required: true, trim: true },
 		userUrlId: { type: String, unique: true, required: true, trim: true },
-		name: String,
+		name: { type: String, required: true, trim: true },
 		authProvider: String,
 		email: String,
 		imageUrl: String,
@@ -50,7 +50,7 @@ const Poll = mongoose.model(
 		tags: [String],
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
-		status: String,
+		status: { type: String, default: 'Draft' },
 	}),
 )
 
