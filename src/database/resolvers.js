@@ -14,7 +14,7 @@ module.exports = {
 		getUserProfile: async (_, { userId }, { userContext }) => {
 			let user
 			if (!!userId) {
-				user = await User.findOne({ userId }).lean()
+				user = await User.findOne({ userId: userId.toLowerCase() }).lean()
 			} else {
 				user = await User.findOne({ _id: userContext._id }).lean()
 			}
@@ -43,7 +43,7 @@ module.exports = {
 			userObj._id = user._id
 
 			if (!user.userId) {
-				userObj.userId = firebaseRes.user.displayName.replace(/[^a-zA-z0-9]/gm, '-')
+				userObj.userId = firebaseRes.user.displayName.toLowerCase().replace(/[^a-zA-z0-9]/gm, '-')
 
 				const existingUsers = await User.find({ userId: userObj.userId })
 
