@@ -128,11 +128,7 @@ const calculatePollVotes = (polls, userId) => {
 	polls.forEach((poll) => {
 		poll.options.forEach((option) => {
 			option.totalVotes = option.votes.length
-			option.selected =
-				userId &&
-				option.votes.some((v) => {
-					return v.toString() == userId.toString()
-				})
+			option.selected = userId && option.votes.some((v) => v.toString() == userId.toString())
 		})
 	})
 

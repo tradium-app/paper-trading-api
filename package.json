@@ -6,8 +6,8 @@
 	"scripts": {
 		"start": "pm2-runtime start ecosystem.config.js",
 		"format": "prettier --write \"src/**/*.js\"",
-		"test": "jest --testMatch \"**/?(*.)+(spec|test).[tj]s?(x)\" --detectOpenHandles --forceExit --runInBand",
-		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit --runInBand",
+		"test": "jest --testMatch \"**/?(*.)+(spec|test).[tj]s?(x)\" --detectOpenHandles --forceExit --runInBand --passWithNoTests",
+		"test:coverage": "jest --coverage --testMatch '**/?(*.)+(spec|test).[tj]s?(x)'  --detectOpenHandles --forceExit --runInBand --passWithNoTests",
 		"lint": "eslint src/**/**/*.js"
 	},
 	"dependencies": {
