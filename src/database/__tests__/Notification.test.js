@@ -9,7 +9,7 @@ const {
 	Query: { getNotifications },
 } = require('../resolvers')
 
-describe('Resolvers Query getNotifications', () => {
+describe('getNotifications Query', () => {
 	it('should return Notifications with userContext', async () => {
 		const epochTime = Date.now()
 		const userUrlId = `userUrlId-${epochTime}`
