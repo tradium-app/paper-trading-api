@@ -58,10 +58,11 @@ const Notification = mongoose.model(
 	'Notification',
 	new Schema({
 		message: { type: String, required: true },
-		poll: { type: mongoose.Schema.Types.ObjectId, ref: 'Poll', required: true },
+		poll: { type: mongoose.Schema.Types.ObjectId, ref: 'Poll' },
 		user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-		createdAt: { type: Date, default: Date.now() },
-		updatedAt: { type: Date, default: Date.now() },
+		isRead: { type: Boolean, ref: 'User', default: false },
+		createdDate: { type: Date, default: Date.now },
+		modifiedDate: { type: Date, default: Date.now },
 	}),
 )
 

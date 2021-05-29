@@ -1,6 +1,6 @@
 const firebase = require('firebase')
 const jwt = require('jsonwebtoken')
-const { User, Poll } = require('../db-service/database/mongooseSchema')
+const { User, Poll, Notification } = require('../db-service/database/mongooseSchema')
 const logger = require('../config/logger')
 
 module.exports = {
@@ -31,6 +31,14 @@ module.exports = {
 
 			userContext && calculatePollVotes(user.pollsCreated, userContext._id)
 			return user
+		},
+		getNotifications: async (_, args, { userContext }) => {
+			if (!userContext) {
+				return null
+			}
+
+			const notifications = await Notification.find({ user: userContext._id }).lean().sort({ modifiedDate: -1 }).limit(100)
+			return notifications
 		},
 	},
 

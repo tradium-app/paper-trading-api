@@ -18,7 +18,7 @@ query getTopPolls {
     }
     author{
       _id
-      userId
+      userUrlId
       name
     }
   }

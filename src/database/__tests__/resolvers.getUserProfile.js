@@ -10,21 +10,21 @@ const {
 } = require('../resolvers')
 
 describe('Resolvers Query getUserProfile', () => {
-	it('should return User Profile with userId argument without userContext', async () => {
-		const userId = 'getUserProfile-test-1'
-		await User.create({ userId, firebaseUid: 'getUserProfile-firebaseUid-1' })
-		const userProfile = await getUserProfile(null, { userId }, { userContext: null })
+	it('should return User Profile with userUrlId argument without userContext', async () => {
+		const userUrlId = 'getUserProfile-test-1'
+		await User.create({ userUrlId, firebaseUid: 'getUserProfile-firebaseUid-1' })
+		const userProfile = await getUserProfile(null, { userUrlId }, { userContext: null })
 
 		expect(userProfile._id).toBeTruthy()
-		expect(userProfile.userId).toBe(userId)
+		expect(userProfile.userUrlId).toBe(userUrlId)
 	})
 
-	it('should return User Profile without userId argument and with userContext', async () => {
-		const userId = 'getUserProfile-test-1'
-		const user = await User.create({ userId, firebaseUid: 'getUserProfile-firebaseUid-1' })
+	it('should return User Profile without userUrlId argument and with userContext', async () => {
+		const userUrlId = 'getUserProfile-test-1'
+		const user = await User.create({ userUrlId, firebaseUid: 'getUserProfile-firebaseUid-1' })
 		const userProfile = await getUserProfile(null, {}, { userContext: { _id: user._id } })
 
 		expect(userProfile._id).toBeTruthy()
-		expect(userProfile.userId).toBe(userId)
+		expect(userProfile.userUrlId).toBe(userUrlId)
 	})
 })
