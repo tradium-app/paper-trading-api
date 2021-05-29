@@ -36,8 +36,14 @@ module.exports = {
 				authProvider: credential.providerId,
 			}
 
-			const user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, userObj, { upsert: true, new: true }).lean()
+			let user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, userObj, { upsert: true, new: true }).lean()
 			userObj._id = user._id
+
+			if (!user.userId) {
+				userObj.userId = firebaseRes.user.displayName.replace(/[^a-zA-z0-9]/gm, '-')
+
+				user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, { userId: userObj.userId }, { new: true }).lean()
+			}
 
 			const accessToken = jwt.sign(userObj, process.env.ACCESS_TOKEN_SECRET, { algorithm: 'HS256' })
 			return { success: true, user, accessToken }

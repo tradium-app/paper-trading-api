@@ -1,8 +1,6 @@
-const path = require('path')
-require('dotenv').config({
-	path: path.join(__dirname, '../../../.env'),
-})
-require('../../firebaseInit.js')
+// require('dotenv').config()
+const firebase = require('firebase')
+const jwt = require('jsonwebtoken')
 const TestDbServer = require('../../db-service/tests/test-db-server.js')
 
 beforeAll(async () => await TestDbServer.connect())
@@ -13,12 +11,27 @@ const {
 	Mutation: { loginUser },
 } = require('../resolvers')
 
-describe('Resolvers Mutation loginUser', () => {
-	it('should FAIL with invalid token', async () => {
-		expect.assertions(1)
+jest.mock('firebase')
 
-		await loginUser(null, { accessToken: 'INVALID_TOKEN' }, {}).catch((error) => {
-			expect(error).toBeInstanceOf(Error)
-		})
+firebase.auth.mockReturnValue({
+	signInWithCredential: () => {
+		return {
+			user: {
+				uid: 'uid1',
+				displayName: 'my test user',
+			},
+		}
+	},
+})
+firebase.auth.GoogleAuthProvider.credential.mockReturnValue({
+	providerId: 'testProvier',
+})
+
+describe('Resolvers Mutation loginUser', () => {
+	it('should SUCCEED with token', async () => {
+		const response = await loginUser(null, { accessToken: 'SOME_TOKEN' }, {})
+
+		expect(response.user._id).toBeTruthy()
+		expect(response.user.userId).toBe('my-test-user')
 	})
 })
