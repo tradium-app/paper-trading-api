@@ -12,9 +12,12 @@ module.exports = {
 			return polls
 		},
 		getUserProfile: async (_, { userId }, { userContext }) => {
-			const user = await User.findById(userId || userContext._id)
-				.lean()
-				.limit(1)
+			let user
+			if (!!userId) {
+				user = await User.findOne({ userId }).lean()
+			} else {
+				user = await User.findOne({ _id: userContext._id }).lean()
+			}
 
 			user.pollsCreated = await Poll.find({ author: user._id }).populate('author').lean().sort({ createdDate: -1 }).limit(20)
 
