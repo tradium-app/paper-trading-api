@@ -78,7 +78,7 @@ module.exports = {
 			if (!userContext) {
 				return { success: false, message: 'Please Login to delete.' }
 			}
-			pollInput.pollUrlId = pollInput.question.replace(/[^a-zA-z0-9]/gm, '-').replace(/[?.]/gm, '')
+			pollInput.pollUrlId = pollInput.question.replace(/[^a-zA-z0-9?.]/gm, '-').replace(/[?.]/gm, '')
 			pollInput.author = userContext._id
 			pollInput.options = pollInput.options.filter((o) => !!o.text)
 
