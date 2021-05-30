@@ -28,6 +28,8 @@ module.exports = {
 				user = await User.findOne({ _id: userContext._id }).lean()
 			}
 
+			if (!user) return null
+
 			user.pollsCreated = await Poll.find({ author: user._id }).populate('author').lean().sort({ createdDate: -1 }).limit(20)
 
 			userContext && calculatePollVotes(user.pollsCreated, userContext._id)
