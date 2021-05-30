@@ -15,24 +15,26 @@ module.exports = async function () {
 
 		polls.forEach((poll) => {
 			poll.options.forEach((option) => {
+				const votes = option.votes.filter((vote) => vote._id.toString() != poll.author._id.toString())
+
 				const pollNotifications = notifications.find((notif) => {
-					return option.votes.some((vote) => {
+					return votes.some((vote) => {
 						vote._id == notif.user._id && notif.poll._id == poll._id
 					})
 				})
 
-				if (!pollNotifications && option.votes.length > 0) {
+				if (!pollNotifications && votes.length > 0) {
 					let message = ``
 					const messageSuffix = 'answered your poll. Please take a look.'
 					let userNames = []
 
-					for (let index = 0; index <= 2 && index < option.votes.length; index++) {
-						userNames[index] = option.votes[index].name.split(' ')[0]
+					for (let index = 0; index <= 2 && index < votes.length; index++) {
+						userNames[index] = votes[index].name.split(' ')[0]
 					}
 
-					if (option.votes.length > 2) {
-						message = `${userNames[0]}, ${userNames[1]} and ${option.votes.length - 2} more people have ${messageSuffix}`
-					} else if (option.votes.length == 2) {
+					if (votes.length > 2) {
+						message = `${userNames[0]}, ${userNames[1]} and ${votes.length - 2} more people have ${messageSuffix}`
+					} else if (votes.length == 2) {
 						message = `${userNames[0]} and ${userNames[1]} have ${messageSuffix}`
 					} else {
 						message = `${userNames[0]} has ${messageSuffix}`
