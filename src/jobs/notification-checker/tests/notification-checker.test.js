@@ -8,7 +8,7 @@ afterAll(async () => await TestDbServer.closeDatabase())
 const notificationCheckerJob = require('../index')
 
 describe('notification checker', () => {
-	it('should create a notification for author about voter only', async () => {
+	it('should create a notification for author about voter only; should create/modify only one notification in 2 days', async () => {
 		const epochTime = Date.now()
 
 		const author = await User.create({ userUrlId: 'userUrlId-1', firebaseUid: 'firebaseUid-1', name: 'author1' })
@@ -24,13 +24,12 @@ describe('notification checker', () => {
 			],
 		})
 
-		await Notification.create({ user: poll.author._id, poll: poll._id, message: 'dummy notification' })
-
+		await notificationCheckerJob()
 		await notificationCheckerJob()
 
 		const notifications = await Notification.find({ poll: poll._id, user: author._id }, {}, { sort: { modifiedDate: -1 } })
 
-		expect(notifications.some((notif) => /voter1/g.test(notif.message))).toBe(true)
+		expect(notifications.filter((notif) => /voter1/g.test(notif.message)).length).toBe(1)
 		expect(notifications.some((notif) => /author1/g.test(notif.message))).toBe(false)
 	})
 })
