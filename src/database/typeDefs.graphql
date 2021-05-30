@@ -68,6 +68,7 @@ type Notification {
 	_id: ID!
 	message: String!
 	user: User!
+	poll: Poll
 	isRead: Boolean!
 	createdDate: String
 	modifiedDate: String
@@ -86,7 +87,7 @@ type Query {
 	getTopPolls: [Poll]
 	getTopTrendingPolls: [Poll]
 	getUserProfile(userUrlId: String): User
-	getNotifications: Notification
+	getNotifications: [Notification]
 }
 
 type Mutation {

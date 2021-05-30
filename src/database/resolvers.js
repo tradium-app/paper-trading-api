@@ -32,12 +32,17 @@ module.exports = {
 			userContext && calculatePollVotes(user.pollsCreated, userContext._id)
 			return user
 		},
-		getNotifications: async (_, args, { userContext }) => {
+		getNotifications: async (_, {}, { userContext }) => {
 			if (!userContext) {
 				return null
 			}
 
-			const notifications = await Notification.find({ user: userContext._id }).lean().sort({ modifiedDate: -1 }).limit(100)
+			const notifications = await Notification.find({ user: userContext._id })
+				.populate('user')
+				.populate('poll')
+				.lean()
+				.sort({ modifiedDate: -1 })
+				.limit(100)
 			return notifications
 		},
 	},
