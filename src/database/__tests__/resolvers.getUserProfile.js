@@ -12,7 +12,7 @@ const {
 describe('Resolvers Query getUserProfile', () => {
 	it('should return User Profile with userUrlId argument without userContext', async () => {
 		const userUrlId = 'getUserProfile-test-1'
-		await User.create({ userUrlId, firebaseUid: 'getUserProfile-firebaseUid-1' })
+		await User.create({ userUrlId, firebaseUid: 'getUserProfile-firebaseUid-1', name: 'user1' })
 		const userProfile = await getUserProfile(null, { userUrlId }, { userContext: null })
 
 		expect(userProfile._id).toBeTruthy()
@@ -21,7 +21,7 @@ describe('Resolvers Query getUserProfile', () => {
 
 	it('should return User Profile without userUrlId argument and with userContext', async () => {
 		const userUrlId = 'getUserProfile-test-1'
-		const user = await User.create({ userUrlId, firebaseUid: 'getUserProfile-firebaseUid-1' })
+		const user = await User.create({ userUrlId, firebaseUid: 'getUserProfile-firebaseUid-1', name: 'user1' })
 		const userProfile = await getUserProfile(null, {}, { userContext: { _id: user._id } })
 
 		expect(userProfile._id).toBeTruthy()

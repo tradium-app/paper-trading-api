@@ -15,12 +15,12 @@ describe('getNotifications Query', () => {
 		const userUrlId = `userUrlId-${epochTime}`
 		const message = 'dummy notification'
 
-		const user = await User.create({ userUrlId, firebaseUid: `fuid-${epochTime}` })
+		const user = await User.create({ userUrlId, firebaseUid: `fuid-${epochTime}`, name: 'user1' })
 		await Notification.create({ user: user._id, message })
 
-		const notifications = await getNotifications(null, null, { userContext: { _id: user._id } })
+		const notifications = await getNotifications(null, {}, { userContext: { _id: user._id } })
 
 		expect(notifications[0].message).toBe(message)
-		expect(notifications[0].user.toString()).toBe(user._id.toString())
+		expect(notifications[0].user._id.toString()).toBe(user._id.toString())
 	})
 })

@@ -15,7 +15,7 @@ describe('Resolvers Query getPoll', () => {
 		const userUrlId = `userUrlId-${epochTime}`
 		const pollUrlId = `pollUrlId-${epochTime}`
 
-		const author = await User.create({ userUrlId, firebaseUid: `fuid-${epochTime}` })
+		const author = await User.create({ userUrlId, firebaseUid: `fuid-${epochTime}`, name: 'user1' })
 		await Poll.create({ pollUrlId, question: `question-${epochTime}`, author: author._id })
 
 		const poll = await getPoll(null, { userUrlId, pollUrlId }, {})
