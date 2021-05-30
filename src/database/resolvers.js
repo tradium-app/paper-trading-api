@@ -14,7 +14,8 @@ module.exports = {
 			return poll
 		},
 		getTopPolls: async (_, args, { userContext }) => {
-			const polls = await Poll.find().populate('author').lean().sort({ createdDate: -1 }).limit(100)
+			let polls = await Poll.find().populate('author').lean().sort({ createdDate: -1 }).limit(100)
+			polls = polls.filter((p) => p.author != null)
 
 			userContext && calculatePollVotes(polls, userContext._id)
 			return polls

@@ -17,7 +17,7 @@ type User {
 type Poll {
 	_id: ID!
 	pollUrlId: String!
-	author: User
+	author: User!
 	question: String!
 	options: [PollOption]
 	comments: [PollComment]

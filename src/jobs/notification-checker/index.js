@@ -13,7 +13,7 @@ module.exports = async function () {
 			let totalVotes = poll.options?.reduce((totalVoters, option) => {
 				return { votes: totalVoters.votes.concat(option.votes) }
 			}).votes
-			totalVotes = totalVotes.filter((vote) => vote._id.toString() != poll.author._id.toString())
+			totalVotes = totalVotes.filter((vote) => vote._id.toString() != poll.author?._id.toString())
 
 			if (poll.author && totalVotes.length > 0) {
 				let message = ``
@@ -34,7 +34,15 @@ module.exports = async function () {
 
 				const upsertPromise = Notification.updateOne(
 					{ poll: poll._id, createdDate: { $gte: twoDaysAgo } },
-					{ user: poll.author._id, poll: poll._id, message, imageUrl: totalVotes[0].imageUrl, createdDate: new Date() },
+					{
+						user: poll.author._id,
+						poll: poll._id,
+						message,
+						imageUrl: totalVotes[0].imageUrl,
+						createdDate: new Date(),
+						modifiedDate: new Date(),
+						isRead: false,
+					},
 					{ upsert: true },
 				)
 
