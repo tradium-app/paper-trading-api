@@ -10,14 +10,14 @@ module.exports = {
 
 			const poll = await Poll.findOne({ pollUrlId, author: author._id }).populate('author').lean()
 
-			userContext && calculatePollVotes([poll], userContext._id)
+			calculatePollVotes([poll], userContext && userContext._id)
 			return poll
 		},
 		getTopPolls: async (_, args, { userContext }) => {
 			let polls = await Poll.find().populate('author').lean().sort({ createdDate: -1 }).limit(100)
 			polls = polls.filter((p) => p.author != null)
 
-			userContext && calculatePollVotes(polls, userContext._id)
+			calculatePollVotes(polls, userContext && userContext._id)
 			return polls
 		},
 		getUserProfile: async (_, { userUrlId }, { userContext }) => {
@@ -32,7 +32,7 @@ module.exports = {
 
 			user.pollsCreated = await Poll.find({ author: user._id }).populate('author').lean().sort({ createdDate: -1 }).limit(20)
 
-			userContext && calculatePollVotes(user.pollsCreated, userContext._id)
+			calculatePollVotes(user.pollsCreated, userContext && userContext._id)
 			return user
 		},
 		getNotifications: async (_, {}, { userContext }) => {
