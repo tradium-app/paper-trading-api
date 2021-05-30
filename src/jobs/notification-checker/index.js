@@ -41,7 +41,7 @@ module.exports = async function () {
 							message = `${userNames[0]} has ${messageSuffix}`
 						}
 
-						const createPromise = Notification.create({ user: poll.author._id, poll: poll._id, message })
+						const createPromise = Notification.create({ user: poll.author._id, poll: poll._id, message, imageUrl: votes[0].imageUrl })
 						createPromises.push(createPromise)
 					}
 				})

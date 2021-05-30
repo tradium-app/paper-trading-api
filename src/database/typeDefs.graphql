@@ -67,6 +67,7 @@ input UserInput {
 type Notification {
 	_id: ID!
 	message: String!
+	imageUrl: String
 	user: User!
 	poll: Poll
 	isRead: Boolean!

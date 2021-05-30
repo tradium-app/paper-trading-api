@@ -58,6 +58,7 @@ const Notification = mongoose.model(
 	'Notification',
 	new Schema({
 		message: { type: String, required: true },
+		imageUrl: String,
 		poll: { type: mongoose.Schema.Types.ObjectId, ref: 'Poll' },
 		user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 		isRead: { type: Boolean, ref: 'User', default: false },
