@@ -15,6 +15,7 @@ const colors = require('colors/safe')
 const Agenda = require('agenda')
 const Agendash = require('agendash')
 const GraphQlErrorLoggingPlugin = require('./config/graphql-error-logging')
+const NewRelicPlugin = require('@newrelic/apollo-server-plugin')
 require('./firebaseInit')
 const authMiddlware = require('./auth-express-middleware')
 
@@ -67,7 +68,7 @@ const apolloServer = new ApolloServer({
 		res,
 		...mongooseSchema,
 	}),
-	plugins: [GraphQlErrorLoggingPlugin],
+	plugins: [GraphQlErrorLoggingPlugin, NewRelicPlugin],
 })
 apolloServer.applyMiddleware({ app, cors: false })
 
