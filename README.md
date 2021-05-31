@@ -22,6 +22,13 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
 5. `jest --runInBand -t 'some test description'` -- it will run tests with `some test description` in `it` description
 6. `yarn lint` --to show linting errors. Add [`--fix`] to auto fix errors.
 
+## To run as Docker Image
+
+1. [Optional]: If you are using local mongodb, change `localhost` to `docker.for.mac.host.internal` for mac machines to connect from inside container
+2. `docker build -t devpolls.api .` --to build docker
+3. `docker run --env-file ./.env -p 27017:27017 -p 8080:8080 devpolls.api` --to run docker container
+4. `docker stop $(docker ps -q --filter ancestor=devpolls.api)` --to stop docker containers
+
 ## Key points
 
 1. Uses mongoose as ORM for mongodb
