@@ -3,11 +3,19 @@ const logger = require('../../config/logger')
 
 module.exports = async function () {
 	try {
-		const polls = await Poll.find().populate('author').populate('options.votes').lean().sort({ modifiedDate: -1 }).limit(100)
+		const { threeDaysAgo, aMonthAgo } = getDateVariables()
 
-		var twoDaysAgo = new Date()
-		twoDaysAgo.setDate(twoDaysAgo.getDate() - 2)
-		const upsertPromises = []
+		const polls = await Poll.find({ createdDate: { $gte: aMonthAgo } })
+			.populate('author')
+			.populate('options.votes')
+			.lean()
+			.sort({ modifiedDate: -1 })
+			.limit(100)
+
+		let allNotificationsIn3Days = await Notification.find({ createdDate: { $gte: threeDaysAgo } }, { poll: 1 }).lean()
+		allNotificationsIn3Days = allNotificationsIn3Days.map((n) => n.poll.toString())
+
+		const createPromises = []
 
 		polls.forEach((poll) => {
 			let totalVotes = poll.options?.reduce((totalVoters, option) => {
@@ -32,9 +40,8 @@ module.exports = async function () {
 					message = `${userNames[0]} has ${messageSuffix}`
 				}
 
-				const upsertPromise = Notification.updateOne(
-					{ poll: poll._id, createdDate: { $gte: twoDaysAgo } },
-					{
+				if (allNotificationsIn3Days.includes(poll._id.toString()) == false) {
+					const createPromise = Notification.create({
 						user: poll.author._id,
 						poll: poll._id,
 						message,
@@ -42,17 +49,25 @@ module.exports = async function () {
 						createdDate: new Date(),
 						modifiedDate: new Date(),
 						isRead: false,
-					},
-					{ upsert: true },
-				)
-
-				upsertPromises.push(upsertPromise)
+					})
+					createPromises.push(createPromise)
+				}
 			}
 		})
 
-		await Promise.all(upsertPromises)
+		await Promise.all(createPromises)
 	} catch (error) {
 		logger.info('Notification checker error ', error)
 	}
 	logger.info('Notification job completed')
+}
+
+const getDateVariables = () => {
+	let threeDaysAgo = new Date()
+	threeDaysAgo.setDate(threeDaysAgo.getDate() - 2)
+
+	let aMonthAgo = new Date()
+	aMonthAgo.setMonth(aMonthAgo.getMonth() - 1)
+
+	return { threeDaysAgo, aMonthAgo }
 }

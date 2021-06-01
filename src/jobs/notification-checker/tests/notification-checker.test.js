@@ -8,7 +8,7 @@ afterAll(async () => await TestDbServer.closeDatabase())
 const notificationCheckerJob = require('../index')
 
 describe('notification checker', () => {
-	it('should create a notification for author about voter only; should create/modify only one notification in 2 days', async () => {
+	it('should create a notification for author about voter only; should create only one notification in 3 days for a month', async () => {
 		const epochTime = Date.now()
 
 		const author = await User.create({ userUrlId: 'userUrlId-1', firebaseUid: 'firebaseUid-1', name: 'author1' })
