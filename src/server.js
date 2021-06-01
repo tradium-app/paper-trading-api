@@ -1,4 +1,5 @@
 require('dotenv').config()
+const NewRelicPlugin = require('@newrelic/apollo-server-plugin')
 const morgan = require('morgan')
 const express = require('express')
 const timeout = require('connect-timeout')
@@ -14,7 +15,8 @@ const colors = require('colors/safe')
 const Agenda = require('agenda')
 const Agendash = require('agendash')
 const GraphQlErrorLoggingPlugin = require('./config/graphql-error-logging')
-const NewRelicPlugin = require('@newrelic/apollo-server-plugin')
+const { createPrometheusExporterPlugin } = require('@bmatei/apollo-prometheus-exporter')
+
 require('./firebaseInit')
 const authMiddlware = require('./auth-express-middleware')
 
@@ -58,6 +60,8 @@ app.use('/dash', Agendash(agenda))
 const typeDefSchema = requireGraphQLFile('./database/typeDefs.graphql')
 const typeDefs = gql(typeDefSchema)
 
+const prometheusExporterPlugin = createPrometheusExporterPlugin({ app })
+
 const apolloServer = new ApolloServer({
 	typeDefs: typeDefs,
 	resolvers: resolvers,
@@ -67,7 +71,7 @@ const apolloServer = new ApolloServer({
 		res,
 		...mongooseSchema,
 	}),
-	plugins: [GraphQlErrorLoggingPlugin, NewRelicPlugin],
+	plugins: [NewRelicPlugin, prometheusExporterPlugin, GraphQlErrorLoggingPlugin],
 })
 apolloServer.applyMiddleware({ app, cors: false })
 
