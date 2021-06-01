@@ -5,7 +5,7 @@ module.exports = async function () {
 	try {
 		const { threeDaysAgo, aMonthAgo } = getDateVariables()
 
-		const polls = await Poll.find({ createdDate: { $gte: aMonthAgo } })
+		const polls = await Poll.find({ createdDate: { $gte: aMonthAgo }, status: { $ne: 'Deleted' } })
 			.populate('author')
 			.populate('options.votes')
 			.lean()
