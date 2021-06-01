@@ -28,8 +28,8 @@ module.exports = async function () {
 				const messageSuffix = `answered your poll. "${poll.question.substring(0, 100)}.." Please take a look.`
 				let userNames = []
 
-				for (let index = 0; index <= 2 && index < totalVotes.length; index++) {
-					userNames[index] = totalVotes[index].name.split(' ')[0]
+				for (let index = totalVotes.length - 1; index >= 0 && index > totalVotes.length - 3; index--) {
+					userNames.push(totalVotes[index].name.split(' ')[0])
 				}
 
 				if (totalVotes.length > 2) {
