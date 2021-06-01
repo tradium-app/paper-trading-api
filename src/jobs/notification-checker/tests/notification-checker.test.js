@@ -30,7 +30,6 @@ describe('notification checker', () => {
 		await notificationCheckerJob()
 
 		const notifications = await Notification.find({ poll: poll._id, user: author._id }, {}, { sort: { modifiedDate: -1 } })
-		console.log('printing notifications', notifications)
 
 		expect(notifications.filter((notif) => /voter3/g.test(notif.message)).length).toBe(1)
 		expect(notifications.some((notif) => /author1/g.test(notif.message))).toBe(false)
