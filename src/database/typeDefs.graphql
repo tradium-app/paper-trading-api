@@ -24,6 +24,7 @@ type Poll {
 	tags: [String]
 	createdDate: String
 	modifiedDate: String
+	status: String
 }
 
 type PollOption {
@@ -40,9 +41,11 @@ type PollComment {
 }
 
 input PollInput {
+	_id: ID
 	question: String!
 	options: [PollOptionInput]
 	tags: [String]
+	status: String
 }
 
 input PollOptionInput {

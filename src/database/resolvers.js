@@ -14,7 +14,7 @@ module.exports = {
 			return poll
 		},
 		getTopPolls: async (_, args, { userContext }) => {
-			let polls = await Poll.find().populate('author').lean().sort({ createdDate: -1 }).limit(100)
+			let polls = await Poll.find({ status: 'Published' }).populate('author').lean().sort({ createdDate: -1 }).limit(100)
 			polls = polls.filter((p) => p.author != null)
 
 			calculatePollVotes(polls, userContext && userContext._id)
@@ -104,8 +104,13 @@ module.exports = {
 			}
 
 			if (pollInput.question && pollInput.options.length > 1) {
-				await Poll.create(pollInput)
-				return { success: true }
+				let response = null
+				if (pollInput._id) {
+					response = await Poll.updateOne({ _id: pollInput._id }, pollInput)
+				} else {
+					response = await Poll.create(pollInput)
+				}
+				return { success: response.ok && response.n == 1 }
 			} else {
 				return { success: false }
 			}
