@@ -10,29 +10,33 @@ module.exports = {
 
 			const poll = await Poll.findOne({ pollUrlId, author: author._id }).populate('author').lean()
 
-			calculatePollVotes([poll], userContext && userContext._id)
+			calculatePollVotes([poll], userContext?._id)
 			return poll
 		},
 		getTopPolls: async (_, args, { userContext }) => {
 			let polls = await Poll.find({ status: 'Published' }).populate('author').lean().sort({ createdDate: -1 }).limit(100)
 			polls = polls.filter((p) => p.author != null)
 
-			calculatePollVotes(polls, userContext && userContext._id)
+			calculatePollVotes(polls, userContext?._id)
 			return polls
 		},
 		getUserProfile: async (_, { userUrlId }, { userContext }) => {
-			let user
-			if (!!userUrlId) {
-				user = await User.findOne({ userUrlId: userUrlId.toLowerCase() }).lean()
-			} else {
-				user = await User.findOne({ _id: userContext._id }).lean()
-			}
+			const user = await User.findOne({ userUrlId: userUrlId.toLowerCase() }).lean()
 
 			if (!user) return null
 
-			user.pollsCreated = await Poll.find({ author: user._id }).populate('author').lean().sort({ createdDate: -1 }).limit(20)
+			const allowedStatus = ['Published']
+			if (userUrlId == userContext?.userUrlId) {
+				allowedStatus.push('Draft')
+			}
 
-			calculatePollVotes(user.pollsCreated, userContext && userContext._id)
+			user.pollsCreated = await Poll.find({ author: user._id, status: { $in: allowedStatus } })
+				.populate('author')
+				.lean()
+				.sort({ createdDate: -1 })
+				.limit(20)
+
+			calculatePollVotes(user.pollsCreated, userContext?._id)
 			return user
 		},
 		getNotifications: async (_, {}, { userContext }) => {
@@ -78,6 +82,7 @@ module.exports = {
 				user = await User.findOneAndUpdate({ firebaseUid: firebaseRes.user.uid }, { userUrlId: userObj.userUrlId }, { new: true }).lean()
 			}
 
+			userObj.userUrlId = user.userUrlId
 			const accessToken = jwt.sign(userObj, process.env.ACCESS_TOKEN_SECRET, { algorithm: 'HS256' })
 			return { success: true, user, accessToken }
 		},
