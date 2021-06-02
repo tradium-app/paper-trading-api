@@ -24,6 +24,7 @@ describe('Resolvers Query getTopPolls', () => {
 				{ order: 1, text: 'option 1' },
 				{ order: 2, text: 'option 2', votes: [author.id] },
 			],
+			status: 'Published',
 		})
 
 		const polls = await getTopPolls(null, { userUrlId, pollUrlId }, {})
