@@ -1,6 +1,6 @@
 const firebase = require('firebase')
 const jwt = require('jsonwebtoken')
-const { User, Poll, Notification } = require('../db-service/database/mongooseSchema')
+const { User, Poll, Tag, Notification } = require('../db-service/database/mongooseSchema')
 const logger = require('../config/logger')
 
 module.exports = {
@@ -19,6 +19,13 @@ module.exports = {
 
 			calculatePollVotes(polls, userContext?._id)
 			return polls
+		},
+		getTopTags: async (_, { searchText }, {}) => {
+			const tags = await Tag.find({ tagId: { $regex: '^' + searchText }, status: 'Active' }, { tagId: 1, currentMonthCount: 1 })
+				.sort({ modifiedDate: -1 })
+				.limit(100)
+
+			return tags
 		},
 		getUserProfile: async (_, { userUrlId }, { userContext }) => {
 			const user = await User.findOne({ userUrlId: userUrlId.toLowerCase() }).lean()

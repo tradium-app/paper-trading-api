@@ -66,10 +66,10 @@ const Tag = mongoose.model(
 	'Tag',
 	new Schema({
 		tagId: { type: String, unique: true, required: true },
-		count: { type: Number, required: true, default: 0 },
+		currentMonthCount: { type: Number, required: true, default: 0 },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
-		status: { type: String, default: 'NotUsed' },
+		status: { type: String, default: 'Active' },
 	}),
 )
 

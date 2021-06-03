@@ -58,6 +58,12 @@ input PollVote {
 	optionId: ID!
 }
 
+type Tag {
+	_id: ID!
+	tagId: String
+	count: Float
+}
+
 input UserInput {
 	imageUrl: String
 	title: String
@@ -89,7 +95,7 @@ type Response {
 type Query {
 	getPoll(userUrlId: String, pollUrlId: String): Poll
 	getTopPolls: [Poll]
-	getTopTrendingPolls: [Poll]
+	getTopTags(searchText: String): [Tag]
 	getUserProfile(userUrlId: String): User
 	getNotifications: [Notification]
 }

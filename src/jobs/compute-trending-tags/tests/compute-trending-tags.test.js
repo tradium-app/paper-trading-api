@@ -35,7 +35,7 @@ describe('compute-trending-tags', () => {
 		await ComputeTrendingTagsJob()
 
 		const tagGroups = await Tag.find().lean()
-		expect(tagGroups.find((tg) => tg.tagId == 'tag1').count).toBe(4)
-		expect(tagGroups.find((tg) => tg.tagId == 'tag2').count).toBe(3)
+		expect(tagGroups.find((tg) => tg.tagId == 'tag1').currentMonthCount).toBe(4)
+		expect(tagGroups.find((tg) => tg.tagId == 'tag2').currentMonthCount).toBe(3)
 	})
 })

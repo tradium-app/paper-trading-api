@@ -6,10 +6,7 @@ module.exports = async function () {
 		let aMonthAgo = new Date()
 		aMonthAgo.setMonth(aMonthAgo.getMonth() - 1)
 
-		const polls = await Poll.find({ createdDate: { $gte: aMonthAgo }, status: { $ne: 'Deleted' } }, { tags: 1 })
-			.lean()
-			.sort({ modifiedDate: -1 })
-			.limit(100)
+		const polls = await Poll.find({ createdDate: { $gte: aMonthAgo }, status: { $ne: 'Deleted' } }, { tags: 1 }).limit(100000)
 
 		let pollTags = []
 		polls.forEach((poll) => {
@@ -18,9 +15,16 @@ module.exports = async function () {
 
 		const pollTagsGroupCount = pollTags.reduce((a, c) => ((a[c] = (a[c] || 0) + 1), a), {})
 
+		Tag.updateMany({}, { currentMonthCount: 0 }, { upsert: true })
+
 		const updatePromises = []
+		const currentTime = Date.now()
 		Object.keys(pollTagsGroupCount).forEach((key) => {
-			const updatePromise = Tag.updateOne({ tagId: key }, { count: pollTagsGroupCount[key] }, { upsert: true })
+			const updatePromise = Tag.updateOne(
+				{ tagId: key },
+				{ currentMonthCount: pollTagsGroupCount[key], modifiedDate: currentTime },
+				{ upsert: true },
+			)
 			updatePromises.push(updatePromise)
 		})
 
