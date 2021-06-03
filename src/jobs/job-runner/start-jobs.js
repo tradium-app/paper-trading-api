@@ -22,5 +22,5 @@ module.exports = async function () {
 
 	await agenda.start()
 	await agenda.every('30 minutes', 'check notifications')
-	await agenda.every('4 hours', 'check notifications')
+	await agenda.every('4 hours', 'compute trending tags')
 }

@@ -21,12 +21,9 @@ module.exports = {
 			return polls
 		},
 		getTopTags: async (_, { searchText }, {}) => {
-			console.log('printing searchText', searchText)
 			const tags = await Tag.find({ tagId: { $regex: '^' + searchText, $options: '-i' }, status: 'Active' }, { tagId: 1, currentMonthCount: 1 })
 				.sort({ modifiedDate: -1 })
 				.limit(100)
-
-			console.log('printing tags', tags)
 
 			return tags
 		},
