@@ -27,30 +27,49 @@ const User = mongoose.model(
 	}),
 )
 
-const Poll = mongoose.model(
-	'Poll',
+const PollSchema = new Schema({
+	pollUrlId: { type: String, unique: true, required: true, trim: true },
+	author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+	question: { type: String, unique: true, required: true, trim: true },
+	options: [
+		{
+			text: String,
+			order: { type: Number, required: true },
+			votes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+			totalVotes: Number,
+		},
+	],
+	comments: [
+		{
+			author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+			text: String,
+		},
+	],
+	tags: [String],
+	createdDate: { type: Date, default: Date.now },
+	modifiedDate: { type: Date, default: Date.now },
+	status: { type: String, default: 'Draft' },
+})
+
+PollSchema.path('options').validate(function (options) {
+	if (!options) {
+		return false
+	} else if (options.length < 2) {
+		return false
+	}
+	return true
+}, 'Poll needs to have at least two options')
+
+const Poll = mongoose.model('Poll', PollSchema)
+
+const Tag = mongoose.model(
+	'Tag',
 	new Schema({
-		pollUrlId: { type: String, unique: true, required: true, trim: true },
-		author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-		question: { type: String, unique: true, required: true, trim: true },
-		options: [
-			{
-				text: String,
-				order: { type: Number, required: true },
-				votes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-				totalVotes: Number,
-			},
-		],
-		comments: [
-			{
-				author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-				text: String,
-			},
-		],
-		tags: [String],
+		tagId: { type: String, unique: true, required: true },
+		count: { type: Number, required: true, default: 0 },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
-		status: { type: String, default: 'Draft' },
+		status: { type: String, default: 'NotUsed' },
 	}),
 )
 
@@ -70,5 +89,6 @@ const Notification = mongoose.model(
 module.exports = {
 	User,
 	Poll,
+	Tag,
 	Notification,
 }
