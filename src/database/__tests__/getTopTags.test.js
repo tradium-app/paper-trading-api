@@ -17,7 +17,7 @@ describe('Resolvers Query getTopTags', () => {
 			{ tagId: 'Python', currentMonthCount: 3 },
 		])
 
-		const tagGroups = await getTopTags({}, { searchText: 'Ja' }, {})
+		const tagGroups = await getTopTags({}, { searchText: 'ja' }, {})
 
 		expect(tagGroups.length).toBe(2)
 		expect(tagGroups.find((tg) => tg.tagId == 'Python')).toBe(undefined)

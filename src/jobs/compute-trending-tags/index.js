@@ -17,20 +17,19 @@ module.exports = async function () {
 
 		Tag.updateMany({}, { currentMonthCount: 0 }, { upsert: true })
 
-		const updatePromises = []
 		const currentTime = Date.now()
-		Object.keys(pollTagsGroupCount).forEach((key) => {
-			const updatePromise = Tag.updateOne(
-				{ tagId: key },
-				{ currentMonthCount: pollTagsGroupCount[key], modifiedDate: currentTime },
-				{ upsert: true },
-			)
-			updatePromises.push(updatePromise)
-		})
+		const keys = Object.keys(pollTagsGroupCount)
 
-		await Promise.all(updatePromises)
+		for (let index = 0; index < keys.length; index++) {
+			const key = keys[index]
+			await Tag.updateOne(
+				{ tagId: key },
+				{ $set: { currentMonthCount: pollTagsGroupCount[key], modifiedDate: currentTime } },
+				{ upsert: true, setDefaultsOnInsert: true },
+			)
+		}
 	} catch (error) {
-		logger.info('Notification checker error ', error)
+		logger.info('Compute Trending Tags error ', error)
 	}
-	logger.info('Notification job completed')
+	logger.info('Compute Trending Tags job completed')
 }

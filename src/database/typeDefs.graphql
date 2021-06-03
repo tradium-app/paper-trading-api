@@ -61,7 +61,7 @@ input PollVote {
 type Tag {
 	_id: ID!
 	tagId: String
-	count: Float
+	currentMonthCount: Float
 }
 
 input UserInput {
