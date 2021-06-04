@@ -104,7 +104,7 @@ module.exports = {
 		},
 		createPoll: async (parent, { pollInput }, { userContext }) => {
 			if (!userContext) {
-				return { success: false, message: 'Please Login to delete.' }
+				return { success: false, message: 'Please Login to Create Poll.' }
 			}
 			pollInput.pollUrlId = pollInput.question.replace(/[^a-zA-z0-9?.]/gm, '-').replace(/[?.]/gm, '')
 			pollInput.author = userContext._id
@@ -118,7 +118,10 @@ module.exports = {
 			if (pollInput.question && pollInput.options.length > 1) {
 				let response = null
 				if (pollInput._id) {
-					response = await Poll.updateOne({ _id: pollInput._id }, pollInput)
+					response = await Poll.updateOne(
+						{ _id: pollInput._id },
+						{ question: pollInput.question, options: pollInput.options, tags: pollInput.tags },
+					)
 				} else {
 					response = await Poll.create(pollInput)
 				}
@@ -126,6 +129,35 @@ module.exports = {
 			} else {
 				return { success: false }
 			}
+		},
+		updatePoll: async (parent, { pollInput }, { userContext }) => {
+			if (!userContext) {
+				return { success: false, message: 'Please Login to update Poll.' }
+			}
+
+			const validationResult = validatePoll(pollInput)
+			if (validationResult.success == false) {
+				return validationResult
+			} else if (!pollInput._id) {
+				return { success: false, message: 'Invalid Input.' }
+			}
+
+			const pollUpdateResponse = await Poll.updateOne(
+				{ _id: pollInput._id, author: userContext._id },
+				{ $set: { question: pollInput.question, tags: pollInput.tags } },
+			)
+
+			pollInput.options = pollInput.options.filter((o) => !!o.text)
+
+			for (let index = 0; index < pollInput.options.length; index++) {
+				await Poll.updateOne(
+					{ _id: pollInput._id, author: userContext._id },
+					{ $set: { 'options.$[currentOption].text': pollInput.options[index].text } },
+					{ arrayFilters: [{ 'currentOption._id': pollInput.options[index]._id }], multi: false },
+				)
+			}
+
+			return { success: pollUpdateResponse.ok && pollUpdateResponse.n == 1 }
 		},
 		deletePoll: async (parent, { pollId }, { userContext }) => {
 			if (!userContext) {
@@ -163,6 +195,18 @@ module.exports = {
 			return { success: !!poll, poll }
 		},
 	},
+}
+
+const validatePoll = (pollInput) => {
+	if (!pollInput.question || pollInput.options.length < 2) {
+		return { success: false, message: 'Question and 2 Options are required.' }
+	}
+
+	const uniqueOptions = pollInput.options.map((o) => o.order).filter((order, index, inputArray) => inputArray.indexOf(order) == index)
+	if (pollInput.options.length > uniqueOptions.length) {
+		return { success: false, message: 'Multiple options have same order.' }
+	}
+	return { success: true }
 }
 
 const calculatePollVotes = (polls, userId) => {

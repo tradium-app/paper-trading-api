@@ -49,6 +49,7 @@ input PollInput {
 }
 
 input PollOptionInput {
+	_id: ID
 	text: String
 	order: Int
 }
@@ -104,6 +105,7 @@ type Mutation {
 	loginUser(accessToken: String): Response
 	updateProfile(userInput: UserInput): Response
 	createPoll(pollInput: PollInput): Response
+	updatePoll(pollInput: PollInput): Response
 	deletePoll(pollId: String): Response
 	submitVote(pollVote: PollVote): Response
 }
