@@ -33,7 +33,7 @@ const PollSchema = new Schema({
 	question: { type: String, unique: true, required: true, trim: true },
 	options: [
 		{
-			text: String,
+			text: { type: String, unique: true, required: true, trim: true },
 			order: { type: Number, required: true },
 			votes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 			totalVotes: Number,

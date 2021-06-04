@@ -106,29 +106,18 @@ module.exports = {
 			if (!userContext) {
 				return { success: false, message: 'Please Login to Create Poll.' }
 			}
+			const validationResult = validatePoll(pollInput)
+			if (validationResult.success == false) {
+				return validationResult
+			}
+
 			pollInput.pollUrlId = pollInput.question.replace(/[^a-zA-z0-9?.]/gm, '-').replace(/[?.]/gm, '')
 			pollInput.author = userContext._id
 			pollInput.options = pollInput.options.filter((o) => !!o.text)
 
-			const uniqueOptions = pollInput.options.map((o) => o.order).filter((order, index, inputArray) => inputArray.indexOf(order) == index)
-			if (pollInput.options.length > uniqueOptions.length) {
-				return { success: false, message: 'Multiple options have same order.' }
-			}
+			const response = await Poll.create(pollInput)
 
-			if (pollInput.question && pollInput.options.length > 1) {
-				let response = null
-				if (pollInput._id) {
-					response = await Poll.updateOne(
-						{ _id: pollInput._id },
-						{ question: pollInput.question, options: pollInput.options, tags: pollInput.tags },
-					)
-				} else {
-					response = await Poll.create(pollInput)
-				}
-				return { success: response.ok && response.n == 1 }
-			} else {
-				return { success: false }
-			}
+			return { success: !!response }
 		},
 		updatePoll: async (parent, { pollInput }, { userContext }) => {
 			if (!userContext) {
@@ -153,8 +142,11 @@ module.exports = {
 				await Poll.updateOne(
 					{ _id: pollInput._id, author: userContext._id },
 					{ $set: { 'options.$[currentOption].text': pollInput.options[index].text } },
-					{ arrayFilters: [{ 'currentOption._id': pollInput.options[index]._id }], multi: false },
+					{ arrayFilters: [{ 'currentOption._id': pollInput.options[index]._id }], upsert: true },
 				)
+				if (!pollInput.options[index]._id) {
+					await Poll.updateOne({ _id: pollInput._id, author: userContext._id }, { $push: { options: pollInput.options[index] } })
+				}
 			}
 
 			return { success: pollUpdateResponse.ok && pollUpdateResponse.n == 1 }

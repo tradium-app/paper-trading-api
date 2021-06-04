@@ -10,7 +10,7 @@ const {
 } = require('../resolvers')
 
 describe('Mutation updatePoll', () => {
-	it('should update Poll', async () => {
+	it('should update Poll question/tags and not change existing votes and also add new options', async () => {
 		const userUrlId = 'userUrlId-updatePoll-1'
 		const pollUrlId = 'pollUrlId-updatePoll-1'
 
@@ -27,8 +27,9 @@ describe('Mutation updatePoll', () => {
 		})
 
 		const newQuestionValue = 'new-question-updatePoll-1'
-		const newOptionValue1 = 'new-option1'
+		const newOptionValue1 = 'option1'
 		const newOptionValue2 = 'new-option2'
+		const newOptionValue3 = 'new-option3'
 		const newTags = ['tag2', 'tag3', 'tag4']
 
 		const pollInput = {
@@ -37,6 +38,7 @@ describe('Mutation updatePoll', () => {
 			options: [
 				{ _id: poll.options[0]._id, text: newOptionValue1, order: 1 },
 				{ _id: poll.options[1]._id, text: newOptionValue2, order: 2 },
+				{ text: newOptionValue3, order: 3 },
 			],
 			tags: newTags,
 		}
@@ -48,11 +50,16 @@ describe('Mutation updatePoll', () => {
 		const pollUpdated = await Poll.findById(pollInput._id)
 
 		expect(pollUpdated.question).toBe(newQuestionValue)
+		expect(pollUpdated.options.length).toBe(3)
 
 		const option1 = pollUpdated.options.find((o) => o.order == 1)
-		const option2 = pollUpdated.options.find((o) => o.order == 2)
 		expect(option1.text).toBe(newOptionValue1)
+
+		const option2 = pollUpdated.options.find((o) => o.order == 2)
 		expect(option2.text).toBe(newOptionValue2)
 		expect(option2.votes[0].toString()).toBe(author._id.toString())
+
+		const option3 = pollUpdated.options.find((o) => o.order == 3)
+		expect(option3.text).toBe(newOptionValue3)
 	})
 })
