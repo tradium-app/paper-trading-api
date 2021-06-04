@@ -22,7 +22,7 @@ describe('compute-trending-tags', () => {
 			],
 		})
 		await Poll.create({
-			tags: ['tag1', 'tag2', 'tag2', 'tag3', 'tag3'],
+			tags: ['tag1', 'tag2', 'tag2', 'tag3', ''],
 			pollUrlId: `pollUrlId-2`,
 			question: `question-2`,
 			author: author._id,
@@ -37,5 +37,6 @@ describe('compute-trending-tags', () => {
 		const tagGroups = await Tag.find().lean()
 		expect(tagGroups.find((tg) => tg.tagId == 'tag1').currentMonthCount).toBe(4)
 		expect(tagGroups.find((tg) => tg.tagId == 'tag2').currentMonthCount).toBe(3)
+		expect(tagGroups.some((tg) => tg.tagId == '')).toBe(false)
 	})
 })

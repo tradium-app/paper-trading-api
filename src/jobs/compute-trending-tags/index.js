@@ -10,12 +10,12 @@ module.exports = async function () {
 
 		let pollTags = []
 		polls.forEach((poll) => {
-			pollTags = pollTags.concat(poll.tags)
+			pollTags = pollTags.concat(poll.tags.filter((t) => !!t))
 		})
 
 		const pollTagsGroupCount = pollTags.reduce((a, c) => ((a[c] = (a[c] || 0) + 1), a), {})
 
-		Tag.updateMany({}, { currentMonthCount: 0 }, { upsert: true })
+		await Tag.updateMany({}, { currentMonthCount: 0 }, { upsert: true })
 
 		const currentTime = Date.now()
 		const keys = Object.keys(pollTagsGroupCount)

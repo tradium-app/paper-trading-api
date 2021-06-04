@@ -21,9 +21,10 @@ module.exports = {
 			return polls
 		},
 		getTopTags: async (_, { searchText }, {}) => {
+			searchText = searchText || ''
 			const tags = await Tag.find({ tagId: { $regex: '^' + searchText, $options: '-i' }, status: 'Active' }, { tagId: 1, currentMonthCount: 1 })
-				.sort({ modifiedDate: -1 })
-				.limit(100)
+				.sort({ currentMonthCount: -1 })
+				.limit(20)
 
 			return tags
 		},
