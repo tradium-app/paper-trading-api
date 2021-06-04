@@ -111,7 +111,10 @@ module.exports = {
 				return validationResult
 			}
 
-			pollInput.pollUrlId = pollInput.question.replace(/[^a-zA-z0-9?.]/gm, '-').replace(/[?.]/gm, '')
+			pollInput.pollUrlId = pollInput.question
+				.replace(/[^a-zA-z0-9?.]/gm, '-')
+				.replace(/[?.]/gm, '')
+				.toLowerCase()
 			pollInput.author = userContext._id
 			pollInput.options = pollInput.options.filter((o) => !!o.text)
 
