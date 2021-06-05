@@ -96,6 +96,7 @@ type Response {
 type Query {
 	getPoll(userUrlId: String, pollUrlId: String): Poll
 	getTopPolls: [Poll]
+	searchPolls(searchText: String, searchTags: [String]): [Poll]
 	getTopTags(searchText: String): [Tag]
 	getUserProfile(userUrlId: String): User
 	getNotifications: [Notification]

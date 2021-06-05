@@ -20,6 +20,34 @@ module.exports = {
 			calculatePollVotes(polls, userContext?._id)
 			return polls
 		},
+		searchPolls: async (_, { searchText, searchTags }, {}) => {
+			searchText = searchText || ''
+			searchTags = searchTags || []
+
+			let polls = null
+			if (searchTags.length > 0) {
+				polls = await Poll.find({
+					question: { $regex: searchText, $options: '-i' },
+					tags: { $all: searchTags },
+					status: 'Published',
+				})
+					.populate('author')
+					.lean()
+					.sort({ createdDate: -1 })
+					.limit(100)
+			} else {
+				polls = await Poll.find({
+					question: { $regex: searchText, $options: '-i' },
+					status: 'Published',
+				})
+					.populate('author')
+					.lean()
+					.sort({ createdDate: -1 })
+					.limit(100)
+			}
+
+			return polls
+		},
 		getTopTags: async (_, { searchText }, {}) => {
 			searchText = searchText || ''
 			const tags = await Tag.find({ tagId: { $regex: '^' + searchText, $options: '-i' }, status: 'Active' }, { tagId: 1, currentMonthCount: 1 })
