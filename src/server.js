@@ -29,8 +29,9 @@ const corsOptionsDelegate = (req, callback) => {
 	const allowedDomains = process.env.ALLOWED_DOMAINS.split(',')
 	const isDomainAllowed = !origin || allowedDomains.some((a) => req.header('Origin').startsWith(a))
 
-	callback(null, { origin: isDomainAllowed, credentials: true })
+	callback(null, { origin: isDomainAllowed, credentials: true, maxAge: 86400 })
 }
+
 app.use(cors(corsOptionsDelegate))
 
 // set up rate limiter: maximum of five requests per minute
