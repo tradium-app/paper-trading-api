@@ -165,7 +165,7 @@ module.exports = {
 
 			const pollUpdateResponse = await Poll.updateOne(
 				{ _id: pollInput._id, author: userContext._id },
-				{ $set: { question: pollInput.question, tags: pollInput.tags } },
+				{ $set: { question: pollInput.question, tags: pollInput.tags, status: pollInput.status } },
 			)
 
 			pollInput.options = pollInput.options.filter((o) => !!o.text)
