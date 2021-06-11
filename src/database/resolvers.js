@@ -214,11 +214,7 @@ const validatePoll = (pollInput) => {
 	if (!pollInput.question || pollInput.options.length < 2) {
 		return { success: false, message: 'Question and 2 Options are required.' }
 	}
-
-	const uniqueOptions = pollInput.options.map((o) => o.order).filter((order, index, inputArray) => inputArray.indexOf(order) == index)
-	if (pollInput.options.length > uniqueOptions.length) {
-		return { success: false, message: 'Multiple options have same order.' }
-	}
+	
 	return { success: true }
 }
 
