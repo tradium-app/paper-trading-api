@@ -25,10 +25,13 @@ describe('Mutation submitVote', () => {
 			tags: ['searchPolls1', 'searchPolls2', 'searchPolls3'],
 			status: 'Published',
 		})
+		await Poll.ensureIndexes()
 
 		const pollVote = { pollId: poll._id, optionId: poll.options[0]._id }
+		await submitVote({}, { pollVote }, { userContext: { _id: voter1._id } })
 		const voteResult = await submitVote({}, { pollVote }, { userContext: { _id: voter1._id } })
 
-		expect(voter1._id.toString()).toBe(voteResult.poll.options[0].votes[0].voter.toString())
+		expect(voteResult.poll.options[0].votes.length).toBe(1)
+		expect(voteResult.poll.options[1].votes.length).toBe(1)
 	})
 })

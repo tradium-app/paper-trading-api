@@ -181,14 +181,20 @@ module.exports = {
 				return { success: false, message: 'Please Login to vote.' }
 			}
 
+			await Poll.updateOne(
+				{ _id: pollVote.pollId },
+				{
+					$pull: { 'options.$[].votes': { voter: userContext._id } },
+				},
+			)
+
 			const poll = await Poll.findByIdAndUpdate(
 				pollVote.pollId,
 				{
 					$addToSet: { 'options.$[element1].votes': { voter: userContext._id } },
-					$pull: { 'options.$[element2].votes': { voter: userContext._id } },
 				},
 				{
-					arrayFilters: [{ 'element1._id': pollVote.optionId }, { 'element2._id': { $ne: pollVote.optionId } }],
+					arrayFilters: [{ 'element1._id': pollVote.optionId }],
 					multi: false,
 					upsert: true,
 					new: true,
