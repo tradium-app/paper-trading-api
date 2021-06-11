@@ -21,7 +21,7 @@ describe('Mutation updatePoll', () => {
 			author: author._id,
 			options: [
 				{ text: 'option1', order: 1 },
-				{ text: 'option2', order: 2, votes: [author._id] },
+				{ text: 'option2', order: 2, votes: [{ voter: author._id }] },
 			],
 			tags: ['tag1', 'tag2'],
 		})
@@ -57,7 +57,7 @@ describe('Mutation updatePoll', () => {
 
 		const option2 = pollUpdated.options.find((o) => o.order == 2)
 		expect(option2.text).toBe(newOptionValue2)
-		expect(option2.votes[0].toString()).toBe(author._id.toString())
+		expect(option2.votes[0].voter._id.toString()).toBe(author._id.toString())
 
 		const option3 = pollUpdated.options.find((o) => o.order == 3)
 		expect(option3.text).toBe(newOptionValue3)
