@@ -50,6 +50,7 @@ const PollSchema = new Schema({
 	modifiedDate: { type: Date, default: Date.now },
 	status: { type: String, default: 'Draft' },
 })
+PollSchema.index({ question: 'text', 'options.text': 'text', tags: 'text' })
 
 PollSchema.path('options').validate(function (options) {
 	if (!options) {
