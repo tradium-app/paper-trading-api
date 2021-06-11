@@ -23,7 +23,7 @@ module.exports = {
 		searchPolls: async (_, { searchText }, {}) => {
 			searchText = searchText || ''
 
-			const polls = await Poll.find({ $text: { $search: searchText, $language: 'english', $caseSensitive: false } })
+			const polls = await Poll.find({ status: 'Published', $text: { $search: searchText, $language: 'english', $caseSensitive: false } })
 				.populate('author')
 				.lean()
 				.sort({ createdDate: -1 })
@@ -184,8 +184,8 @@ module.exports = {
 			const poll = await Poll.findByIdAndUpdate(
 				pollVote.pollId,
 				{
-					$addToSet: { 'options.$[element1].votes': userContext._id },
-					$pull: { 'options.$[element2].votes': userContext._id },
+					$addToSet: { 'options.$[element1].votes': { voter: userContext._id } },
+					$pull: { 'options.$[element2].votes': { voter: userContext._id } },
 				},
 				{
 					arrayFilters: [{ 'element1._id': pollVote.optionId }, { 'element2._id': { $ne: pollVote.optionId } }],
@@ -220,7 +220,7 @@ const calculatePollVotes = (polls, userId) => {
 	polls.forEach((poll) => {
 		poll.options.forEach((option) => {
 			option.totalVotes = option.votes.length
-			option.selected = userId && option.votes.some((v) => v.toString() == userId.toString())
+			option.selected = userId && option.votes.some((v) => v.voter?.toString() == userId.toString())
 		})
 	})
 

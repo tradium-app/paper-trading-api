@@ -7,7 +7,13 @@ module.exports = {
 	connect: async () => {
 		const uri = await mongod.getConnectionString()
 
-		await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+		await mongoose.connect(uri, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+			useCreateIndex: true,
+			useFindAndModify: true,
+			autoIndex: true,
+		})
 	},
 
 	clearDatabase: async () => {
