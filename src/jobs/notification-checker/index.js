@@ -7,7 +7,7 @@ module.exports = async function () {
 
 		const polls = await Poll.find({ createdDate: { $gte: aMonthAgo }, status: { $ne: 'Deleted' } })
 			.populate('author')
-			.populate('options.votes')
+			.populate('options.votes.voter')
 			.lean()
 			.sort({ modifiedDate: -1 })
 			.limit(100)
@@ -21,7 +21,7 @@ module.exports = async function () {
 			let totalVotes = poll.options?.reduce((totalVoters, option) => {
 				return { votes: totalVoters.votes.concat(option.votes) }
 			}).votes
-			totalVotes = totalVotes.filter((vote) => vote._id.toString() != poll.author?._id.toString())
+			totalVotes = totalVotes.filter((vote) => vote.voter._id.toString() != poll.author?._id.toString())
 
 			if (poll.author && totalVotes.length > 0) {
 				let message = ``
@@ -29,7 +29,7 @@ module.exports = async function () {
 				let userNames = []
 
 				for (let index = totalVotes.length - 1; index >= 0 && index > totalVotes.length - 3; index--) {
-					userNames.push(totalVotes[index].name.split(' ')[0])
+					userNames.push(totalVotes[index].voter.name.split(' ')[0])
 				}
 
 				if (totalVotes.length > 2) {

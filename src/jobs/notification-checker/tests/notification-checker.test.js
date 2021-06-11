@@ -21,8 +21,8 @@ describe('notification checker', () => {
 			question: `question-${epochTime}`,
 			author: author._id,
 			options: [
-				{ text: 'option1', order: 1, votes: [voter1._id] },
-				{ text: 'option2', order: 2, votes: [author._id, voter2._id, voter3._id] },
+				{ text: 'option1', order: 1, votes: [{ voter: voter1._id }] },
+				{ text: 'option2', order: 2, votes: [{ voter: author._id }, { voter: voter2._id }, { voter: voter3._id }] },
 			],
 		})
 
