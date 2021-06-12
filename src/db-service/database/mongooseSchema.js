@@ -81,6 +81,7 @@ const Tag = mongoose.model(
 	}),
 )
 
+const NotificationExpiryTime = 2592000
 const Notification = mongoose.model(
 	'Notification',
 	new Schema({
@@ -91,6 +92,7 @@ const Notification = mongoose.model(
 		isRead: { type: Boolean, ref: 'User', default: false },
 		createdDate: { type: Date, default: Date.now },
 		modifiedDate: { type: Date, default: Date.now },
+		createdAt: { type: Date, expires: NotificationExpiryTime, default: Date.now },
 	}),
 )
 

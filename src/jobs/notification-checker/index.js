@@ -21,7 +21,7 @@ module.exports = async function () {
 			let totalVotes = poll.options?.reduce((totalVoters, option) => {
 				return { votes: totalVoters.votes.concat(option.votes.filter((v) => v.votingTime > threeDaysAgo)) }
 			}).votes
-			totalVotes = totalVotes.filter((vote) => vote.voter._id.toString() != poll.author?._id.toString())
+			totalVotes = totalVotes.filter((vote) => vote.voter?._id.toString() != poll.author?._id.toString())
 
 			if (poll.author && totalVotes.length > 0) {
 				let message = ``
@@ -45,7 +45,7 @@ module.exports = async function () {
 						user: poll.author._id,
 						poll: poll._id,
 						message,
-						imageUrl: totalVotes[0].imageUrl,
+						imageUrl: totalVotes[0].voter.imageUrl,
 						createdDate: new Date(),
 						modifiedDate: new Date(),
 						isRead: false,
