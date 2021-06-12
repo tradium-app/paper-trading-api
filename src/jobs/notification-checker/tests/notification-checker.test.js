@@ -8,7 +8,7 @@ afterAll(async () => await TestDbServer.closeDatabase())
 const notificationCheckerJob = require('../index')
 
 describe('notification checker', () => {
-	it('should create a notification for author about voter only; should create only one notification in 3 days for a month', async () => {
+	it('should create a notification for author about voter only; should create only one notification for a poll in 3 days for a month about new voters only', async () => {
 		const epochTime = Date.now()
 
 		const author = await User.create({ userUrlId: 'userUrlId-1', firebaseUid: 'firebaseUid-1', name: 'author1' })
@@ -22,16 +22,26 @@ describe('notification checker', () => {
 			author: author._id,
 			options: [
 				{ text: 'option1', order: 1, votes: [{ voter: voter1._id }] },
-				{ text: 'option2', order: 2, votes: [{ voter: author._id }, { voter: voter2._id }, { voter: voter3._id }] },
+				{
+					text: 'option2',
+					order: 2,
+					votes: [{ voter: author._id }, { voter: voter2._id, votingTime: epochTime }, { voter: voter3._id, votingTime: '2020-01-01' }],
+				},
 			],
+			status: 'Published',
 		})
 
 		await notificationCheckerJob()
 		await notificationCheckerJob()
 
-		const notifications = await Notification.find({ poll: poll._id, user: author._id }, {}, { sort: { modifiedDate: -1 } })
+		let threeDaysAgo = new Date()
+		threeDaysAgo.setDate(threeDaysAgo.getDate() - 2)
 
-		expect(notifications.filter((notif) => /voter3/g.test(notif.message)).length).toBe(1)
-		expect(notifications.some((notif) => /author1/g.test(notif.message))).toBe(false)
+		const notifications = await Notification.find({ poll: poll._id, user: author._id, createdDate: { $gte: threeDaysAgo } })
+
+		expect(notifications.length).toBe(1)
+		expect(notifications[0].message.includes('voter3')).toBe(false)
+		expect(notifications[0].message.includes('author1')).toBe(false)
+		expect(notifications[0].message.includes('voter2')).toBe(true)
 	})
 })

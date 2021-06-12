@@ -5,7 +5,7 @@ module.exports = async function () {
 	try {
 		const { threeDaysAgo, aMonthAgo } = getDateVariables()
 
-		const polls = await Poll.find({ createdDate: { $gte: aMonthAgo }, status: { $ne: 'Deleted' } })
+		const polls = await Poll.find({ createdDate: { $gte: aMonthAgo }, status: 'Published' })
 			.populate('author')
 			.populate('options.votes.voter')
 			.lean()
@@ -19,7 +19,7 @@ module.exports = async function () {
 
 		polls.forEach((poll) => {
 			let totalVotes = poll.options?.reduce((totalVoters, option) => {
-				return { votes: totalVoters.votes.concat(option.votes) }
+				return { votes: totalVoters.votes.concat(option.votes.filter((v) => v.votingTime > threeDaysAgo)) }
 			}).votes
 			totalVotes = totalVotes.filter((vote) => vote.voter._id.toString() != poll.author?._id.toString())
 
