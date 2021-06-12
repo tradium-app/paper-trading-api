@@ -22,7 +22,7 @@ describe('Resolvers Query getTopPolls', () => {
 			author: author._id,
 			options: [
 				{ order: 1, text: 'option 1' },
-				{ order: 2, text: 'option 2', votes: [author.id] },
+				{ order: 2, text: 'option 2', votes: [{ voter: author.id }] },
 			],
 			status: 'Published',
 		})
