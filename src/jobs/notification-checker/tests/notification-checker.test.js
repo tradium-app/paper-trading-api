@@ -25,7 +25,12 @@ describe('notification checker', () => {
 				{
 					text: 'option2',
 					order: 2,
-					votes: [{ voter: author._id }, { voter: voter2._id, votingTime: epochTime }, { voter: voter3._id, votingTime: '2020-01-01' }],
+					votes: [
+						author._id,
+						{ voter: author._id },
+						{ voter: voter2._id, votingTime: epochTime },
+						{ voter: voter3._id, votingTime: '2020-01-01' },
+					],
 				},
 			],
 			status: 'Published',

@@ -29,7 +29,7 @@ module.exports = async function () {
 				let userNames = []
 
 				for (let index = totalVotes.length - 1; index >= 0 && index > totalVotes.length - 3; index--) {
-					userNames.push(totalVotes[index].voter.name.split(' ')[0])
+					userNames.push(totalVotes[index].voter?.name.split(' ')[0])
 				}
 
 				if (totalVotes.length > 2) {
@@ -57,7 +57,7 @@ module.exports = async function () {
 
 		await Promise.all(createPromises)
 	} catch (error) {
-		logger.info('Notification checker error ', error)
+		logger.error('Notification checker error ', error)
 	}
 	logger.info('Notification job completed')
 }
