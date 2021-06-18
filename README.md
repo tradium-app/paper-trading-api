@@ -29,6 +29,12 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
 3. `docker run --env-file ./.env -p 27017:27017 -p 8080:8080 devpolls.api` --to run docker container
 4. `docker stop $(docker ps -q --filter ancestor=devpolls.api)` --to stop docker containers
 
+## To run Locust load test
+
+1. `pip install locust`
+2. `locust -f ./locust-test.py`
+3. Go to `http://0.0.0.0:8089` and fill details and hit `Start`
+
 ## Key points
 
 1. Uses mongoose as ORM for mongodb
