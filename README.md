@@ -1,13 +1,13 @@
-# DevPolls-Api
+# BreakOut-Api
 
-A graphql based api endpoint for DevPolls web app
+A graphql based api endpoint for BreakOut Game
 
-It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
+It is set to auto-deploy to https://dashboard.heroku.com/apps/breakout-api-qa
 
-[![Node CI](https://github.com/devpolls/devpolls-api/actions/workflows/nodejs.yml/badge.svg)](https://github.com/devpolls/devpolls-api/actions/workflows/nodejs.yml)
-[![CodeQL](https://github.com/devpolls/devpolls-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/devpolls/devpolls-api/actions/workflows/codeql-analysis.yml)
+[![Node CI](https://github.com/breakout/breakout-api/actions/workflows/nodejs.yml/badge.svg)](https://github.com/breakout/breakout-api/actions/workflows/nodejs.yml)
+[![CodeQL](https://github.com/breakout/breakout-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/breakout/breakout-api/actions/workflows/codeql-analysis.yml)
 [![DeepScan grade](https://deepscan.io/api/teams/5348/projects/17276/branches/390641/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5348&pid=17276&bid=390641)
-[![codecov](https://codecov.io/gh/devpolls/devpolls-api/branch/master/graph/badge.svg?token=9EVGK74JKQ)](https://codecov.io/gh/devpolls/devpolls-api)
+[![codecov](https://codecov.io/gh/breakout/breakout-api/branch/master/graph/badge.svg?token=9EVGK74JKQ)](https://codecov.io/gh/breakout/breakout-api)
 
 ### GraphQL
 
@@ -25,9 +25,9 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
 ## To run as Docker Image
 
 1. [Optional]: If you are using local mongodb, change `localhost` to `docker.for.mac.host.internal` for mac machines to connect from inside container
-2. `docker build -t devpolls.api .` --to build docker
-3. `docker run --env-file ./.env -p 27017:27017 -p 8080:8080 devpolls.api` --to run docker container
-4. `docker stop $(docker ps -q --filter ancestor=devpolls.api)` --to stop docker containers
+2. `docker build -t breakout.api .` --to build docker
+3. `docker run --env-file ./.env -p 27017:27017 -p 8080:8080 breakout.api` --to run docker container
+4. `docker stop $(docker ps -q --filter ancestor=breakout.api)` --to stop docker containers
 
 ## To run Locust load test
 
@@ -43,7 +43,7 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/devpolls-api-qa
 ## Most basic MongoDB commands (terminal)
 
 -   `show dbs` --to show all dbs
--   `use devpollsdb` --to switch to devpollsdb
+-   `use breakoutdb` --to switch to breakoutdb
 -   `show collections` --to show all collections/tables
 -   `db.articles.find()` --to show all articles in the collection
 -   `db.articles.find({title: 'new title'})` --to show article/articles with title = 'new title'

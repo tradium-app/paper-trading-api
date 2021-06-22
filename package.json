@@ -1,7 +1,7 @@
 {
-	"name": "devpolls.api",
+	"name": "breakout.game.api",
 	"version": "1.0.0",
-	"description": "A graphql based api endpoint for DevPolls web app",
+	"description": "A graphql based api endpoint for BreakOut Game",
 	"main": "src/server.js",
 	"scripts": {
 		"start": "pm2-runtime start ecosystem.config.js",
@@ -56,9 +56,9 @@
 		"npm": ">=6.2.0"
 	},
 	"keywords": [
-		"DevPolls",
-		"Developer Polls"
+		"Tradium",
+		"BreakOut Game"
 	],
-	"author": "DevPolls Inc.",
+	"author": "Tradium Inc.",
 	"license": "ISC"
 }

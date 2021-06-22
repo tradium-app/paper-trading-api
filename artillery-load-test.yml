@@ -1,5 +1,5 @@
 config:
-    # target: 'https://devpolls-api-qa.herokuapp.com'
+    # target: 'https://breakout-api-qa.herokuapp.com'
     target: 'http://localhost:8080'
     phases:
         - duration: 60
