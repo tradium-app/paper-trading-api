@@ -1,112 +1,28 @@
-type User {
-	_id: ID!
-	userUrlId: String!
-	name: String!
-	imageUrl: String
-	title: String
-	shortBio: String
-	githubLink: String
-	linkedinLink: String
-	stackOverflowLink: String
-	createdDate: String
+type Stock {
+	_id: String!
+	symbol: String!
+	company: String
+	price: Float
+	price_history: [PriceHistory]
+	changePercent: Float
+	marketCap: Float
+	peRatio: Float
+	week52High: Float
+	week52Low: Float
+	ytdChangePercent: Float
 	modifiedDate: String
-	pollsCreated: [Poll]
-	status: String
 }
 
-type Poll {
-	_id: ID!
-	pollUrlId: String!
-	author: User!
-	question: String!
-	options: [PollOption]
-	comments: [PollComment]
-	tags: [String]
-	createdDate: String
-	modifiedDate: String
-	status: String
-}
-
-type PollOption {
-	_id: ID
-	text: String
-	order: Int
-	totalVotes: Int
-	selected: Boolean
-}
-
-type PollComment {
-	author: User
-	text: String
-}
-
-input PollInput {
-	_id: ID
-	question: String!
-	options: [PollOptionInput]
-	tags: [String]
-	status: String
-}
-
-input PollOptionInput {
-	_id: ID
-	text: String
-	order: Int
-}
-
-input PollVote {
-	pollId: ID!
-	optionId: ID!
-}
-
-type Tag {
-	_id: ID!
-	tagId: String
-	currentMonthCount: Float
-}
-
-input UserInput {
-	imageUrl: String
-	title: String
-	shortBio: String
-	githubLink: String
-	linkedinLink: String
-	stackOverflowLink: String
-}
-
-type Notification {
-	_id: ID!
-	message: String!
-	imageUrl: String
-	user: User!
-	poll: Poll
-	isRead: Boolean!
-	createdDate: String
-	modifiedDate: String
+type PriceHistory {
+	timeStamp: Float
+	price: Float
 }
 
 type Response {
 	success: Boolean
 	message: String
-	accessToken: String
-	user: User
-	poll: Poll
 }
 
 type Query {
-	getPoll(userUrlId: String, pollUrlId: String): Poll
-	getTopPolls: [Poll]
-	searchPolls(searchText: String): [Poll]
-	getTopTags(searchText: String): [Tag]
-	getUserProfile(userUrlId: String): User
-	getNotifications: [Notification]
-}
-
-type Mutation {
-	loginUser(accessToken: String): Response
-	updateProfile(userInput: UserInput): Response
-	createPoll(pollInput: PollInput): Response
-	updatePoll(pollInput: PollInput): Response
-	deletePoll(pollId: String): Response
-	submitVote(pollVote: PollVote): Response
+	getNewGame:[Stock]
 }

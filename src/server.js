@@ -15,10 +15,6 @@ const colors = require('colors/safe')
 const Agenda = require('agenda')
 const Agendash = require('agendash')
 const GraphQlErrorLoggingPlugin = require('./config/graphql-error-logging')
-const { createPrometheusExporterPlugin } = require('@bmatei/apollo-prometheus-exporter')
-
-require('./firebaseInit')
-const authMiddlware = require('./auth-express-middleware')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -42,7 +38,6 @@ var limiter = new RateLimit({
 })
 app.use(limiter)
 
-app.use(authMiddlware)
 app.use(timeout('30s'))
 app.use((req, res, next) => {
 	if (!req.timedout) {
@@ -61,8 +56,6 @@ app.use('/dash', Agendash(agenda))
 const typeDefSchema = requireGraphQLFile('./database/typeDefs.graphql')
 const typeDefs = gql(typeDefSchema)
 
-const prometheusExporterPlugin = createPrometheusExporterPlugin({ app })
-
 const apolloServer = new ApolloServer({
 	typeDefs: typeDefs,
 	resolvers: resolvers,
@@ -72,7 +65,7 @@ const apolloServer = new ApolloServer({
 		res,
 		...mongooseSchema,
 	}),
-	plugins: [NewRelicPlugin, prometheusExporterPlugin, GraphQlErrorLoggingPlugin],
+	plugins: [NewRelicPlugin, GraphQlErrorLoggingPlugin],
 })
 apolloServer.applyMiddleware({ app, cors: false })
 
