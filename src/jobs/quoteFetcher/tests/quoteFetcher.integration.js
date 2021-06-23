@@ -1,14 +1,15 @@
+require('../../../db-service/initialize')
 const quoteFetcher = require('../index')
-const { dbConnection } = require('../../../helper/connectionHelper')
+const { Stock } = require('../../../db-service/database/mongooseSchema')
 
 jest.setTimeout(1200000)
-
-beforeAll(async () => {
-	await dbConnection()
-})
 
 describe('NewsFetcher', () => {
 	it('integration test', async () => {
 		await quoteFetcher()
+
+		const aapl_history = await Stock.findOne({ symbol: 'TSLA' }, { price_history: 1 }).lean()
+
+		// console.log('printing aapl_history', aapl_history)
 	})
 })
