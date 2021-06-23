@@ -3,7 +3,7 @@ const { Stock, Game } = require('../../db-service/database/mongooseSchema')
 
 module.exports = async function () {
 	try {
-		const stocks = await Stock.find({ shouldRefresh: true, symbol: 'TSLA' }).lean()
+		const stocks = await Stock.find({ shouldRefresh: true }).lean()
 		if (stocks.length <= 0) return
 		let gameCreatePromises = []
 

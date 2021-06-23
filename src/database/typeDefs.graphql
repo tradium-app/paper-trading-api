@@ -1,21 +1,20 @@
-type Stock {
+type Game {
 	_id: String!
 	symbol: String!
 	company: String
-	price: Float
+	timeStamp: Float
 	price_history: [PriceHistory]
-	changePercent: Float
-	marketCap: Float
-	peRatio: Float
-	week52High: Float
-	week52Low: Float
-	ytdChangePercent: Float
-	modifiedDate: String
+	future_price_history: [PriceHistory]
+	willPriceIncrease: Boolean
+	willPriceDecrease: Boolean
 }
 
 type PriceHistory {
 	timeStamp: Float
-	price: Float
+	close: Float
+	open: Float
+	high: Float
+	low: Float
 }
 
 type Response {
@@ -24,5 +23,5 @@ type Response {
 }
 
 type Query {
-	getNewGame:[Stock]
+	getNewGame: Game
 }
