@@ -10,7 +10,7 @@ module.exports = async function () {
 		stocks.forEach((stock) => {
 			const price_history = [...stock.price_history].sort((a, b) => (a.timeStamp > b.timeStamp ? 1 : -1))
 
-			for (let index = 0; index < price_history.length - 10; index++) {
+			for (let index = 50; index < price_history.length - 10; index++) {
 				const current_price = price_history[index]
 				const future_price_history = price_history.slice(index, index + 10)
 
