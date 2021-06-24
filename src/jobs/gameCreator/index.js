@@ -8,9 +8,11 @@ module.exports = async function () {
 		let gameCreatePromises = []
 
 		stocks.forEach((stock) => {
-			for (let index = 0; index < stock.price_history.length - 10; index++) {
-				const current_price = stock.price_history[index]
-				const future_price_history = stock.price_history.slice(index, index + 10)
+			const price_history = [...stock.price_history].sort((a, b) => (a.timeStamp > b.timeStamp ? 1 : -1))
+
+			for (let index = 0; index < price_history.length - 10; index++) {
+				const current_price = price_history[index]
+				const future_price_history = price_history.slice(index, index + 10)
 
 				const willPriceIncrease = future_price_history.some((future_price) => future_price.close > current_price.close * 1.05)
 				const willPriceDecrease = future_price_history.some((future_price) => future_price.close < current_price.close * 0.95)
@@ -22,7 +24,7 @@ module.exports = async function () {
 							symbol: stock.symbol,
 							timeStamp: current_price.timeStamp,
 							company: stock.company,
-							price_history: stock.price_history.slice(index - 100 > 0 ? index - 100 : 0, index),
+							price_history: price_history.slice(index - 100 > 0 ? index - 100 : 0, index),
 							future_price_history,
 							willPriceIncrease,
 							willPriceDecrease,
