@@ -15,6 +15,7 @@ type PriceHistory {
 	open: Float
 	high: Float
 	low: Float
+	volume: Float
 }
 
 type Response {

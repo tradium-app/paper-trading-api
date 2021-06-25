@@ -16,6 +16,7 @@ const Stock = mongoose.model(
 				open: { type: Number, default: 0 },
 				high: { type: Number, default: 0 },
 				low: { type: Number, default: 0 },
+				volume: { type: Number, default: 0 },
 			},
 		],
 		changePercent: { type: Number, default: 0 },
@@ -46,6 +47,7 @@ const GameSchema = new Schema({
 			open: { type: Number, default: 0 },
 			high: { type: Number, default: 0 },
 			low: { type: Number, default: 0 },
+			volume: { type: Number, default: 0 },
 		},
 	],
 	future_price_history: [
@@ -55,6 +57,7 @@ const GameSchema = new Schema({
 			open: { type: Number, default: 0 },
 			high: { type: Number, default: 0 },
 			low: { type: Number, default: 0 },
+			volume: { type: Number, default: 0 },
 		},
 	],
 	willPriceIncrease: Boolean,
