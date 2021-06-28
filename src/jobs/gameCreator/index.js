@@ -14,8 +14,8 @@ module.exports = async function () {
 				const current_price = price_history[index]
 				const future_price_history = price_history.slice(index, index + 10)
 
-				const willPriceIncrease = future_price_history.some((future_price) => future_price.close > current_price.close * 1.05)
-				const willPriceDecrease = future_price_history.some((future_price) => future_price.close < current_price.close * 0.95)
+				const willPriceIncrease = future_price_history.some((future_price) => future_price.close > current_price.close * 1.1)
+				const willPriceDecrease = future_price_history.some((future_price) => future_price.close < current_price.close * 0.9)
 
 				if (willPriceIncrease || willPriceDecrease) {
 					const gameCreatePromise = Game.findOneAndUpdate(
