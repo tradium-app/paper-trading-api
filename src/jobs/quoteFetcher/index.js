@@ -28,7 +28,10 @@ module.exports = async function () {
 						},
 						$push: {
 							price_history: {
-								price: value.quote.latestPrice,
+								close: value.quote.latestPrice,
+								open: value.quote.open,
+								high: value.quote.high,
+								low: value.quote.low,
 								timeStamp: value.quote.latestUpdate,
 							},
 						},
