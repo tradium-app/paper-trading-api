@@ -8,7 +8,6 @@ describe('Resolvers Query getNewGame', () => {
 	it('should return a random Game to predict', async () => {
 		const newGame = await getNewGame(null, {}, {})
 
-		console.log('printing newGame', newGame.timeStamp)
-		expect(newGame.willPriceIncrease || newGame.willPriceDecrease).toBe(true)
+		expect(newGame.future_price_history.length > 50).toBe(true)
 	})
 })

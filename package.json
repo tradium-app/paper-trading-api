@@ -1,7 +1,7 @@
 {
-	"name": "breakout.game.api",
+	"name": "paper-trading.api",
 	"version": "1.0.0",
-	"description": "A graphql based api endpoint for BreakOut Game",
+	"description": "A graphql based api endpoint for Paper-Trading app",
 	"main": "src/server.js",
 	"scripts": {
 		"start": "pm2-runtime start ecosystem.config.js",
@@ -57,7 +57,7 @@
 	},
 	"keywords": [
 		"Tradium",
-		"BreakOut Game"
+		"Paper-Trading"
 	],
 	"author": "Tradium Inc.",
 	"license": "ISC"

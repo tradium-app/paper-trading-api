@@ -1,12 +1,9 @@
 type Game {
-	_id: String!
 	symbol: String!
 	company: String
 	timeStamp: Float
 	price_history: [PriceHistory]
 	future_price_history: [PriceHistory]
-	willPriceIncrease: Boolean
-	willPriceDecrease: Boolean
 }
 
 type PriceHistory {
