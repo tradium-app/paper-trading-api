@@ -1,13 +1,13 @@
-# BreakOut-Api
+# Paper-Trading-Api
 
-A graphql based api endpoint for BreakOut Game
+A graphql based api endpoint for Paper-Trading
 
-It is set to auto-deploy to https://dashboard.heroku.com/apps/breakout-api-qa
+It is set to auto-deploy to https://dashboard.heroku.com/apps/paper-trading-api-qa
 
-[![Node CI](https://github.com/breakout/breakout-api/actions/workflows/nodejs.yml/badge.svg)](https://github.com/breakout/breakout-api/actions/workflows/nodejs.yml)
-[![CodeQL](https://github.com/breakout/breakout-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/breakout/breakout-api/actions/workflows/codeql-analysis.yml)
-[![DeepScan grade](https://deepscan.io/api/teams/5348/projects/17276/branches/390641/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5348&pid=17276&bid=390641)
-[![codecov](https://codecov.io/gh/breakout/breakout-api/branch/master/graph/badge.svg?token=9EVGK74JKQ)](https://codecov.io/gh/breakout/breakout-api)
+[![Node CI](https://github.com/tradium-app/paper-trading-api/actions/workflows/nodejs.yml/badge.svg)](https://github.com/tradium-app/paper-trading-api/actions/workflows/nodejs.yml)
+[![CodeQL](https://github.com/tradium-app/paper-trading-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/tradium-app/paper-trading-api/actions/workflows/codeql-analysis.yml)
+[![DeepScan grade](https://deepscan.io/api/teams/5348/projects/19719/branches/515525/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=5348&pid=19719&bid=515525)
+[![codecov](https://codecov.io/gh/tradium-app/paper-trading-api/branch/main/graph/badge.svg?token=XIS65YZSSV)](https://codecov.io/gh/tradium-app/paper-trading-api)
 
 ### GraphQL
 
@@ -25,9 +25,9 @@ It is set to auto-deploy to https://dashboard.heroku.com/apps/breakout-api-qa
 ## To run as Docker Image
 
 1. [Optional]: If you are using local mongodb, change `localhost` to `docker.for.mac.host.internal` for mac machines to connect from inside container
-2. `docker build -t breakout.api .` --to build docker
-3. `docker run --env-file ./.env -p 27017:27017 -p 8080:8080 breakout.api` --to run docker container
-4. `docker stop $(docker ps -q --filter ancestor=breakout.api)` --to stop docker containers
+2. `docker build -t paper.api .` --to build docker
+3. `docker run --env-file ./.env -p 27017:27017 -p 8080:8080 paper.api` --to run docker container
+4. `docker stop $(docker ps -q --filter ancestor=paper.api)` --to stop docker containers
 
 ## To run Locust load test
 
