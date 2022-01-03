@@ -17,7 +17,7 @@ module.exports = {
 					company: stock.company,
 					timeStamp: stock.price_history[randomIndex].timeStamp,
 					price_history: stock.price_history.slice(randomIndex - 30, randomIndex),
-					future_price_history: stock.price_history.slice(randomIndex, randomIndex + 100),
+					future_price_history: stock.price_history.slice(randomIndex, randomIndex + 300),
 				}
 
 				return newGame
