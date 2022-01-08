@@ -2,7 +2,7 @@
 require('dotenv').config()
 
 exports.config = {
-	app_name: ['breakout.api'],
+	app_name: ['paper.api'],
 	license_key: process.env.NEW_RELIC_LICENSE_KEY,
 	logging: {
 		level: 'info',

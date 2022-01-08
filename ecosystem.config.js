@@ -3,7 +3,7 @@ require('dotenv').config()
 module.exports = {
 	apps: [
 		{
-			name: 'breakout.api',
+			name: 'paper.api',
 			script: 'src/server.js',
 			instances: process.env.INSTANCES_API || 1,
 			autorestart: true,
@@ -13,7 +13,7 @@ module.exports = {
 			max_memory_restart: process.env.APP_MEMORY_LIMIT || '2G',
 		},
 		{
-			name: 'breakout.worker',
+			name: 'paper.worker',
 			script: 'src/worker.js',
 			instances: process.env.INSTANCES_WORKER || 1,
 			autorestart: true,
